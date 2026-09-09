@@ -1,0 +1,54 @@
+# QWeb © Research — Calculations
+
+Every figure and every number quoted in the articles at
+[qweb-quantum.com](https://qweb-quantum.com) comes from a calculation.
+This repository holds those calculations so that anyone can check them.
+
+Each script is standalone, prints its results, and states which article
+and which figure it belongs to. Nothing is hidden in a library.
+
+## Requirements
+
+```
+pip install numpy scipy
+```
+
+Nothing else. The scripts are deliberately plain: no notebooks, no
+plotting dependencies, no framework. They print numbers you can compare
+against the articles.
+
+## Running everything
+
+```
+python run_all.py
+```
+
+## What is here
+
+| Script | Article | What it verifies |
+|---|---|---|
+| `no_cloning.py` | Two Answers to One Question | The three-line no-cloning proof, checked numerically |
+| `chsh_bound.py` | Two Answers to One Question | Classical bound 2, quantum bound 2√2, and where the Bell bound sits on the scale |
+| `entanglement_entropy.py` | Where the Research Areas Converge | S(θ) for the standard family, Schmidt rank against entropy |
+| `consistency_identity.py` | Where the Research Areas Converge | E + C = 1 for pure states, and the counterexample that breaks it for mixed ones |
+| `mixed_states.py` | Where the Research Areas Converge | Wootters' concurrence, the shortfall S − E, and where it peaks |
+| `bloch_states.py` | Where the Research Areas Converge | The six Pauli eigenstates, their preparation, and why no gate reaches I/2 |
+| `kruskal_partition.py` | Where the Research Areas Converge | Entropy-weighted partitioning, and Borůvka's parallel rounds |
+| `coherence_limit.py` | Where the Research Areas Converge | Round trip against coherence time; the 30 km bound |
+| `scheduling_limit.py` | Where the Research Areas Converge | Why central scheduling fails before coherence does |
+| `node_slices.py` | What a Node Actually Holds | A node holds no reduced state; the trace comes to its own share |
+| `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
+
+## A note on what these do and do not show
+
+These scripts verify arithmetic. They do not verify the physics, the
+architecture, or the conclusions drawn in the articles — those rest on
+published results, which the articles cite, and on arguments the reader
+is invited to disagree with.
+
+If a number here does not match the article, the article is wrong.
+Please say so.
+
+---
+
+Ramon Schweiss · QWeb © Research · [qweb-quantum.com](https://qweb-quantum.com)
