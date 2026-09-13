@@ -10,7 +10,7 @@ and which figure it belongs to. Nothing is hidden in a library.
 ## Requirements
 
 ```
-pip install numpy scipy
+pip install numpy scipy scikit-learn pennylane
 ```
 
 Nothing else. The scripts are deliberately plain: no notebooks, no
@@ -37,6 +37,8 @@ python run_all.py
 | `coherence_limit.py` | Where the Research Areas Converge | Round trip against coherence time; the 30 km bound |
 | `scheduling_limit.py` | Where the Research Areas Converge | Why central scheduling fails before coherence does |
 | `node_slices.py` | What a Node Actually Holds | A node holds no reduced state; the trace comes to its own share |
+| `qdnn_ablation.py` | The Layer That Nobody Trains | Four variants at matched capacity, pairwise tests, gradient traces |
+| `qdnn_sweep.py` | The Layer That Nobody Trains | The capacity sweep: how the cost of freezing falls as classical layers are added |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
 ## A note on what these do and do not show
@@ -48,6 +50,17 @@ is invited to disagree with.
 
 If a number here does not match the article, the article is wrong.
 Please say so.
+
+
+## A note on the two QDNN scripts
+
+Unlike the rest of this repository, these two do not verify arithmetic from
+a published source. They are an experiment: the ablation study that the
+article argues nobody runs. The numbers in that article come from these
+scripts and nowhere else, so they are the ones most worth attacking.
+
+`qdnn_ablation.py` takes about two minutes. `qdnn_sweep.py` takes four
+arguments in turn — `2`, `4`, `8`, `16` — and about ninety seconds each.
 
 ---
 
