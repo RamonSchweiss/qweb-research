@@ -49,6 +49,15 @@ def run(trainable_q, hid, Xtr,ytr,Xte,yte, seed, steps=120):
     return float(((np.asarray(fwd(params,Xte))>0).astype(int)==yte).mean()), n_tot, n_cl
 
 import sys, os
+if len(sys.argv) < 2:
+    print(__doc__)
+    print("No argument given. Run this script four times, once per width:")
+    print("    python qdnn_sweep.py 2")
+    print("    python qdnn_sweep.py 4")
+    print("    python qdnn_sweep.py 8")
+    print("    python qdnn_sweep.py 16")
+    print("\nEach takes about ninety seconds and appends to sweep.json.")
+    sys.exit(0)
 HID=int(sys.argv[1])
 d=load_breast_cancer(); X,y=d.data,d.target
 skf=StratifiedKFold(5,shuffle=True,random_state=0)
