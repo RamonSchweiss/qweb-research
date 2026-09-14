@@ -20,8 +20,13 @@ against the articles.
 ## Running everything
 
 ```
-python run_all.py
+python run_all.py          # the quick checks, about five seconds
+python run_all.py --all    # including the QDNN experiment, about two minutes
 ```
+
+Two files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
+scripts import. `qdnn_sweep.py` needs a width argument — run it without one
+and it explains itself.
 
 ## What is here
 
