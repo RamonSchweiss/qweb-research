@@ -49,30 +49,32 @@ def run(trainable_q, hid, Xtr,ytr,Xte,yte, seed, steps=120):
     return float(((np.asarray(fwd(params,Xte))>0).astype(int)==yte).mean()), n_tot, n_cl
 
 import sys, os
-if len(sys.argv) < 2:
-    print(__doc__)
-    print("No argument given. Run this script four times, once per width:")
-    print("    python qdnn_sweep.py 2")
-    print("    python qdnn_sweep.py 4")
-    print("    python qdnn_sweep.py 8")
-    print("    python qdnn_sweep.py 16")
-    print("\nEach takes about ninety seconds and appends to sweep.json.")
-    sys.exit(0)
-HID=int(sys.argv[1])
-d=load_breast_cancer(); X,y=d.data,d.target
-skf=StratifiedKFold(5,shuffle=True,random_state=0)
-accs={True:[],False:[]}
-t0=time.time()
-for fold,(itr,ite) in enumerate(skf.split(X,y)):
-    Atr,Ate=V.encode(X[itr],X[ite])
-    for s in (1,2,3):
-        for tq in (True,False):
-            a,n_tot,n_cl=run(tq,HID,Atr,y[itr],Ate,y[ite],seed=1000*s+10*fold+HID)
-            accs[tq].append(a)
-f=np.array(accs[True]); z=np.array(accs[False])
-rec={"hid":HID,"full":[f.mean(),f.std()],"frozen":[z.mean(),z.std()],
-     "gap":(f.mean()-z.mean())*100,"n_classical":n_cl,"n_total":n_tot}
-prev=json.load(open("sweep.json")) if os.path.exists("sweep.json") else {}
-prev[str(HID)]=rec; json.dump(prev,open("sweep.json","w"))
-print(f"  hid={HID}: klassisch {n_cl:3d} Param.  mitgelernt {f.mean()*100:5.2f} %  "
-      f"eingefroren {z.mean()*100:5.2f} %  Abstand {(f.mean()-z.mean())*100:+5.2f} pp  ({time.time()-t0:.0f}s)")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(__doc__)
+        print("No argument given. Run this script four times, once per width:")
+        print("    python qdnn_sweep.py 2")
+        print("    python qdnn_sweep.py 4")
+        print("    python qdnn_sweep.py 8")
+        print("    python qdnn_sweep.py 16")
+        print("\nEach takes about ninety seconds and appends to sweep.json.")
+        sys.exit(0)
+    HID=int(sys.argv[1])
+    d=load_breast_cancer(); X,y=d.data,d.target
+    skf=StratifiedKFold(5,shuffle=True,random_state=0)
+    accs={True:[],False:[]}
+    t0=time.time()
+    for fold,(itr,ite) in enumerate(skf.split(X,y)):
+        Atr,Ate=V.encode(X[itr],X[ite])
+        for s in (1,2,3):
+            for tq in (True,False):
+                a,n_tot,n_cl=run(tq,HID,Atr,y[itr],Ate,y[ite],seed=1000*s+10*fold+HID)
+                accs[tq].append(a)
+    f=np.array(accs[True]); z=np.array(accs[False])
+    rec={"hid":HID,"full":[f.mean(),f.std()],"frozen":[z.mean(),z.std()],
+         "gap":(f.mean()-z.mean())*100,"n_classical":n_cl,"n_total":n_tot}
+    prev=json.load(open("sweep.json")) if os.path.exists("sweep.json") else {}
+    prev[str(HID)]=rec; json.dump(prev,open("sweep.json","w"))
+    print(f"  hid={HID}: klassisch {n_cl:3d} Param.  mitgelernt {f.mean()*100:5.2f} %  "
+          f"eingefroren {z.mean()*100:5.2f} %  Abstand {(f.mean()-z.mean())*100:+5.2f} pp  ({time.time()-t0:.0f}s)")
