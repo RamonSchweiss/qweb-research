@@ -43,6 +43,7 @@ and it explains itself.
 | `scheduling_limit.py` | Where the Research Areas Converge | Why central scheduling fails before coherence does |
 | `node_slices.py` | What a Node Actually Holds | A node holds no reduced state; the trace comes to its own share |
 | `qdnn_ablation.py` | The Layer That Nobody Trains | Four variants at matched capacity, pairwise tests, gradient traces |
+| `qdnn_replicate.py` | The Layer That Nobody Trains | The same comparison on three datasets: breast cancer, wine, digits |
 | `qdnn_sweep.py` | The Layer That Nobody Trains | The capacity sweep: how the cost of freezing falls as classical layers are added |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
@@ -66,6 +67,8 @@ scripts and nowhere else, so they are the ones most worth attacking.
 
 `qdnn_ablation.py` takes about two minutes. `qdnn_sweep.py` takes four
 arguments in turn — `2`, `4`, `8`, `16` — and about ninety seconds each.
+`qdnn_replicate.py` takes a dataset name — `breast_cancer`, `wine` or
+`digits` — and about two minutes each.
 
 ---
 
