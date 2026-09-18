@@ -11,7 +11,7 @@ import subprocess, sys, pathlib, time
 
 HERE = pathlib.Path(__file__).parent / "calculations"
 MODULES = {"qdnn_variants.py"}          # importiert, nicht ausgefuehrt
-SLOW    = {"qdnn_ablation.py"}          # laeuft ueber eine Minute
+SLOW    = {"qdnn_ablation.py", "partition_robustness.py"}          # laeuft ueber eine Minute
 NEEDS_ARG = {"qdnn_sweep.py", "qdnn_replicate.py"}           # erklaert sich selbst, wenn ohne Argument aufgerufen
 
 run_slow = "--all" in sys.argv

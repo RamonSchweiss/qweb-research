@@ -48,6 +48,7 @@ and it explains itself.
 | `hamiltonian_terms.py` | What a Hamiltonian Actually Says | Hermiticity, the two commutators, and where the ground state gets its entanglement |
 | `gate_rabi.py` | How a Gate Is Actually Made | The closed form, the rotating wave approximation, and what detuning costs |
 | `partition_information.py` | in progress, joint with V. Ramamurthy | What state knowledge is worth when partitioning: the gap, the viability time, and the clock it is measured on |
+| `partition_robustness.py` | in progress, joint with V. Ramamurthy | Does the effect survive system size and graph density? Two axes of the matrix |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
 ## A note on what these do and do not show
@@ -86,6 +87,11 @@ microsecond — and the permissible separation comes out in tens of metres,
 not kilometres.
 
 Treat it as a record of where the experiment stands, not as a result.
+
+`partition_robustness.py` is its companion: it varies system size and graph
+density, and takes about three minutes. The short version is that the effect
+survives both, and that individual graphs are not informative — only averages
+over several are.
 
 ---
 
