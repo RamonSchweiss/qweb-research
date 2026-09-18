@@ -47,7 +47,7 @@ and it explains itself.
 | `qdnn_sweep.py` | The Layer That Nobody Trains | The capacity sweep: how the cost of freezing falls as classical layers are added |
 | `hamiltonian_terms.py` | What a Hamiltonian Actually Says | Hermiticity, the two commutators, and where the ground state gets its entanglement |
 | `gate_rabi.py` | How a Gate Is Actually Made | The closed form, the rotating wave approximation, and what detuning costs |
-| `partition_information.py` | in progress, joint with V. Ramamurthy | What state knowledge is worth when partitioning: the gap, the viability timescale, and the staleness crossover |
+| `partition_information.py` | in progress, joint with V. Ramamurthy | What state knowledge is worth when partitioning: the gap, the viability time, and the clock it is measured on |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
 ## A note on what these do and do not show
@@ -81,7 +81,9 @@ Ramamurthy on how much global state information a distributed scheduler
 actually needs. The numbers in it are measurements from a single circuit
 family at ten qubits, and they already tighten a figure quoted elsewhere on
 the site — the scheduling bound in the architecture article assumed a
-200-gate horizon, where this measures about fifteen.
+200-gate horizon, where this measures a viability time of well under a
+microsecond — and the permissible separation comes out in tens of metres,
+not kilometres.
 
 Treat it as a record of where the experiment stands, not as a result.
 
