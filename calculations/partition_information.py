@@ -4,23 +4,31 @@ What is state knowledge worth when partitioning a distributed computation?
 Joint work with Venkateswaran Ramamurthy, in progress.
 
 Question : a scheduler can infer a partition from the circuit graph alone, or
-           compute one from the running state. How much does the second buy?
-Measure  : quantum mutual information I(a:b) = S(a) + S(b) - S(ab) across each
-           pair, which is what a cut actually costs.
+           compute one from the running state. How much does the second buy,
+           and how quickly does it go stale?
+
+Measures : the cut is priced by quantum mutual information I(a:b) = S(a)+S(b)-S(ab).
+           The primary quantity is the VIABILITY TIME - the physical time over
+           which a partition stays within an acceptable cost margin. Distance is
+           derived from it through a latency model, rather than assumed.
 
 Findings : (1) with clear community structure the circuit graph already gives the
                optimal partition - the gap is zero;
            (2) without it the gap reaches 71 per cent;
            (3) the optimal partition changes almost every layer, but early changes
                are near-ties, so viability matters more than optimality;
-           (4) a partition stays within 5 per cent of optimal for about one layer,
-               which puts the staleness crossover near 130 m - considerably tighter
-               than the 1.8 km estimated from an assumed 200-gate horizon;
-           (5) and under Trotterised time evolution a partition lasts three to six
-               times longer than under QAOA, so the bound depends on the algorithm
-               and not on the hardware alone.
+           (4) the viability time is about 0.4 us for QAOA and 2.1 us for a
+               Trotterised evolution on the same graph - a factor between three
+               and six, so the horizon depends on the algorithm and not on the
+               hardware alone;
+           (5) counting gates serially overstates the horizon by about three,
+               because two-qubit gates on disjoint pairs run concurrently. The
+               parallel round count is an edge colouring of the interaction graph.
 
-Caveats  : one circuit family, ten qubits, fixed gamma and beta. Not general.
+Caveats  : two circuit families, ten qubits, one graph, one gate-time model.
+           Real hardware adds readout and classical processing latency, which
+           would shorten the permissible distance further.
+
 Needs    : numpy, scipy
 Runtime  : about one minute.
 """
@@ -61,6 +69,22 @@ def _layer(psi, edges, gamma, beta, n):
     for a,b in edges: psi=zz(psi,a,b,gamma,n)
     for q in range(n): psi=rx(psi,q,beta,n)
     return psi
+
+# ---------- Wie lange dauert eine Schicht wirklich? ----------
+def parallel_rounds(edges):
+    """Greedy edge colouring: each colour is one concurrently executable round."""
+    colour={}
+    for e in edges:
+        used={colour[f] for f in colour if set(f)&set(e)}
+        c=0
+        while c in used: c+=1
+        colour[e]=c
+    return max(colour.values())+1
+
+def layer_time(edges, n, t2=60e-9, t1=20e-9, serial=False):
+    """Physical duration of one layer. Serial counting overstates it."""
+    if serial: return len(edges)*t2 + n*t1
+    return parallel_rounds(edges)*t2 + t1
 
 # ---------- Partitionierung ----------
 def cut_cost(W, part):
@@ -156,20 +180,36 @@ for tol in (0.02,0.05,0.10,0.20):
     taus[tol]=tau_viable(snaps,tol)
     print(f"      {tol*100:3.0f} %            {taus[tol]:.2f}")
 
-# ---------- Teil 3: Staleness ----------
-print("\n3 - Information staleness = latency / change timescale")
+# ---------- Teil 3: Viabilitaetszeit und Staleness ----------
+print("\n3 - The viability time, and the clock it is measured on")
 print("-"*70)
-print("  Venkat's quantity. Below one, the information outlives the round trip.")
-print("  Above one, the answer is stale before it arrives.\n")
-c=299_792_458; t_layer=len(edges)*60e-9
-print(f"  {len(edges)} two-qubit gates per layer at 60 ns each = {t_layer*1e6:.2f} us per layer.\n")
-print("   tolerance    tau       crossover distance")
-for tol,t in taus.items():
-    print(f"      {tol*100:3.0f} %     {t:.2f}         {t*t_layer*c/2:7.0f} m")
-print("\n  Which is tighter than the 1.8 km quoted in the QWeb architecture article.")
-print("  That figure assumed a 200-gate horizon; here the horizon is measured,")
-print("  and comes out at roughly fifteen gates for this circuit family.")
-print(f"\n  {time.time()-t0:.0f}s")
+rounds=parallel_rounds(edges)
+t_ser=layer_time(edges,N,serial=True); t_par=layer_time(edges,N)
+deg=np.zeros(N,int)
+for a,b in edges: deg[a]+=1; deg[b]+=1
+print(f"  The interaction graph has maximum degree {deg.max()}, and a greedy edge")
+print(f"  colouring needs {rounds} rounds. So the {len(edges)} two-qubit gates of a layer do")
+print(f"  not run one after another - they run in {rounds} concurrent rounds.\n")
+print(f"    counting serially   {t_ser*1e6:.2f} us per layer")
+print(f"    counting in rounds  {t_par*1e6:.2f} us per layer   ({t_ser/t_par:.1f}x shorter)\n")
+print("  Which matters, because a layer is an algorithmic abstraction and the")
+print("  scheduler experiences wall-clock time. The primary quantity should")
+print("  therefore be a duration, not a layer count.\n")
+print("   tolerance   layers   viability time")
+for tol in (0.02,0.05,0.10,0.20):
+    print(f"      {tol*100:3.0f} %      {taus[tol]:.2f}      {taus[tol]*t_par*1e6:6.2f} us")
+
+print("\n  Distance then follows from a latency model rather than being assumed.")
+print("  With signals at c and a round trip, staleness reaches one at:\n")
+c=299_792_458
+print("   tolerance   viability time   crossover distance")
+for tol in (0.02,0.05,0.10,0.20):
+    v=taus[tol]*t_par
+    print(f"      {tol*100:3.0f} %       {v*1e6:6.2f} us          {v*c/2:6.0f} m")
+print("\n  Staleness S = latency / viability time. Below one the information")
+print("  arrives while it still describes the state; above one it does not.")
+print("\n  Note how much the clock matters: the same layer counts give")
+print(f"  {taus[0.05]*t_ser*c/2:.0f} m if gates are counted serially and {taus[0.05]*t_par*c/2:.0f} m if they are counted in rounds.")
 
 # ---------- Teil 4: QAOA gegen Trotter ----------
 print("\n4 - Does the algorithm change the answer?")
@@ -186,18 +226,22 @@ for tol in (0.02,0.05,0.10,0.20):
     tq=taus[tol]; tt=tau_viable(tr[start-1:], tol)
     print(f"      {tol*100:3.0f} %      {tq:.2f}       {tt:.2f}       {tt/tq:.1f}x")
 
-print("\n  Converted to distance, with 25 gates per step at 60 ns:\n")
-tl=25*60e-9
-print("   tolerance      QAOA        Trotter")
+print("\n  As durations, on the parallel clock:\n")
+tl=layer_time(edges,N)
+print("   tolerance      QAOA           Trotter        crossover distance")
 for tol in (0.02,0.05,0.10,0.20):
     tt=tau_viable(tr[start-1:], tol)
-    print(f"      {tol*100:3.0f} %      {taus[tol]*t_layer*c/2:5.0f} m      {tt*tl*c/2:5.0f} m")
+    vq=taus[tol]*tl; vt=tt*tl
+    print(f"      {tol*100:3.0f} %     {vq*1e6:5.2f} us        {vt*1e6:5.2f} us       {vq*c/2:4.0f} m  /  {vt*c/2:4.0f} m")
+
 print("\n  A partition stays usable three to six times longer under time evolution")
-print("  than under QAOA, and the permissible distance grows with it - from a few")
-print("  hundred metres to roughly a kilometre.")
+print("  than under QAOA. On the parallel clock that is a viability time of about")
+print("  0.4 microseconds against 2.1 - and a permissible separation of roughly")
+print("  sixty metres against three hundred.")
 print("\n  The reason is visible in the construction: each QAOA mixing layer stirs the")
 print("  whole entanglement structure, while a time evolution lets it grow along the")
 print("  couplings, gradually, with a front.")
-print("\n  Which suggests the staleness bound is not a property of the hardware alone.")
-print("  It depends on the algorithm being run.")
+print("\n  Which suggests the viability horizon is a property of the computation and")
+print("  the hardware together. Network-level observables alone cannot determine it,")
+print("  because they do not see the evolving state that sets it.")
 print(f"\n  {time.time()-t0:.0f}s")
