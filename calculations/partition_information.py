@@ -29,6 +29,14 @@ Caveats  : two circuit families, ten qubits, one graph, one gate-time model.
            Real hardware adds readout and classical processing latency, which
            would shorten the permissible distance further.
 
+SUPERSEDED: the viability time here is averaged over every starting layer of an
+           eight-layer circuit. A lifetime cannot exceed what is left of the
+           circuit, so that average is capped at four layers, and it moves with
+           the circuit depth. partition_topology.py measures it once from the
+           start on a circuit deep enough not to cap it. Where the two disagree,
+           that one is the later measurement. This script is kept as the record
+           of where the work stood, not as a current result.
+
 Needs    : numpy, scipy
 Runtime  : about one minute.
 """

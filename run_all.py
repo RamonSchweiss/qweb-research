@@ -2,7 +2,7 @@
 Run the verification scripts and report whether each completed.
 
     python run_all.py           the quick checks, about five seconds
-    python run_all.py --all     including the QDNN experiment, about two minutes
+    python run_all.py --all     including the slow experiments, about ten minutes
 
 qdnn_variants.py is a module the QDNN scripts import, not a script to run.
 qdnn_sweep.py needs a width argument; see its own docstring.
@@ -11,7 +11,8 @@ import subprocess, sys, pathlib, time
 
 HERE = pathlib.Path(__file__).parent / "calculations"
 MODULES = {"qdnn_variants.py"}          # importiert, nicht ausgefuehrt
-SLOW    = {"qdnn_ablation.py", "partition_robustness.py"}          # laeuft ueber eine Minute
+SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
+           "partition_topology.py"}      # laeuft ueber eine Minute
 NEEDS_ARG = {"qdnn_sweep.py", "qdnn_replicate.py"}           # erklaert sich selbst, wenn ohne Argument aufgerufen
 
 run_slow = "--all" in sys.argv

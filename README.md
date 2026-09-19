@@ -21,7 +21,7 @@ against the articles.
 
 ```
 python run_all.py          # the quick checks, about five seconds
-python run_all.py --all    # including the QDNN experiment, about two minutes
+python run_all.py --all    # including the slow experiments, about ten minutes
 ```
 
 Two files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
@@ -49,6 +49,7 @@ and it explains itself.
 | `gate_rabi.py` | How a Gate Is Actually Made | The closed form, the rotating wave approximation, and what detuning costs |
 | `partition_information.py` | in progress, joint with V. Ramamurthy | What state knowledge is worth when partitioning: the gap, the viability time, and the clock it is measured on |
 | `partition_robustness.py` | in progress, joint with V. Ramamurthy | Does the effect survive system size and graph density? Two axes of the matrix |
+| `partition_topology.py` | in progress, joint with V. Ramamurthy | Adds graph topology as a third axis — and finds that the measure the first two used depends on the circuit depth |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
 ## A note on what these do and do not show
@@ -92,6 +93,24 @@ Treat it as a record of where the experiment stands, not as a result.
 density, and takes about three minutes. The short version is that the effect
 survives both, and that individual graphs are not informative — only averages
 over several are.
+
+`partition_topology.py` is the third, and it is the one that corrects the other
+two. Adding graph topology as an axis made it clear that the quantity all three
+were measuring — the partition's lifetime, averaged over every starting layer of
+an eight-layer circuit — cannot exceed what is left of the circuit, so it was
+capped, and it moves with a depth nobody chose deliberately. Measured once from
+the start of a circuit long enough not to cap it, the horizon settles, and the
+picture changes in two ways worth knowing:
+
+- the separation between graph structures is a factor of seventeen, not three;
+- the permissible distance is tens of metres for a random interaction graph and
+  around a kilometre for one with clear community structure. The figure quoted
+  elsewhere on the site is the random-graph case, which is the shortest.
+
+Nothing here overturns the direction of the argument, and the shortest case is
+the one the articles quote. But the numbers in the two earlier scripts are not
+comparable with this one, and where they disagree, this one is the later
+measurement.
 
 ---
 

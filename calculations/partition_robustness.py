@@ -19,6 +19,14 @@ Findings : (1) the ratio between QAOA and Trotter viability times is 4 to 6 acro
 Caveats  : two circuit families, one gate-time model, greedy edge colouring rather
            than optimal, and balanced bipartitions only.
 
+SUPERSEDED: this inherits the capped, depth-dependent horizon from
+           partition_information.py, and finding (2) above does not survive.
+           The density cancellation holds for graphs without a distinguished
+           cut - which is what random sampling produces - and reverses for
+           graphs that have one. See partition_topology.py, which measures the
+           horizon once from the start and varies the topology. This script is
+           kept as the record of where the work stood, not as a current result.
+
 Needs    : numpy
 Runtime  : about three minutes.
 """
