@@ -70,7 +70,7 @@ Caveats  : two circuit families, one gate-time model, one tolerance, greedy edge
            own maximum, which is a choice and not a measurement.
 
 Needs    : numpy, scipy, scikit-learn
-Runtime  : about five minutes.
+Runtime  : five to fifteen minutes, depending on the machine.
 """
 import numpy as np, itertools, time, zlib
 from scipy.sparse.csgraph import connected_components, shortest_path

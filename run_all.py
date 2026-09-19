@@ -2,7 +2,7 @@
 Run the verification scripts and report whether each completed.
 
     python run_all.py           the quick checks, about five seconds
-    python run_all.py --all     including the slow experiments, about ten minutes
+    python run_all.py --all     including the slow experiments, about twenty minutes
 
 qdnn_variants.py is a module the QDNN scripts import, not a script to run.
 qdnn_sweep.py needs a width argument; see its own docstring.

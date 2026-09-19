@@ -21,7 +21,7 @@ against the articles.
 
 ```
 python run_all.py          # the quick checks, about five seconds
-python run_all.py --all    # including the slow experiments, about ten minutes
+python run_all.py --all    # including the slow experiments, about twenty minutes
 ```
 
 Two files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
