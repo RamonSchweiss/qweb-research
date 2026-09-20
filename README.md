@@ -50,6 +50,7 @@ and it explains itself.
 | `partition_information.py` | in progress, joint with V. Ramamurthy | What state knowledge is worth when partitioning: the gap, the viability time, and the clock it is measured on |
 | `partition_robustness.py` | in progress, joint with V. Ramamurthy | Does the effect survive system size and graph density? Two axes of the matrix |
 | `partition_topology.py` | in progress, joint with V. Ramamurthy | Adds graph topology as a third axis — and finds that the measure the first two used depends on the circuit depth |
+| `horizon_early_signal.py` | in progress, joint with V. Ramamurthy | How early a computation reveals how fast it will forget: static graph, then one observed layer, then more |
 | `autonomous_entanglement.py` | in progress | What a dissipatively stabilised link buys a scheduler: concurrence to fidelity, the distillation cost, and whether the staleness inequality moves |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
