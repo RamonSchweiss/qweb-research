@@ -42,7 +42,17 @@ Findings : (1) the first observed layer is worth something and the ones after
                The static features wash out under the same test;
            (4) but it is modest. A rank correlation near 0.45 leaves most of
                the variance where it was, and the sweep confirms it: no model
-               here explains more than about a quarter.
+               here explains more than about a quarter;
+           (5) the sample restriction turns out to be avoidable. Quantities read
+               from layer 0 alone cannot reveal a horizon that is counted from
+               layer 1, so the whole sample including the short horizons can be
+               used. The margin survives that: 0.30 within families instead of
+               0.45, in five families of seven;
+           (6) and it is not an artefact of the criterion. Controlling for how
+               fast the information matrix changes leaves the correlation
+               exactly where it was, and that rate on its own barely ranks with
+               the horizon at all. The two families where the margin fails do
+               not weaken but reverse, and they are the two most symmetric.
 
 Reading  : Venkat's first outcome, in its weaker form. A computation does
            reveal something about how fast it will forget, it reveals it
@@ -296,4 +306,114 @@ print("  partition broke before layer 4, which is where the scheduling argument"
 print("  bites hardest. Reading the same signal on those means predicting a")
 print("  horizon shorter than the observation window - a different experiment,")
 print("  not a longer version of this one.")
+
+print("\n\n6 - Bringing the short horizons back, without a leak")
+print("-" * 78)
+print("  The restriction above is not necessary if the features are chosen more")
+print("  carefully. H_v counts how long the partition CHOSEN AT LAYER 0 survives")
+print("  from layer 1 onward. A quantity read from layer 0 alone therefore cannot")
+print("  reveal it - not even whether H_v is zero. So layer-0 features may be used")
+print("  on the whole sample, short horizons included.\n")
+print("  What the earlier sweep called k=1 used layers 0 AND 1. Layer 1 is the")
+print("  leak. Layer 0 on its own is not.\n")
+
+full = [r for r in rows]
+L0 = [layer_stats(r['costs'][0], r['best'][0], r['snaps'][0], None, r['n']) for r in full]
+yf = np.array([r['hv'] for r in full])
+gf = np.array([r['topology'] for r in full])
+capf = np.array([r['capped'] for r in full])
+print(f"   graphs in this sample                    {len(full)}")
+print(f"   of which the partition broke immediately {(yf == 0).sum()}")
+print(f"   of which still viable at the circuit end {capf.sum()}  (right-censored)")
+print(f"   median H_v                               {np.median(yf):.1f}")
+
+print("\n   quantity at layer 0   all graphs   within family (mean)   |rho| > 0.3")
+for nm in ("mi", "info_cut", "margin"):
+    v = np.array([s[nm] for s in L0])
+    allr = float(spearmanr(v, yf).statistic)
+    inner = [float(spearmanr(v[gf == fam], yf[gf == fam]).statistic)
+             for fam in FAMILIES if (gf == fam).sum() >= 8 and np.ptp(v[gf == fam]) > 1e-12]
+    print(f"   {nm:18s}    {allr:+.2f}          {np.mean(inner):+.2f}"
+          f"                 {sum(abs(r) > 0.3 for r in inner)} of {len(inner)}")
+
+print("\n   the same with the censored graphs removed:")
+m = ~capf
+for nm in ("mi", "info_cut", "margin"):
+    v = np.array([s[nm] for s in L0])[m]
+    yy, gg = yf[m], gf[m]
+    inner = [float(spearmanr(v[gg == fam], yy[gg == fam]).statistic)
+             for fam in FAMILIES if (gg == fam).sum() >= 8 and np.ptp(v[gg == fam]) > 1e-12]
+    print(f"   {nm:18s}    {float(spearmanr(v, yy).statistic):+.2f}"
+          f"          {np.mean(inner):+.2f}"
+          f"                 {sum(abs(r) > 0.3 for r in inner)} of {len(inner)}")
+
+Xf = np.array([[r['static'][nm] for nm in pt.FEATURE_NAMES] +
+               [s['mi'], s['info_cut'], s['margin']] for r, s in zip(full, L0)])
+zf = np.log1p(yf)
+mdl = make_pipeline(QuantileTransformer(n_quantiles=40, output_distribution="normal",
+                                        random_state=0), Ridge(alpha=1.0))
+r2f = lambda pr: 1 - ((zf - pr) ** 2).sum() / ((zf - zf.mean()) ** 2).sum()
+Xs = Xf[:, :len(pt.FEATURE_NAMES)]
+print("\n   predicting log(1 + H_v) on the full sample, cross-validated:")
+print(f"   static graph only                      R2 = "
+      f"{r2f(cross_val_predict(mdl, Xs, zf, cv=KFold(5, shuffle=True, random_state=0))):.2f}")
+print(f"   plus the three layer-0 quantities      R2 = "
+      f"{r2f(cross_val_predict(mdl, Xf, zf, cv=KFold(5, shuffle=True, random_state=0))):.2f}")
+print(f"   the same, family held out              R2 = "
+      f"{r2f(cross_val_predict(mdl, Xf, zf, cv=LeaveOneGroupOut(), groups=gf)):.2f}")
+print("\n  This is the experiment the earlier sections could not run. Whether the")
+print("  margin still carries the horizon once the short-lived partitions are in")
+print("  the sample is the question, and the numbers above answer it without any")
+print("  restriction and without the features being able to see the target.")
+
+
+print("\n\n7 - Is the margin relation merely geometric?")
+print("-" * 78)
+print("  The obvious objection. A partition breaks when another one beats it by")
+print("  more than the tolerance. A large margin means W has further to move")
+print("  before that happens, so H_v would be roughly the margin divided by the")
+print("  rate at which W changes - arithmetic, not a property of the computation.")
+print("\n  Test: partial rank correlation of margin with H_v, controlling for that")
+print("  rate. The rate is taken from layers 20 to 30, which a compiler would not")
+print("  have; this asks about the mechanism, not about prediction.\n")
+
+def _partial(x, y, c):
+    from scipy.stats import rankdata
+    rx, ry, rc = (rankdata(v) for v in (x, y, c))
+    def res(a, b):
+        b1 = np.c_[np.ones(len(b)), b]
+        return a - b1 @ np.linalg.lstsq(b1, a, rcond=None)[0]
+    return float(np.corrcoef(res(rx, rc), res(ry, rc))[0, 1])
+
+mg0, rate, hvv, famv = [], [], [], []
+for r in rows:
+    S = r['snaps']
+    if len(S) < 31: continue
+    iu = np.triu_indices(r['n'], 1)
+    mg0.append(layer_stats(r['costs'][0], r['best'][0], S[0], None, r['n'])['margin'])
+    rate.append(np.mean([np.abs(S[j] - S[j-1])[iu].mean() / max(S[j][iu].mean(), 1e-12)
+                         for j in range(21, 31)]))
+    hvv.append(r['hv']); famv.append(r['topology'])
+mg0, rate, hvv, famv = map(np.array, (mg0, rate, hvv, famv))
+
+print("   family         raw     controlled for rate")
+raw, par = [], []
+for f in FAMILIES:
+    sel = famv == f
+    if sel.sum() < 8: continue
+    a = float(spearmanr(mg0[sel], hvv[sel]).statistic)
+    b = _partial(mg0[sel], hvv[sel], rate[sel])
+    raw.append(a); par.append(b)
+    print(f"   {f:12s}  {a:+.2f}          {b:+.2f}")
+print(f"\n   mean          {np.mean(raw):+.2f}          {np.mean(par):+.2f}")
+rr = np.mean([float(spearmanr(rate[famv == f], hvv[famv == f]).statistic)
+              for f in FAMILIES if (famv == f).sum() >= 8])
+print(f"   and the rate itself against H_v, within families:  {rr:+.2f}")
+print("\n  Controlling for the rate changes nothing, and the rate on its own barely")
+print("  ranks with the horizon. So the relation is not margin divided by rate.")
+print("\n  Two families go the other way rather than merely weakening - the two")
+print("  most symmetric ones, where many balanced cuts are near-equivalent by")
+print("  construction and the margin may not mean what it means elsewhere. That")
+print("  is a lead rather than a result.")
+
 print(f"\n  {time.time()-t0:.0f}s")
