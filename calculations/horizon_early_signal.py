@@ -46,13 +46,19 @@ Findings : (1) the first observed layer is worth something and the ones after
            (5) the sample restriction turns out to be avoidable. Quantities read
                from layer 0 alone cannot reveal a horizon that is counted from
                layer 1, so the whole sample including the short horizons can be
-               used. The margin survives that: 0.30 within families instead of
-               0.45, in five families of seven;
-           (6) and it is not an artefact of the criterion. Controlling for how
-               fast the information matrix changes leaves the correlation
-               exactly where it was, and that rate on its own barely ranks with
-               the horizon at all. The two families where the margin fails do
-               not weaken but reverse, and they are the two most symmetric.
+               used. The margin survives that, and in every family: 0.39 on
+               average once graphs are compared within the same size and
+               density (section 8);
+           (6) it is not an artefact of the criterion. Controlling for how fast
+               the information matrix changes leaves the correlation exactly
+               where it was, and that rate on its own barely ranks with the
+               horizon at all;
+           (7) an apparent sign reversal in ring and regular graphs was a
+               pooling artefact. At one edge per qubit both are exact cycles,
+               the margin is zero by symmetry in every graph, and their horizons
+               are at least as long as those of the chorded versions. Averaging those together with the chorded versions
+               manufactures a negative correlation that exists in no single
+               cell. Stratified, both families are positive.
 
 Reading  : Venkat's first outcome, in its weaker form. A computation does
            reveal something about how fast it will forget, it reveals it
@@ -62,13 +68,15 @@ Reading  : Venkat's first outcome, in its weaker form. A computation does
            execution" becomes "partly characterised after one layer", which is
            a different and smaller claim.
 
-Caveats  : one tolerance, one gate-time model, balanced bipartitions only, two
-           circuit families, and a sample restricted to graphs that survive to
-           layer k_max, which excludes the shortest horizons - the very ones
-           the scheduling argument cares about most. Whether the same holds
-           for those is not answered here and would need a different design.
-           The sweep's R2 values move by a few hundredths between runs; the
-           step at k=1 is larger than that, the later steps are not.
+Caveats  : one tolerance, one gate-time model, balanced bipartitions only, one
+           circuit family. Sections 1 to 5 use a sample restricted to graphs that
+           survive to layer k_max, which excludes the shortest horizons - the
+           very ones the scheduling argument cares about most; section 6 lifts
+           that restriction and finds the signal weaker but present. The sweep's
+           R2 values move by a few hundredths between runs; the step at k=1 is
+           larger than that, the later steps are not. The rate used in section 7
+           comes from layers no compiler would have seen, which is deliberate:
+           that section asks about the mechanism, not about prediction.
 
 Needs    : numpy, scipy, scikit-learn
 Runtime  : four to twelve minutes, depending on the machine.
@@ -411,9 +419,61 @@ rr = np.mean([float(spearmanr(rate[famv == f], hvv[famv == f]).statistic)
 print(f"   and the rate itself against H_v, within families:  {rr:+.2f}")
 print("\n  Controlling for the rate changes nothing, and the rate on its own barely")
 print("  ranks with the horizon. So the relation is not margin divided by rate.")
-print("\n  Two families go the other way rather than merely weakening - the two")
-print("  most symmetric ones, where many balanced cuts are near-equivalent by")
-print("  construction and the margin may not mean what it means elsewhere. That")
-print("  is a lead rather than a result.")
+print("\n  Two families appear to go the other way. Section 8 shows why that is")
+print("  an artefact of how the correlation was averaged, not a property of them.")
+
+
+print("\n\n8 - The reversal was a pooling artefact")
+print("-" * 78)
+print("  Ring and regular looked as if the margin worked backwards in them. It")
+print("  does not. At one edge per qubit both families are exactly symmetric -")
+print("  a pure cycle - and every rotated copy of the best cut is exactly as")
+print("  good as the best. The margin is then zero, in every graph:\n")
+cell = lambda r: (r['n'], round(r['static']['density'] * r['n']))
+_mg = lambda c: (lambda s: (s[1] - s[0]) / s[1] if s[1] > 1e-12 else 0.0)(np.sort(c))
+print("   family      n    margin zero in    median H_v")
+for f in ("ring", "regular"):
+    for n in SIZES:
+        sub = [r for r in rows if r['topology'] == f and cell(r) == (n, n)]
+        if not sub: continue
+        ms = np.array([_mg(r['costs'][0]) for r in sub])
+        print(f"   {f:9s}  {n:2d}     {np.mean(ms < 1e-9) * 100:5.1f} % of graphs"
+              f"      {np.median([r['hv'] for r in sub]):5.1f}")
+print("\n  Those graphs have no margin and horizons at least as long as their")
+print("  chorded relatives - longer at ten qubits, equal at twelve. Pool them with the")
+print("  chorded versions of the same family, which have both a margin and a")
+print("  shorter horizon, and a negative correlation appears that exists inside")
+print("  no single group of comparable graphs. Simpson's paradox.")
+print("\n  The fix is to compute the correlation inside each size-and-density cell")
+print("  first and average afterwards. Cells where the margin is constant carry")
+print("  no information about it and drop out.\n")
+print("   family         pooled    stratified    cells used")
+strat = []
+for f in FAMILIES:
+    sub = [r for r in rows if r['topology'] == f]
+    pooled = float(spearmanr([_mg(r['costs'][0]) for r in sub],
+                             [r['hv'] for r in sub]).statistic)
+    groups_c = {}
+    for r in sub: groups_c.setdefault(cell(r), []).append(r)
+    rhos = []
+    for rs in groups_c.values():
+        if len(rs) < 8: continue
+        a = np.array([_mg(r['costs'][0]) for r in rs]); h = np.array([r['hv'] for r in rs])
+        if np.ptp(a) < 1e-12 or np.ptp(h) < 1e-12: continue
+        rhos.append(float(spearmanr(a, h).statistic))
+    strat.append(np.mean(rhos))
+    print(f"   {f:12s}   {pooled:+.2f}      {np.mean(rhos):+.2f}        "
+          f"{len(rhos)} of {len(groups_c)}")
+print(f"\n   mean over families, stratified   {np.mean(strat):+.2f}, "
+      f"positive in {sum(x > 0 for x in strat)} of {len(strat)}")
+print("\n  So on the full, leak-free sample the margin ranks with the horizon in")
+print("  every family, not five of seven, once graphs are compared with graphs")
+print("  of the same size and density.")
+print("\n  What the symmetric cells do say is worth keeping, but it is a different")
+print("  statement. Where symmetry forces a tie, a zero margin does not mean the")
+print("  partition is fragile - the twins it is tied with are twins of the same")
+print("  shape. So 'no margin' means fragility in an asymmetric graph and nothing")
+print("  of the kind in a symmetric one, and a pooled correlation cannot tell")
+print("  the two apart.")
 
 print(f"\n  {time.time()-t0:.0f}s")
