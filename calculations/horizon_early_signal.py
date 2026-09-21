@@ -56,9 +56,9 @@ Findings : (1) the first observed layer is worth something and the ones after
            (7) an apparent sign reversal in ring and regular graphs was a
                pooling artefact. At one edge per qubit both are exact cycles,
                the margin is zero by symmetry in every graph, and their horizons
-               are at least as long as those of the chorded versions. Averaging those together with the chorded versions
-               manufactures a negative correlation that exists in no single
-               cell. Stratified, both families are positive.
+               are at least as long as those of the chorded versions. Pooling
+               the two manufactures a negative correlation that exists in no
+               single cell. Stratified, both families are positive.
 
 Reading  : Venkat's first outcome, in its weaker form. A computation does
            reveal something about how fast it will forget, it reveals it

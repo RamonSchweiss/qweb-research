@@ -13,7 +13,8 @@ HERE = pathlib.Path(__file__).parent / "calculations"
 MODULES = {"qdnn_variants.py"}          # importiert, nicht ausgefuehrt
 SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
            "partition_topology.py",
-           "horizon_early_signal.py"}    # laeuft ueber eine Minute
+           "horizon_early_signal.py",
+           "gate_vs_state_partition.py"}  # laeuft laenger als ein paar Sekunden
 NEEDS_ARG = {"qdnn_sweep.py", "qdnn_replicate.py"}           # erklaert sich selbst, wenn ohne Argument aufgerufen
 
 run_slow = "--all" in sys.argv
