@@ -111,10 +111,17 @@ picture changes in two ways worth knowing:
   around a kilometre for one with clear community structure. The figure quoted
   elsewhere on the site is the random-graph case, which is the shortest.
 
-Nothing here overturns the direction of the argument, and the shortest case is
-the one the articles quote. But the numbers in the two earlier scripts are not
-comparable with this one, and where they disagree, this one is the later
-measurement.
+The numbers in the two earlier scripts are not comparable with this one, and
+where they disagree, this one is the later measurement.
+
+One open question now sits under all three. The horizon is measured on the
+mutual information across a cut, which is a proxy. On the costs that are
+actually paid - remote gates when a circuit is executed
+(`gate_vs_state_partition.py`), Schmidt dimension when it is simulated
+(`entanglement_horizon.py`) - the partition chosen at the start stays good far
+longer, or never needs to change at all. Until it is clear which cost the
+horizon bounds, read the distances above as a measurement of the proxy, not
+as a limit on a network.
 
 ---
 
