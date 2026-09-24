@@ -16,7 +16,8 @@ SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
            "horizon_early_signal.py",
            "gate_vs_state_partition.py",
            "entanglement_horizon.py",
-           "second_circuit_family.py"}    # laeuft laenger als ein paar Sekunden
+           "second_circuit_family.py",
+           "staleness_cost.py"}           # laeuft laenger als ein paar Sekunden
 NEEDS_ARG = {"qdnn_sweep.py", "qdnn_replicate.py"}           # erklaert sich selbst, wenn ohne Argument aufgerufen
 
 run_slow = "--all" in sys.argv

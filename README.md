@@ -54,6 +54,7 @@ and it explains itself.
 | `gate_vs_state_partition.py` | in progress, joint with V. Ramamurthy | Would a distributed compiler see what the horizon sees? A gate-based cut never moves in QAOA, and following the information cut costs more remote gates. Optional cross-check against the memQ DQC compiler |
 | `entanglement_horizon.py` | in progress, joint with V. Ramamurthy | The horizon on a cost that is really paid: Schmidt dimension for distributed simulation. The first cut lasts far longer than H_v says, and keeping it costs a few percent |
 | `second_circuit_family.py` | in progress, joint with V. Ramamurthy | Does the margin–horizon relation hold outside QAOA? Trotter as a second family, same definitions, effect sizes and bootstrap intervals |
+| `staleness_cost.py` | in progress, joint with V. Ramamurthy | EO-2: a branching circuit whose later gates are not knowable at compile time. What it costs to keep a stale partition, five planners in one currency, and the latency at which reorganising stops paying |
 | `autonomous_entanglement.py` | in progress | What a dissipatively stabilised link buys a scheduler: concurrence to fidelity, the distillation cost, and whether the staleness inequality moves |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
