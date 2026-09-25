@@ -56,6 +56,7 @@ and it explains itself.
 | `second_circuit_family.py` | in progress, joint with V. Ramamurthy | Does the margin–horizon relation hold outside QAOA? Trotter as a second family, same definitions, effect sizes and bootstrap intervals |
 | `staleness_cost.py` | in progress, joint with V. Ramamurthy | EO-2: a branching circuit whose later gates are not knowable at compile time. What it costs to keep a stale partition, five planners in one currency, and the latency at which reorganising stops paying |
 | `drift_cost.py` | in progress, joint with V. Ramamurthy | EO-3: the same question with a drifting structure and no announcing bit. The horizon turns out to be a brake, not a steering wheel |
+| `drift_robustness.py` | in progress, joint with V. Ramamurthy | Does the brake survive? Tolerance, drift rate and migration price swept, plus one deliberate run with noise on every network operation |
 | `autonomous_entanglement.py` | in progress | What a dissipatively stabilised link buys a scheduler: concurrence to fidelity, the distillation cost, and whether the staleness inequality moves |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 
