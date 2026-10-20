@@ -127,6 +127,18 @@ longer, or never needs to change at all. Until it is clear which cost the
 horizon bounds, read the distances above as a measurement of the proxy, not
 as a limit on a network.
 
+## figures/
+
+Scripts that draw the figures in the articles, kept apart from
+`calculations/` because `run_all.py` runs everything it finds there.
+Calculations check claims; figures draw them.
+
+| Script | Article | Output |
+|---|---|---|
+| `qubit_bloch.py` | What a Qubit Actually Is | Bloch spheres emptying under a ZZ interaction — animated GIF plus five stills ([preview](figures/qubit_bloch_4_entangled.svg)) |
+
+Generated output goes to `figures/out/` and is not tracked.
+
 ---
 
 Ramon Schweiss · QWeb © Research · [qweb-quantum.com](https://qweb-quantum.com)
