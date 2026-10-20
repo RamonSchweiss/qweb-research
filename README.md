@@ -20,8 +20,16 @@ and which figure it belongs to. Nothing is hidden in a library.
 pip install numpy scipy scikit-learn pennylane
 ```
 
-Nothing else. The scripts are deliberately plain: no notebooks, no
-plotting dependencies, no framework. They print numbers you can compare
+Two scripts use an optional extra and say so when it is missing rather
+than failing: `routed_partition_orbit.py` needs `qiskit`, and the
+cross-check at the end of `gate_vs_state_partition.py` needs `memq_dqc`.
+
+```
+pip install qiskit
+```
+
+Otherwise nothing else. The scripts are deliberately plain: no notebooks,
+no plotting dependencies, no framework. They print numbers you can compare
 against the articles.
 
 ## Running everything
@@ -66,6 +74,7 @@ and it explains itself.
 | `drift_robustness.py` | in progress, joint with V. Ramamurthy | Does the brake survive? Tolerance, drift rate and migration price swept, plus one deliberate run with noise on every network operation |
 | `autonomous_entanglement.py` | in progress | What a dissipatively stabilised link buys a scheduler: concurrence to fidelity, the distillation cost, and whether the staleness inequality moves |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
+| `routed_partition_orbit.py` | What the Computation Knows About Its Own Organisation | Whether the gate-optimal cut survives routing: transient and period of the layout orbit, and whether the cut holds over the cycle. Pre-registered in [designs/](designs/) before the first run |
 
 ## A note on what these do and do not show
 
