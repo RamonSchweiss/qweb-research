@@ -143,6 +143,21 @@ longer, or never needs to change at all. Until it is clear which cost the
 horizon bounds, read the distances above as a measurement of the proxy, not
 as a limit on a network.
 
+## designs/
+
+Design notes for measurements, committed before the first computation, so
+that the date on a hypothesis is a fact rather than a claim. Changes made
+after the fact are dated addenda; the original text is never edited.
+
+| Document | What it is |
+|---|---|
+| `design_routed_partition_orbit_EN.md` | The design, 16 October 2026 |
+| `..._addendum_1.md` | Router regime and return-swap costs, 18 October |
+| `..._addendum_2.md` | The permutation control came out degenerate; a replacement, 20 October |
+| `routed_partition_orbit_run_2026-10-20.txt` | The printout of the first run |
+
+If a printout contradicts a later text, the text is wrong.
+
 ## figures/
 
 Scripts that draw the figures in the articles, kept apart from
