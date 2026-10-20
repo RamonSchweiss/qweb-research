@@ -1,8 +1,15 @@
-# QWeb © Research — Calculations
+# QWeb © Research — Calculations, designs and figures
 
 Every figure and every number quoted in the articles at
 [qweb-quantum.com](https://qweb-quantum.com) comes from a calculation.
 This repository holds those calculations so that anyone can check them.
+
+Two further kinds of document sit beside them. `designs/` holds the
+design notes for measurements that have not been run yet, committed
+before the first computation so that the date on a hypothesis is a fact
+rather than a claim; when something learned afterwards changes one, it
+is recorded as a dated addendum and the original text is left standing.
+`figures/` holds the scripts that draw the figures in the articles.
 
 Each script is standalone, prints its results, and states which article
 and which figure it belongs to. Nothing is hidden in a library.
