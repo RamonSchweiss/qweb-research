@@ -262,6 +262,10 @@ def build(outdir):
 
 
 if __name__ == "__main__":
-    import sys
-    build(sys.argv[1])
-    print("done", NFRAMES, "frames")
+    import sys, os
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "out")
+    os.makedirs(out, exist_ok=True)
+    build(out)
+    print(f"{NFRAMES} frames at {FPS} fps "
+          f"({NFRAMES / FPS:.1f} s) written to {out}")
