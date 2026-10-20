@@ -155,6 +155,7 @@ after the fact are dated addenda; the original text is never edited.
 | `..._addendum_1.md` | Router regime and return-swap costs, 18 October |
 | `..._addendum_2.md` | The permutation control came out degenerate; a replacement, 20 October |
 | `routed_partition_orbit_run_2026-10-20.txt` | The printout of the first run |
+| `routed_partition_orbit_run_2026-10-20_with_addendum_2_control.txt` | The same measurement with the replacement control |
 
 If a printout contradicts a later text, the text is wrong.
 
