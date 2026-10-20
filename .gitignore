@@ -1,1 +1,13 @@
+# Generated figure output
+figures/out/
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
