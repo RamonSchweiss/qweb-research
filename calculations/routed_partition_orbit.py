@@ -236,6 +236,34 @@ def orbit(n, edges, cm, seed, p_max=P_MAX):
     return None, None, recs
 
 
+def permutation_window(n, edges, swap_counts, t, W, seed, S):
+    """
+    Addendum 2, A2.2: matched-window control.
+
+    Run the permutation process for t + W layers, copying the per-layer swap
+    COUNT of the real run and choosing each swap uniformly at random instead of
+    by the router. Return whether the argmin balanced bipartition is constant
+    over the last W layers -- the same question the router is asked, over a
+    window of the same length, with the same swap budget.
+    """
+    rng = np.random.default_rng(seed)
+    base = [tuple(sorted(e)) for e in edges]
+    lay = tuple(range(n))
+    args = []
+    for k in range(t + W):
+        nsw = swap_counts[k] if k < len(swap_counts) else swap_counts[-1]
+        at = {ph: lg for lg, ph in enumerate(lay)}
+        inter = list(base)
+        for _ in range(nsw):
+            a, b = (int(x) for x in rng.choice(n, size=2, replace=False))
+            la, lb = at[a], at[b]
+            inter.append((la, lb) if la < lb else (lb, la))
+            at[a], at[b] = at[b], at[a]
+        args.append(best_cut(n, inter, S)[0])
+        lay = tuple(ph for _lg, ph in sorted((lg, ph) for ph, lg in at.items()))
+    return len(set(args[t:])) == 1
+
+
 def permutation_orbit(n, edges, swap_counts, seed, p_max=P_MAX):
     """
     Section 4, permutation control.
@@ -356,7 +384,7 @@ def main():
 
     # ---------------------------------------------------------------- 2
     banner("The grid  21 graphs x 4 topologies x 5 router seeds")
-    swaps, allrows = {}, {}
+    swaps, allrows, real = {}, {}, {}
     for name in TOPOLOGIES:
         cm, desc = topology(name, N)
         print(f"\n   {name}  ({desc})")
@@ -379,35 +407,77 @@ def main():
                       f"   {cc:9s}   {tc:9s}   {a['swaps_mean']:9.2f}"
                       f"   {a['cost_mean']:8.2f} {a['margin_mean']:8.2f} {ex}")
                 swaps[(name, f, s, rs)] = [r["swaps"] for r in recs]
+                real[(name, f, s, rs)] = (t, d, [r["swaps"] for r in recs],
+                                          bool(a["cycle_constant"]))
         summarise(name, rows)
         allrows[name] = rows
 
     # ---------------------------------------------------------------- 3
-    banner("Control 2  random permutations in place of the router")
-    print("The ZZ gates of a layer sit on the same logical pairs whatever the")
-    print("layout, so the whole variation of the interaction graph comes from")
-    print("the swaps. This control keeps the per-layer swap COUNT of the real")
-    print("run and chooses the swaps at random instead. If the cut is constant")
-    print("here too, constancy says nothing about routing.")
+    banner("Control 2  matched-window permutations  (addendum 2, 20 Oct 2026)")
+    print("The control registered in section 4 came out degenerate: under random")
+    print("permutations the orbit never closes within p_max, so there was no")
+    print("cycle to be constant over and no comparison in either direction. That")
+    print("is recorded in addendum 2 together with this replacement.")
+    print()
+    print("Here: for every run whose cycle has d >= 2, the permutation process is")
+    print("given the SAME per-layer swap budget and the SAME window length W = d,")
+    print("with the swaps chosen at random instead of by the router. The question")
+    print("asked of both arms is identical.")
+    print()
+    print("Decision rule, fixed in advance: if the control rate lies within the")
+    print("seed-to-seed scatter of the router rate, constancy carries no")
+    print("information about routing and every claim resting on it is withdrawn.")
+
+    CTRL_SEEDS = range(5)
+    pooled_r, pooled_c = [], []
     for name in TOPOLOGIES:
-        rows = []
-        for f, s, E in graphs:
-            for rs in ROUTER_SEEDS:
-                sc = swaps.get((name, f, s, rs))
-                if not sc:
-                    continue
-                t, d, recs = permutation_orbit(N, E, sc, 1000 + rs)
-                a = analyse(N, t, d, recs, S10)
-                a["family"], a["gseed"], a["rseed"] = f, s, rs
-                rows.append(a)
-        cyc = [r for r in rows if r["d"] is not None]
-        const = sum(1 for r in cyc if r["cycle_constant"])
-        print(f"\n   {name}: cycle in {len(cyc)} of {len(rows)}; "
-              f"cut constant over the cycle in {const} of {len(cyc)}")
-        nontrivial(cyc, "   ")
-        real = [r for r in allrows[name] if r["d"] is not None and r["d"] >= 2]
-        rc = sum(1 for r in real if r["cycle_constant"])
-        print(f"   router, same split: constant in {rc} of {len(real)}")
+        keys = [k for k in real if k[0] == name
+                and real[k][1] is not None and real[k][1] >= 2]
+        if not keys:
+            print(f"\n   {name}: no run with d >= 2, control not applicable")
+            continue
+        rk = [real[k][3] for k in keys]
+        r = sum(rk) / len(rk)
+        by_rseed = defaultdict(list)
+        for k in keys:
+            by_rseed[k[3]].append(real[k][3])
+        scatter = [sum(v) / len(v) for v in by_rseed.values()]
+        cs = []
+        for cseed in CTRL_SEEDS:
+            hits = 0
+            for k in keys:
+                t, d, sc, _ = real[k]
+                E = dict(((f, s), E) for f, s, E in graphs)[(k[1], k[2])]
+                hits += permutation_window(N, E, sc, t, d, 9000 + 97 * cseed, S10)
+            cs.append(hits / len(keys))
+        print(f"\n   {name}: {len(keys)} runs with d >= 2")
+        print(f"      router  constant in {sum(rk)} of {len(keys)} = {r:.2f}"
+              f"   (per router seed: {', '.join(f'{x:.2f}' for x in sorted(scatter))})")
+        print(f"      control constant in a share of "
+              f"{', '.join(f'{x:.2f}' for x in cs)} per control seed, "
+              f"mean {np.mean(cs):.2f}")
+        lo, hi = min(scatter), max(scatter)
+        verdict = ("WITHIN the router scatter - constancy carries no information"
+                   if lo <= np.mean(cs) <= hi else
+                   "below the router scatter" if np.mean(cs) < lo else
+                   "ABOVE the router scatter")
+        print(f"      control mean {np.mean(cs):.2f} is {verdict} "
+              f"[{lo:.2f}, {hi:.2f}]")
+        pooled_r += rk
+        pooled_c += cs
+    if pooled_r:
+        print(f"\n   pooled: router {np.mean(pooled_r):.2f}, "
+              f"control {np.mean(pooled_c):.2f}")
+    print()
+    print("   LIMIT of this control, stated here so that the printout carries it:")
+    print("   the random arm draws its swaps uniformly over all qubit pairs, while")
+    print("   the router may only use edges of the coupling map. The random arm")
+    print("   therefore scrambles harder than the hardware could, so the gap")
+    print("   measured above is an UPPER bound on the router's advantage. A")
+    print("   tighter null -- random swaps restricted to coupling edges -- would")
+    print("   narrow it. The direction of the result does not depend on this; the")
+    print("   size of the margin does. Tightening it would be a further dated")
+    print("   addendum and has not been done.")
 
     # ---------------------------------------------------------------- 4
     banner(f"Addendum 1, A1.4  comparison cell at n = {CELL_N}")
