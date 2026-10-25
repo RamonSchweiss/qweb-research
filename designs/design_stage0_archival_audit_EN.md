@@ -1,20 +1,28 @@
 # Design note: Stage 0, an archival feasibility audit for the calibration-age programme
 
-**Status:** PROPOSED, version 2, 24 October 2026. Version 1 was written on
-21 October before any archive had been searched; this version incorporates
-Venkateswaran Ramamurthy's comments of 24 October. Still **not in force**. It
+**Status:** PROPOSED, version 3, 25 October 2026. Version 1 was written on
+21 October before any archive had been searched; version 2 incorporated
+Venkateswaran Ramamurthy's comments of 24 October; this version answers his
+questions of 25 October about what F3 and F4 actually require. Still **not in
+force**. It
 comes into force when both authors have agreed it and it has been committed,
 which must happen before the formal audit begins. The note is being revised
 rather than amended precisely because nothing has been committed yet; once it
 is, nothing in it changes except in a dated addendum.
+
+**What changed in version 3.** Section 2 now defines an **age bin** and a
+**repeat**, so that F4's "three repeats at comparable τ" means something
+checkable. F3 now states what the observations must *support*, not only what
+they must *be*, and carries the rationale for its threshold. No bar has moved.
+The changes make two bars precise; they do not make either easier to meet, and
+in the case of F3 they make it harder.
 
 **What changed in version 2.** Section 2.5 is new: it records that exploratory
 reconnaissance took place before the note was in force, and fixes how that is
 handled. Section 5 now separates exploratory source identification from the
 formal audit and defines the freeze. F2 and F4 now require informative
 comparisons rather than sufficient counts, through the definition of a
-comparison set in section 2. All four bars are otherwise unchanged from
-version 1 and remain open for revision until the note is committed.
+comparison set in section 2.
 
 **Why Stage 0 exists.** The question behind the programme is whether the *age*
 of a noise model contributes measurable predictive error — not whether a model
@@ -63,11 +71,28 @@ pairs spread over thirty different configurations are thirty single cases, and
 τ would be confounded with backend, workload and hardware change. The bars below
 are therefore stated over comparison sets, not over the raw count of pairs.
 
+**Age bin.** The observed range of τ within a comparison set, divided into equal
+intervals on a logarithmic scale. The rule is fixed here; the boundaries follow
+from it mechanically once the range is known, and are not chosen. A logarithmic
+division is used because F4 asks for a span of an order of magnitude, and equal
+linear intervals over such a span would put almost every pair in the last bin.
+
+**Repeat.** Two or more matched pairs in the same age bin of the same comparison
+set, drawn from **distinct experimental runs**. Two pairs built from one run
+against one calibration record are one observation counted twice, not a repeat.
+Repeats are what allow sampling variation to be told apart from an age effect;
+without the distinctness requirement they do not.
+
 **Fresh fit.** A noise model fitted to the observations of the same experimental
 record, rather than to the calibration snapshot. The comparison between the
 original calibration-based prediction and a fresh fit is what separates
 staleness from model incompleteness: a gap that survives a fresh fit is not an
 age effect.
+
+A fresh fit is only meaningful if the record **identifies** the model rather
+than merely being consistent with it. Twenty records of one circuit constrain
+far less than five records of four different circuits, however many shots each
+carries. F3 therefore asks for identifiability and not only for raw data.
 
 ## 2.5 Exploratory reconnaissance, recorded
 
@@ -107,18 +132,35 @@ spread over at least **two backends** — and at least one **comparison set** of
 least **fifteen** of those pairs. The second clause is what makes the first
 informative.
 
-**F3 — the fresh-fit arm.** For at least **twenty** of those pairs, the material
-needed to fit a model to the observations themselves is present — per-shot or
-per-circuit outcome data, not only a reported summary statistic. This is the
-criterion most likely to fail, because published work usually reports fitted
-quantities rather than the observations behind them, and it is also the one
-without which Stage 1 cannot distinguish staleness from incompleteness.
+**F3 — the fresh-fit arm.** For at least **twenty** matched pairs, all three of
+the following are present in the published material:
+
+1. *Outcome data* at the level of shots or of per-circuit outcome
+   distributions — not a reported summary statistic, and not a quantity that
+   has already been fitted.
+2. *The circuit as executed*, after transpilation, since a noise model attaches
+   to physical operations and not to the logical program.
+3. *Enough distinct circuits within one comparison set* that the model's
+   parameters are identified rather than merely consistent. Where the model has
+   per-qubit and per-edge parameters, a single circuit repeated cannot fix them.
+
+Condition 3 is the one that makes F3 bite. The first two ask what the record
+contains; the third asks what it can answer.
+
+*Rationale for twenty.* It is not a statistical power calculation and is not
+presented as one. F4's minimum comparison set holds fifteen pairs — three age
+bins of five. Twenty is that minimum plus a margin of five, so that the
+fresh-fit arm can cover a whole comparison set rather than part of one, with a
+little room for pairs that fail on inspection. If the number is wrong it is
+wrong in that sense, and the argument against it should be about coverage, not
+about significance.
 
 **F4 — leverage in τ.** Within at least one **comparison set**: calibration age
 spans at least **one order of magnitude**, with at least **five matched pairs**
-in each of at least **three** age bins, and at least **three repeats** at
-comparable τ. Without repeats, sampling variation cannot be separated from an
-age effect; without a comparison set, neither can a change of backend.
+in each of at least **three** age bins as defined in section 2, and at least
+**three repeats**, also as defined there — pairs in the same bin from distinct
+experimental runs. Without repeats, sampling variation cannot be separated from
+an age effect; without a comparison set, neither can a change of backend.
 
 A criterion that is met only by combining incommensurable sources is not met.
 
