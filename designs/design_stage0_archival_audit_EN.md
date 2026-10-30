@@ -1,14 +1,25 @@
 # Design note: Stage 0, an archival feasibility audit for the calibration-age programme
 
-**Status:** PROPOSED, version 3, 25 October 2026. Version 1 was written on
+**Status:** PROPOSED, version 4, 30 October 2026. Version 1 was written on
 21 October before any archive had been searched; version 2 incorporated
-Venkateswaran Ramamurthy's comments of 24 October; this version answers his
-questions of 25 October about what F3 and F4 actually require. Still **not in
+Venkateswaran Ramamurthy's comments of 24 October; version 3 answered his
+questions of 25 October about what F3 and F4 require; this version closes the
+gap his reservation of 30 October exposed in F3. Still **not in
 force**. It
 comes into force when both authors have agreed it and it has been committed,
 which must happen before the formal audit begins. The note is being revised
 rather than amended precisely because nothing has been committed yet; once it
 is, nothing in it changes except in a dated addendum.
+
+**What changed in version 4.** Section 2 now declares a **model class**, and
+F3's third condition is judged against that class and no other. The reason is
+that the first two conditions of F3 are read off a record — the data is there
+or it is not — while "identified rather than merely consistent" is a property
+of a record *against a model*. Until the model was named, that condition was
+not assessable before the search, and worse, the class could have been chosen
+afterwards to suit what was found. Section 7 now treats such a substitution as
+an invalidating condition. The bar is neither raised nor lowered by this; it is
+made measurable.
 
 **What changed in version 3.** Section 2 now defines an **age bin** and a
 **repeat**, so that F4's "three repeats at comparable τ" means something
@@ -94,6 +105,24 @@ than merely being consistent with it. Twenty records of one circuit constrain
 far less than five records of four different circuits, however many shots each
 carries. F3 therefore asks for identifiability and not only for raw data.
 
+**Declared model class.** Identifiability is meaningless without saying of
+what. The class is fixed here, before the search: independent Pauli error
+channels, with a rate per qubit for single-qubit operations, a rate per
+coupling-map edge for two-qubit operations, and a readout-error rate per qubit.
+This is the class that published calibration records parameterise, which is why
+it and not a richer one is the subject of the question.
+
+Identifiability in F3 means identifiability of *this* class's parameters for the
+backend concerned, and of no other class. Where a record would identify only a
+smaller class — a single averaged gate error rather than per-edge rates, say —
+the audit records that it identifies the smaller class and counts the pair as
+failing F3, rather than quietly lowering the class to fit the record.
+
+The class is declared rather than derived. It is the right class for the
+question only to the extent that calibration records describe devices this way;
+if Stage 1 later needs a richer class, that is a finding about the class and
+belongs in Stage 1's own note, not in a revision of this one.
+
 ## 2.5 Exploratory reconnaissance, recorded
 
 Before this note was in force, Venkateswaran Ramamurthy carried out an initial
@@ -140,12 +169,16 @@ the following are present in the published material:
    has already been fitted.
 2. *The circuit as executed*, after transpilation, since a noise model attaches
    to physical operations and not to the logical program.
-3. *Enough distinct circuits within one comparison set* that the model's
-   parameters are identified rather than merely consistent. Where the model has
-   per-qubit and per-edge parameters, a single circuit repeated cannot fix them.
+3. *Enough distinct circuits within one comparison set* that the parameters of
+   the **declared model class** of section 2 are identified rather than merely
+   consistent. Since that class carries per-qubit and per-edge parameters, a
+   single circuit repeated cannot fix them. Identifiability is judged against
+   the declared class and against no other.
 
 Condition 3 is the one that makes F3 bite. The first two ask what the record
-contains; the third asks what it can answer.
+contains; the third asks what it can answer. The first two are read off the
+record. The third is a property of the record against a named model, which is
+why section 2 names it in advance.
 
 *Rationale for twenty.* It is not a statistical power calculation and is not
 presented as one. F4's minimum comparison set holds fifteen pairs — three age
@@ -225,6 +258,12 @@ named.
 **Unrecoverable provenance.** A pair whose timestamps or configuration must be
 inferred rather than read is not a matched pair, however plausible the
 inference.
+
+**A model class substituted after the search.** If identifiability is judged
+against any class other than the one declared in section 2, the audit is
+reported as unfrozen and the substitution named. Lowering the class to fit the
+records available is the same failure as lowering a bar, and is harder to see,
+which is why it is written down here.
 
 ## 8 What Stage 0 does not establish
 
