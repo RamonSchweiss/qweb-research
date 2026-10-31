@@ -1,69 +1,100 @@
-"""Does a 16-point grid decide the sign of a crossover shift?
+"""Does a 16-point grid decide a crossover shift? It fixes the sign, not the size.
 
 A method check, not a result of QWeb Research. It concerns a published
 measurement by Daniel Hug (qubit-lab.ch): classical Monte Carlo against
 low-depth quantum amplitude estimation, pricing a one-year call on a 50/50
-basket of two correlated shares, strike 100, volatilities 28% and 58%,
-correlation 0.5, on an 8-qubit grid of 16 x 16 = 256 joint scenarios. His
-reported figures: exact expectation on the grid 16.2244 at correlation 0.5,
-14.06 at correlation 0, and a crossover at about 7,000 oracle calls below
-which classical Monte Carlo is ahead.
+basket of two correlated shares, strike 100, volatilities 28% and 58%, on an
+8-qubit grid of 16 x 16 = 256 joint scenarios. The crossover below which
+classical Monte Carlo is ahead was reported at about 7,000 oracle calls at
+correlation 0.5, and at about 10,000 at correlation 0.
 
-The question this script asks. The height of the classical error curve is
-fixed by one number: the coefficient of variation of the payoff, since the
-relative standard error of a Monte Carlo estimate is CV / sqrt(n). Moving the
-correlation from 0.5 to 0 therefore shifts that curve by the ratio of the two
-CVs, and the direction of the shift is part of where the two curves cross.
+Why the question was asked. The height of the classical error curve is fixed by
+one number, the coefficient of variation of the payoff, since the relative
+standard error of a Monte Carlo estimate is CV / sqrt(n). Removing the
+correlation shifts that curve by the ratio of the two CVs, and the direction of
+the shift is part of where the classical and quantum curves meet. On 27 October
+2026, before the correlation run, this script found that the published
+parameters did not determine that direction: grid constructions reproducing both
+reported reference prices disagreed on the sign.
 
-The finding. The published parameters do not determine that direction. Three
-grid constructions that reproduce BOTH reference prices to within about 0.1
-disagree on the sign: under a wide truncation the CV rises when the
-correlation is removed, under equal-probability bins it falls. The shift is a
-few percent in every case. The grid construction is therefore not a detail of
-presentation here; it can decide the sign of the effect being measured.
+What the disclosure settled. On 31 October the author published the
+construction: 16 points per share, evenly spaced in log-price, truncated at
++-3.5 sigma, weighted by the normal density at the nodes and renormalised;
+drift and discounting 3%, Ito-corrected; correlation applied in standard-normal
+space. Two findings, and the second matters more than the first.
 
-What this is not. It does not reproduce the quantum arm, and it says nothing
-about the amplitude-estimation constant, which depends on the amplification
-schedule and is not recoverable from the published summary. It settles the
-classical half of the crossover only.
+  1. The sign does flip, and this script locates where. Within the truncation
+     family the CV shift crosses zero near +-3.9 sigma, which is why the
+     author's +-3.5 falls while +-4 to +-5 rise. The earlier caveat was
+     correct.
 
-Standard library only, by design. No arguments; prints a table.
+  2. The sign is irrelevant. Across every truncation from +-3 to +-5 the shift
+     stays under 1.4% in magnitude. Pushed through the author's own fitted
+     slopes, the largest of them moves the crossover by about 3%; even
+     equal-probability bins, which do not reproduce the reference prices, give
+     about 11%. The observed move was 43%. No grid choice in this family can
+     account for it, so the author's conclusion -- that the quantum side moved,
+     through a 13% smaller amplitude -- holds independently of the grid.
 
-Ramon Schweiss, QWeb (c) Research, 27 October 2026.
+The same conversion shows that cause to be sufficient rather than merely
+plausible: a 13.35% smaller amplitude, taken through the fitted slopes, predicts
+a crossover move of about +42% against the +43% reported.
+
+Reproduction. This script gets 16.2650 and 14.0695 against the reported 16.2244
+and 14.0586, and a CV shift of -0.41% against the reported -0.46%. The residual
+quarter of a percent is most likely in how the +-3.5 sigma range is taken
+relative to the drift; it does not affect any conclusion above.
+
+Assumption behind the crossover conversion. It takes the two fitted power laws
+to hold near the crossing with only their constants changing. That is enough for
+an order-of-magnitude bound and not enough for a precise crossover location,
+which is why the numbers above are stated as bounds and a check.
+
+What this is not. It does not reproduce the quantum arm. The amplification
+schedule is not recoverable from the published summary, so the quantum constant
+is taken from the author's reported amplitude rather than computed here.
+
+Standard library only, by design. No arguments; prints its own conclusion.
+
+Ramon Schweiss, QWeb (c) Research. First version 27 October 2026; resolved
+against the disclosed construction 31 October 2026.
 """
 
 import math
 from statistics import NormalDist
 
-# --- the instance, as published -------------------------------------------
+# --- the instance, as published and then disclosed -------------------------
 
-S0 = 100.0          # initial price, both shares (assumed; not published)
-K = 100.0           # strike
-T = 1.0             # one year
+S0 = 100.0           # initial price, both shares
+K = 100.0            # strike
+T = 1.0              # one year
 V1, V2 = 0.28, 0.58  # volatilities
-N = 16              # grid points per asset: 16 x 16 = 256 = 8 qubits
+R = 0.03             # drift and discounting, disclosed 31 October
+N = 16               # grid points per share: 16 x 16 = 256 = 8 qubits
+DISCLOSED_SPAN = 3.5  # truncation in sigma, disclosed 31 October
 
-TARGET = {0.5: 16.2244, 0.0: 14.06}   # Daniel Hug's grid expectations
-TOLERANCE = 0.15                      # total absolute miss across both
+REPORTED_PRICE = {0.5: 16.2244, 0.0: 14.0586}   # grid expectations
+REPORTED_CV_SHIFT = -0.0046                     # -0.46%
+REPORTED_SLOPES = (0.44, 0.86)                  # classical, amplitude estimation
+REPORTED_CROSSOVER = (7000, 10000)              # oracle calls, rho 0.5 -> 0
+REPORTED_AMPLITUDE_DROP = 0.1335                # 1 - 14.0586 / 16.2244
 
 _ND = NormalDist()
 
 
-# --- the three grid constructions -----------------------------------------
+# --- grid constructions ----------------------------------------------------
 
-def nodes(kind, span):
-    """Return (z, w): N standard-normal nodes and their probability weights.
+def nodes(kind, span=None):
+    """Return (z, w): N standard-normal nodes with probability weights.
 
-    "equiprob" places a node at the midpoint of each of N equal-probability
-    bins and weights them equally. "trunc" spaces nodes evenly over
-    [-span, +span] and weights them by the normal density, renormalised. The
-    two differ in how much of the tail the finite grid keeps, and that is
-    exactly what the sign of the CV shift turns out to depend on.
+    "trunc" spaces nodes evenly over [-span, +span] and weights them by the
+    normal density, renormalised. This is the disclosed construction.
+    "equiprob" puts a node at the midpoint of each of N equal-probability bins
+    and weights them equally. The two differ in how much tail the finite grid
+    keeps, and that is what the sign of the CV shift turns on.
     """
     if kind == "equiprob":
-        z = [_ND.inv_cdf((i + 0.5) / N) for i in range(N)]
-        w = [1.0 / N] * N
-        return z, w
+        return ([_ND.inv_cdf((i + 0.5) / N) for i in range(N)], [1.0 / N] * N)
 
     z = [-span + 2.0 * span * i / (N - 1) for i in range(N)]
     p = [_ND.pdf(zi) for zi in z]
@@ -73,24 +104,24 @@ def nodes(kind, span):
 
 # --- pricing on the grid ---------------------------------------------------
 
-def price(kind, span, rho, r):
-    """Exact expectation and payoff CV on the grid.
+def price(grid, rho):
+    """Discounted expectation and payoff CV on the grid.
 
-    The second asset is correlated in standard-normal space, Y2 = rho * Z1 +
-    sqrt(1 - rho^2) * Z2, so that the marginals are unchanged as rho moves.
-    Each share follows the usual risk-neutral lognormal with the Ito
+    The second share is correlated in standard-normal space as
+    y2 = rho * z1 + sqrt(1 - rho^2) * z2, leaving the marginals unchanged as
+    rho moves. Each share follows the risk-neutral lognormal with the Ito
     correction, S = S0 * exp((r - sigma^2 / 2) T + sigma sqrt(T) Z).
     """
-    z, w = nodes(kind, span)
+    z, w = grid
     root = math.sqrt(T)
     c = math.sqrt(1.0 - rho * rho)
 
     e1 = e2 = 0.0
     for i, z1 in enumerate(z):
-        s1 = S0 * math.exp((r - 0.5 * V1 * V1) * T + V1 * root * z1)
+        s1 = S0 * math.exp((R - 0.5 * V1 * V1) * T + V1 * root * z1)
         for j, z2 in enumerate(z):
             y2 = rho * z1 + c * z2
-            s2 = S0 * math.exp((r - 0.5 * V2 * V2) * T + V2 * root * y2)
+            s2 = S0 * math.exp((R - 0.5 * V2 * V2) * T + V2 * root * y2)
             pay = 0.5 * (s1 + s2) - K
             if pay <= 0.0:
                 continue
@@ -98,70 +129,80 @@ def price(kind, span, rho, r):
             e1 += p * pay
             e2 += p * pay * pay
 
-    var = max(e2 - e1 * e1, 0.0)
-    return e1, math.sqrt(var) / e1          # expectation, CV
+    cv = math.sqrt(max(e2 - e1 * e1, 0.0)) / e1
+    return e1 * math.exp(-R * T), cv
 
 
-# --- search for constructions consistent with the published prices --------
+def crossover_move(cv_shift, amplitude_drop=0.0):
+    """Factor by which the crossover in oracle calls moves.
 
-def candidates():
-    """Every (construction, r) whose two prices match TARGET within TOLERANCE."""
-    grids = [("equiprob", None)] + [("trunc", s / 2.0) for s in range(4, 11)]
-    out = []
-    for kind, span in grids:
-        for r_bp in range(0, 6):                 # 0% to 5% in whole percent
-            r = r_bp / 100.0
-            e_hi, cv_hi = price(kind, span, 0.5, r)
-            e_lo, cv_lo = price(kind, span, 0.0, r)
-            miss = abs(e_hi - TARGET[0.5]) + abs(e_lo - TARGET[0.0])
-            if miss <= TOLERANCE:
-                out.append((miss, kind, span, r, e_hi, e_lo, cv_hi, cv_lo))
-    out.sort()
-    return out
+    The two error curves are c_c / n**s_c and c_q / n**s_q. Amplitude
+    estimation overtakes where n**(s_q - s_c) = c_q / c_c, so the crossover
+    moves by (c_q / c_c) ** (1 / (s_q - s_c)). A CV shift scales c_c; a smaller
+    amplitude scales c_q, since the same absolute error is a larger relative
+    one against a smaller expectation.
+    """
+    s_c, s_q = REPORTED_SLOPES
+    c_c = 1.0 + cv_shift
+    c_q = 1.0 / (1.0 - amplitude_drop)
+    return (c_q / c_c) ** (1.0 / (s_q - s_c))
 
+
+# --- report ----------------------------------------------------------------
 
 def main():
-    rows = candidates()
+    disclosed = nodes("trunc", DISCLOSED_SPAN)
 
-    print(__doc__.strip().splitlines()[0])
-    print()
-    print(f"target: {TARGET[0.5]} at rho=0.5, {TARGET[0.0]} at rho=0; "
-          f"accepting a total miss of {TOLERANCE}")
-    print()
-    head = (f"{'grid':>14} {'r':>5} {'E(.5)':>8} {'E(0)':>8} "
-            f"{'CV(.5)':>8} {'CV(0)':>8} {'shift':>8} {'sign':>6}")
+    print("Reproducing the disclosed construction "
+          f"(16 points per share, +-{DISCLOSED_SPAN} sigma, r={R:.0%}, Ito)")
+    print(f"  {'rho':>5} {'reproduced':>11} {'reported':>10} {'miss':>8}")
+    cv = {}
+    for rho in (0.5, 0.0):
+        p, c = price(disclosed, rho)
+        cv[rho] = c
+        miss = p - REPORTED_PRICE[rho]
+        print(f"  {rho:5.2f} {p:11.4f} {REPORTED_PRICE[rho]:10.4f} "
+              f"{miss:+8.4f}")
+    shift = cv[0.0] / cv[0.5] - 1.0
+    print(f"  CV {cv[0.5]:.4f} -> {cv[0.0]:.4f}, shift {shift:+.2%} "
+          f"(reported {REPORTED_CV_SHIFT:+.2%})")
+
+    print("\nWhere the sign of the CV shift flips, and what each would be worth")
+    head = (f"  {'grid':>14} {'CV(0.5)':>8} {'CV(0)':>8} {'shift':>8} "
+            f"{'crossover':>10}")
     print(head)
-    print("-" * len(head))
-
-    signs = set()
-    for miss, kind, span, r, e_hi, e_lo, cv_hi, cv_lo in rows:
+    print("  " + "-" * (len(head) - 2))
+    worst = 0.0
+    rows = [("trunc", s) for s in (3.0, 3.25, 3.5, 3.75, 4.0, 4.5, 5.0)]
+    rows.append(("equiprob", None))
+    for kind, span in rows:
+        g = nodes(kind, span)
+        _, a = price(g, 0.5)
+        _, b = price(g, 0.0)
+        s = b / a - 1.0
+        move = crossover_move(s) - 1.0
+        worst = max(worst, abs(move))
         tag = kind if span is None else f"trunc+-{span:g}"
-        shift = cv_lo / cv_hi - 1.0
-        sign = "up" if shift > 0 else "down"
-        signs.add(sign)
-        print(f"{tag:>14} {r:5.2f} {e_hi:8.4f} {e_lo:8.4f} "
-              f"{cv_hi:8.4f} {cv_lo:8.4f} {shift:+8.2%} {sign:>6}")
+        print(f"  {tag:>14} {a:8.4f} {b:8.4f} {s:+8.2%} {move:+10.1%}")
 
-    print()
-    if not rows:
-        print("No construction matched. Widen TOLERANCE or the search.")
-    elif len(signs) > 1:
-        print(f"{len(rows)} constructions match the published prices and they "
-              f"disagree on the sign.")
-        print("The classical curve moves up under some and down under others, "
-              "so the direction")
-        print("of the crossover shift is not determined by the published "
-              "parameters alone.")
-    else:
-        print(f"All {len(rows)} matching constructions agree: the CV moves "
-              f"{signs.pop()} at rho=0.")
-        print("The direction is then determined, and the magnitude is the "
-              "ratio printed above.")
+    print("\nThe classical side cannot account for the observed move.")
+    lo, hi = REPORTED_CROSSOVER
+    print(f"  observed crossover move           {hi / lo - 1:+.0%}  "
+          f"({lo:,} -> {hi:,} oracle calls)")
+    print(f"  largest any grid above would give {worst:+.0%}")
 
-    print()
-    print("CV is what sets the classical curve's height: relative standard "
-          "error is CV/sqrt(n).")
-    print("The quantum arm is not modelled here.")
+    print("\nThe reported cause is sufficient on its own.")
+    only_q = crossover_move(0.0, REPORTED_AMPLITUDE_DROP) - 1.0
+    both = crossover_move(shift, REPORTED_AMPLITUDE_DROP) - 1.0
+    print(f"  {REPORTED_AMPLITUDE_DROP:.2%} smaller amplitude alone "
+          f"{only_q:+.0%}")
+    print(f"  with the disclosed CV shift        {both:+.0%}")
+    print(f"  observed                           {hi / lo - 1:+.0%}")
+
+    print("\nConclusion: the grid construction fixes the sign of the classical")
+    print("shift and not its size. The size is what reaches the crossover, and")
+    print("it is small on every construction here, so the conclusion that the")
+    print("quantum side moved does not depend on the grid.")
 
 
 if __name__ == "__main__":
