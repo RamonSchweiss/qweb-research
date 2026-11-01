@@ -174,6 +174,7 @@ Calculations check claims; figures draw them.
 | Script | Article | Output |
 |---|---|---|
 | `qubit_bloch.py` | What a Qubit Actually Is | Bloch spheres emptying under a ZZ interaction — animated GIF plus five stills ([preview](figures/qubit_bloch_4_entangled.svg)) |
+| `diffusion_cut_figures.py` | What the Operator Hides From the Partitioner (planned) | The constant cut, the compiler's factor, and where the diffusion sits beside two ordinary workloads — three SVGs ([preview](figures/diffusion_cut_figure_1.svg)) |
 
 Generated output goes to `figures/out/` and is not tracked.
 
