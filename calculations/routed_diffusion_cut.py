@@ -34,7 +34,9 @@ router and calling it the algorithm.
 
 Needs    : numpy, qiskit, partition_topology.py and routed_partition_orbit.py
            from calculations/.
-Runtime  : a few minutes, most of it enumerating bipartitions at P=20.
+Runtime  : about ten minutes, most of it enumerating bipartitions at P=24.
+           The register range reaches n=13 by addendum 2 of 1 November; P=24
+           is the largest size at which the bipartitions fit in memory.
 """
 import os
 import statistics
@@ -64,7 +66,12 @@ try:                                                              # noqa: E402
 except ImportError:                       # same convention as the memQ
     qiskit = None                         # cross-check in gate_vs_state_partition.py
 
-SIZES = (4, 5, 6, 7, 8, 9, 10, 11)        # data qubits n; P = 2n-2, so 6 to 20
+SIZES = (4, 5, 6, 7, 8, 9, 10, 11, 12, 13)   # data qubits n; P = 2n-2, 6 to 24
+REGISTERED = (4, 5, 6, 7, 8, 9, 10, 11)   # the range the note itself declared
+# Addendum 2 of 1 November extended the range to n=13 so that the heavy-hex arm
+# could produce a verdict at all. Its section 7 requires the added sizes to be
+# reported separately, so that the grid verdict already recorded in addendum 1
+# is not quietly recounted.
 TOPOLOGIES = ("heavy-hex", "grid")
 SEEDS = (11, 23, 37, 53, 71)              # five router seeds, fixed here
 HEURISTIC = "decay"
@@ -206,7 +213,8 @@ def main():
                 keep = (r - m) < max(spread, SLACK)
                 verdict = "retained" if keep else "WITHDRAWN"
                 note = desc
-                verdicts.setdefault(name, []).append(keep)
+                bucket = "registered" if n in REGISTERED else "added"
+                verdicts.setdefault((name, bucket), []).append(keep)
             print(f"  {n:>3} {P:>4} {gates:>6.0f} {cut:>5.0f} {r:>7.3f} "
                   f"{m:>7.3f} {r - m:>+7.3f} {spread:>7.3f} "
                   f"{verdict:>10}   {note}")
@@ -221,7 +229,7 @@ def main():
           f"{'cut':>5} {'r':>7} {'spread':>7}")
     for family in CONTRAST:
         for name in TOPOLOGIES:
-            for n in (7, 9, 11):
+            for n in (7, 9, 11, 13):
                 P = 2 * n - 2
                 qc = contrast_circuit(family, P)
                 if qc is None:
@@ -234,15 +242,19 @@ def main():
                 print(f"  {family:>10} {name:>10} {P:>4} {gates:>6.0f} "
                       f"{cut:>5.0f} {r:>7.3f} {spread:>7.3f}")
 
-    print("\n\nThe decision, by section 11")
+    print("\n\nThe decision, by section 11, with the two ranges kept apart")
     print("-" * 78)
+    print("  Addendum 2 extended the range to n=13 and requires the added")
+    print("  sizes to be counted separately from the registered ones.\n")
     for name in TOPOLOGIES:
-        v = verdicts.get(name, [])
-        if not v:
-            print(f"  {name:>10}: every size degenerate, nothing decided")
-        else:
-            print(f"  {name:>10}: retained at {sum(v)} of {len(v)} "
-                  f"non-degenerate sizes")
+        for bucket in ("registered", "added"):
+            v = verdicts.get((name, bucket), [])
+            if not v:
+                print(f"  {name:>10}  {bucket:>10}: every size degenerate, "
+                      f"nothing decided")
+            else:
+                print(f"  {name:>10}  {bucket:>10}: retained at {sum(v)} of "
+                      f"{len(v)} non-degenerate sizes")
     allv = [x for v in verdicts.values() for x in v]
     if allv and all(allv):
         print("\n  Retained everywhere. The cheap cut survives compilation, and")
