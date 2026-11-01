@@ -34,7 +34,9 @@ router and calling it the algorithm.
 
 Needs    : numpy, qiskit, partition_topology.py and routed_partition_orbit.py
            from calculations/.
-Runtime  : a few minutes, most of it enumerating bipartitions at P=20.
+Runtime  : about ten minutes, most of it enumerating bipartitions at P=24.
+           The register range reaches n=13 by addendum 2 of 1 November; P=24
+           is the largest size at which the bipartitions fit in memory.
 
 Router SABRE/decay, trivial initial layout, seeds (11, 23, 37, 53, 71).
 Logical minimum cut 8 gates, from the companion script.
@@ -52,6 +54,8 @@ heavy-hex
     9   16    149    14   0.099   0.054  +0.045   0.039 degenerate   diameter 9 reaches half of 16: no interior
    10   18    176    14   0.083   0.045  +0.038   0.041 degenerate   diameter 10 reaches half of 18: no interior
    11   20    215    21   0.098   0.037  +0.060   0.035 degenerate   diameter 11 reaches half of 20: no interior
+   12   22    226    19   0.084   0.035  +0.048   0.008   retained   22-node subgraph of heavy-hex(5), 23 edges, 2 independent ring(s)
+   13   24    255    24   0.094   0.031  +0.063   0.022  WITHDRAWN   24-node subgraph of heavy-hex(5), 25 edges, 2 independent ring(s)
 
 grid
 ------------------------------------------------------------------------------
@@ -64,6 +68,8 @@ grid
     9   16    120    18   0.155   0.067  +0.089   0.080  WITHDRAWN   4x4 grid, 24 edges
    10   18    153    21   0.136   0.052  +0.084   0.064  WITHDRAWN   3x6 grid, 27 edges
    11   20    150    18   0.120   0.053  +0.067   0.041  WITHDRAWN   4x5 grid, 31 edges
+   12   22    157    12   0.077   0.051  +0.026   0.014 degenerate   diameter 11 reaches half of 22: no interior
+   13   24    186    18   0.096   0.043  +0.053   0.038  WITHDRAWN   4x6 grid, 38 edges
 
 
 Contrast: one QAOA layer per family at 1.5 edges per qubit
@@ -76,24 +82,32 @@ Contrast: one QAOA layer per family at 1.5 edges per qubit
    community  heavy-hex   12     44     6   0.136   0.003
    community  heavy-hex   16     67     7   0.106   0.056
    community  heavy-hex   20     92     9   0.098   0.043
+   community  heavy-hex   24    113     8   0.067   0.015
    community       grid   12     34     4   0.118   0.094
    community       grid   16     43     2   0.050   0.022
    community       grid   20     57     2   0.035   0.003
+   community       grid   24     75     2   0.027   0.013
      regular  heavy-hex   12     41     6   0.150   0.020
      regular  heavy-hex   16     61     7   0.117   0.020
      regular  heavy-hex   20     95    11   0.115   0.016
+     regular  heavy-hex   24    116    13   0.112   0.027
      regular       grid   12     36     7   0.194   0.060
      regular       grid   16     45     8   0.180   0.010
      regular       grid   20     64    10   0.156   0.022
+     regular       grid   24     89    10   0.111   0.033
 
 
-The decision, by section 11
+The decision, by section 11, with the two ranges kept apart
 ------------------------------------------------------------------------------
-   heavy-hex: every size degenerate, nothing decided
-        grid: retained at 0 of 4 non-degenerate sizes
+  Addendum 2 extended the range to n=13 and requires the added
+  sizes to be counted separately from the registered ones.
 
-  Withdrawn. The cheap cut exists in the circuit and is lost
-  in routing, which is a finding about the compiler and is more
-  interesting than the alternative.
+   heavy-hex  registered: every size degenerate, nothing decided
+   heavy-hex       added: retained at 1 of 2 non-degenerate sizes
+        grid  registered: retained at 0 of 4 non-degenerate sizes
+        grid       added: retained at 0 of 1 non-degenerate sizes
+
+  Retained in part. The result is a statement about where it
+  was retained, named, and not about the operator in general.
 
   Cut-oblivious router throughout; see the invalidating condition.
