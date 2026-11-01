@@ -75,7 +75,7 @@ and it explains itself.
 | `autonomous_entanglement.py` | in progress | What a dissipatively stabilised link buys a scheduler: concurrence to fidelity, the distillation cost, and whether the staleness inequality moves |
 | `hypercube_vs_mps.py` | What a Node Actually Holds | Flat exchange against bond dimension; the crossover at S ≈ 1.4 |
 | `routed_partition_orbit.py` | What the Computation Knows About Its Own Organisation | Whether the gate-optimal cut survives routing: transient and period of the layout orbit, and whether the cut holds over the cycle. Pre-registered in [designs/](designs/) before the first run |
-| `basket_grid_sensitivity.py` | — | Does a 16-point pricing grid decide a crossover shift? It fixes the sign, not the size. A method check against an external published measurement, not a QWeb result |
+| `basket_grid_sensitivity.py` | — | Which half of a crossover does the grid decide? The classical half, barely — the quantum half it moves by a factor of four. A method check against an external published measurement, not a QWeb result |
 
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
