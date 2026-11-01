@@ -5,7 +5,7 @@ not altered by this addendum; everything below is a record of the run and its
 verdict under the conditions the note fixed.
 
 **The run.** `calculations/routed_diffusion_cut.py`, output preserved in
-`routed_diffusion_cut_output.txt`. SABRE with the decay heuristic, trivial
+`designs/routed_diffusion_cut_output.txt`. SABRE with the decay heuristic, trivial
 initial layout, the five seeds declared in the script, n from 4 to 11 and
 therefore P from 6 to 20, on the two declared coupling-map families.
 
