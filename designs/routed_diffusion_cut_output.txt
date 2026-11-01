@@ -1,0 +1,99 @@
+
+Does a cut-oblivious compiler realise the diffusion's cheap cut, or squander it?
+
+Belongs to designs/design_diffusion_cut_cost_EN.md, section 7, which was
+committed before this was run. The companion script
+diffusion_cut_arithmetic.py establishes the logical side: the V-chain
+decomposition of the diffusion operator has a minimum balanced cut of eight
+two-qubit gates at every register size, under free placement of the qubits.
+Eight is therefore what a perfect partitioner would find. This script asks
+whether SABRE, which minimises total swaps and knows nothing about any module
+boundary, lands near it.
+
+The objective registered in section 6, before the run: a cut-oblivious router
+on a realistic coupling map achieves a crossing fraction close to the logical
+minimum, because the chain structure is local enough that minimising total
+swaps also keeps traffic off the cut.
+
+The stopping condition registered in section 10, evaluable without knowing
+which way anything moves: with r the median routed crossing fraction, m the
+logical minimum fraction and s the spread over router seeds, the objective is
+retained at a size only if r - m < max(s, 0.05).
+
+Declared before the run and not adjusted after it: the decomposition (explicit
+V-chain over n-2 ancillae, each Toffoli written out in CX form), the two
+coupling-map families and their generator, the register sizes, the router and
+its heuristic, the trivial initial layout, the five router seeds, the contrast
+workload, and the degeneracy rules.
+
+Invalidating condition, from section 8: SABRE minimises total swaps and not
+swaps across a declared boundary. Everything below therefore describes a
+cut-oblivious router. It establishes no bound on what a cut-aware router could
+achieve, and quoting it as "the cost of partitioning" would be describing the
+router and calling it the algorithm.
+
+Needs    : numpy, qiskit, partition_topology.py and routed_partition_orbit.py
+           from calculations/.
+Runtime  : a few minutes, most of it enumerating bipartitions at P=20.
+
+Router SABRE/decay, trivial initial layout, seeds (11, 23, 37, 53, 71).
+Logical minimum cut 8 gates, from the companion script.
+Stopping condition: retain where r - m < max(spread, 0.05).
+
+
+heavy-hex
+------------------------------------------------------------------------------
+    n    P  gates   cut       r       m     r-m  spread    verdict   note
+    4    6     36     9   0.250   0.222  +0.028   0.000 degenerate   a tree: every edge is a cut edge
+    5    8     60     9   0.150   0.133  +0.017   0.044 degenerate   a tree: every edge is a cut edge
+    6   10     85    11   0.124   0.094  +0.029   0.037 degenerate   a tree: every edge is a cut edge
+    7   12    102    13   0.129   0.078  +0.050   0.040 degenerate   diameter 6 reaches half of 12: no interior
+    8   14    123    17   0.138   0.065  +0.073   0.000 degenerate   diameter 8 reaches half of 14: no interior
+    9   16    149    14   0.099   0.054  +0.045   0.039 degenerate   diameter 9 reaches half of 16: no interior
+   10   18    176    14   0.083   0.045  +0.038   0.041 degenerate   diameter 10 reaches half of 18: no interior
+   11   20    215    21   0.098   0.037  +0.060   0.035 degenerate   diameter 11 reaches half of 20: no interior
+
+grid
+------------------------------------------------------------------------------
+    n    P  gates   cut       r       m     r-m  spread    verdict   note
+    4    6     32    12   0.364   0.250  +0.114   0.085 degenerate   diameter 3 reaches half of 6: no interior
+    5    8     48    10   0.208   0.167  +0.042   0.000 degenerate   diameter 4 reaches half of 8: no interior
+    6   10     64     9   0.143   0.125  +0.018   0.142 degenerate   diameter 5 reaches half of 10: no interior
+    7   12     89    15   0.172   0.090  +0.083   0.056  WITHDRAWN   3x4 grid, 17 edges
+    8   14     95    14   0.147   0.084  +0.063   0.032 degenerate   diameter 7 reaches half of 14: no interior
+    9   16    120    18   0.155   0.067  +0.089   0.080  WITHDRAWN   4x4 grid, 24 edges
+   10   18    153    21   0.136   0.052  +0.084   0.064  WITHDRAWN   3x6 grid, 27 edges
+   11   20    150    18   0.120   0.053  +0.067   0.041  WITHDRAWN   4x5 grid, 31 edges
+
+
+Contrast: one QAOA layer per family at 1.5 edges per qubit
+------------------------------------------------------------------------------
+  Reported for context, not part of the stopping condition. The
+  diffusion's interaction graph is a chain by construction; these
+  are not, and community is built to split cleanly.
+
+      family   topology    P  gates   cut       r  spread
+   community  heavy-hex   12     44     6   0.136   0.003
+   community  heavy-hex   16     67     7   0.106   0.056
+   community  heavy-hex   20     92     9   0.098   0.043
+   community       grid   12     34     4   0.118   0.094
+   community       grid   16     43     2   0.050   0.022
+   community       grid   20     57     2   0.035   0.003
+     regular  heavy-hex   12     41     6   0.150   0.020
+     regular  heavy-hex   16     61     7   0.117   0.020
+     regular  heavy-hex   20     95    11   0.115   0.016
+     regular       grid   12     36     7   0.194   0.060
+     regular       grid   16     45     8   0.180   0.010
+     regular       grid   20     64    10   0.156   0.022
+
+
+The decision, by section 11
+------------------------------------------------------------------------------
+   heavy-hex: every size degenerate, nothing decided
+        grid: retained at 0 of 4 non-degenerate sizes
+
+  Withdrawn. The cheap cut exists in the circuit and is lost
+  in routing, which is a finding about the compiler and is more
+  interesting than the alternative.
+
+  Cut-oblivious router throughout; see the invalidating condition.
