@@ -1,0 +1,92 @@
+
+A tighter null for the matched-window control of the routed-partition orbit.
+
+Belongs to designs/design_routed_partition_orbit_EN.md, addendum 3. It carries
+out the tightening that the run of 20 October 2026 promised in its own printout
+and left undone:
+
+    "the random arm draws its swaps uniformly over all qubit pairs, while the
+     router may only use edges of the coupling map. The random arm therefore
+     scrambles harder than the hardware could, so the gap measured above is an
+     UPPER bound on the router's advantage. A tighter null -- random swaps
+     restricted to coupling edges -- would narrow it. The direction of the
+     result does not depend on this; the size of the margin does. Tightening it
+     would be a further dated addendum and has not been done."
+
+The defect ran in our favour, which is the reason to close it rather than leave
+it. An arm allowed moves the hardware cannot make loses the comparison for a
+reason that has nothing to do with routing, and the published margin inherits
+that.
+
+What runs here : both nulls, side by side, on one set of real runs.
+                 Arm A is the published one, swaps drawn uniformly over all
+                 qubit pairs. Arm B is the tightened one, swaps drawn uniformly
+                 over the undirected edges of the coupling map -- the only
+                 swaps a router could have chosen. Everything else is held
+                 fixed: the same problem graphs, the same router seeds, the
+                 same per-layer swap budget, the same window length W = d, the
+                 same control seeds, the same question.
+
+Decision rule : unchanged from addendum 2 and applied to BOTH arms. If a
+                control rate lies within the seed-to-seed scatter of the router
+                rate, constancy carries no information about routing on that
+                topology and every claim resting on it is withdrawn. No
+                threshold is chosen after the numbers are seen.
+
+                Arm B can only raise the control rate, so this measurement can
+                withdraw claims that arm A left standing. It cannot add any.
+                That asymmetry is the point: the tightening is registered
+                knowing it can only cost.
+
+Reproduction  : arm A must reproduce the per-seed shares printed on
+                20 October. They are hard-coded below and checked. A mismatch
+                means this script is not measuring the same thing as the
+                published run, and nothing below it is valid.
+
+Needs    : numpy, qiskit, partition_topology, routed_partition_orbit.
+Runtime  : several minutes, dominated by re-routing the real orbits.
+
+21 problem graphs, 10 qubits, 15 edges -- the same set as the run of 20 October.
+
+   heavy-hex  (10-node subgraph of heavy-hex(5), 9 edges -- A TREE: the rings of the heavy-hex lattice have twelve qubits, so no induced subgraph this small can contain one)
+   9 undirected coupling edges, against 45 qubit pairs: a move set 20% the size.
+      router   constant in 44 of 68 = 0.65   (per router seed: 0.47, 0.67, 0.67, 0.69, 0.77)
+      arm A    0.12, 0.07, 0.09, 0.06, 0.07   mean 0.08   below the router scatter
+      arm B    0.16, 0.13, 0.07, 0.07, 0.04   mean 0.10   below the router scatter
+      reproduction of 20 October: arm A and the router rate match to the printed digits.
+      the tightening does not change the verdict on this topology.
+      margin router - control: +0.56 under arm A, +0.55 under arm B.
+
+   grid  (2x5 grid, 13 edges)
+   13 undirected coupling edges, against 45 qubit pairs: a move set 29% the size.
+      router   constant in 9 of 30 = 0.30   (per router seed: 0.12, 0.17, 0.25, 0.33, 0.67)
+      arm A    0.20, 0.10, 0.13, 0.13, 0.13   mean 0.14   WITHIN the router scatter - constancy carries no information
+      arm B    0.20, 0.13, 0.10, 0.20, 0.17   mean 0.16   WITHIN the router scatter - constancy carries no information
+      reproduction of 20 October: arm A and the router rate match to the printed digits.
+      the tightening does not change the verdict on this topology.
+      margin router - control: +0.16 under arm A, +0.14 under arm B.
+
+   line  (path of 10)
+   9 undirected coupling edges, against 45 qubit pairs: a move set 20% the size.
+      router   constant in 23 of 40 = 0.57   (per router seed: 0.30, 0.50, 0.70, 0.71, 1.00)
+      arm A    0.05, 0.07, 0.07, 0.07, 0.07   mean 0.07   below the router scatter
+      arm B    0.03, 0.12, 0.20, 0.07, 0.05   mean 0.10   below the router scatter
+      reproduction of 20 October: arm A and the router rate match to the printed digits.
+      the tightening does not change the verdict on this topology.
+      margin router - control: +0.50 under arm A, +0.48 under arm B.
+
+==============================================================================
+  pooled: router 0.55, arm A 0.10, arm B 0.12
+
+  Arm B is the honest null: every swap in it is a swap the router
+  could have made. Where it still falls clearly below the router
+  rate, constancy is a property of what the router does. Where it
+  rises into the router's scatter, the claims resting on constancy
+  for that topology are withdrawn, by the rule fixed in advance.
+
+  What remains untightened: the number of swaps per layer is copied
+  from the real run, but their PLACEMENT in the layer is not, and a
+  router chooses swaps that are mutually compatible within a layer
+  while this arm may draw the same edge twice. That is a further
+  limit, stated here rather than closed, and it runs in the same
+  direction as the one closed above.
