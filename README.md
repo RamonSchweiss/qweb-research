@@ -77,6 +77,7 @@ and it explains itself.
 | `routed_partition_orbit.py` | What the Computation Knows About Its Own Organisation | Whether the gate-optimal cut survives routing: transient and period of the layout orbit, and whether the cut holds over the cycle. Pre-registered in [designs/](designs/) before the first run |
 | `diffusion_cut_arithmetic.py` | What the Operator Hides From the Partitioner (planned) | Why the diffusion operator looks unpartitionable and its standard decomposition is not: the V-chain's minimum balanced cut is eight gates at every size, and eight ebits per amplification iteration follow |
 | `routed_diffusion_cut.py` | What the Operator Hides From the Partitioner (planned) | Whether a cut-oblivious compiler realises that cheap cut. It does not quite: about a factor of two above the logical minimum, flat across sizes, and withdrawn against the registered threshold |
+| `diffusion_controlled_block.py` | What the Operator Hides From the Partitioner | What must cross a module boundary to apply the diffusion operator: one controlled-Z, not eight gates. Corrects the article's ledger by a factor of eight |
 | `basket_grid_sensitivity.py` | — | Which half of a crossover does the grid decide? The classical half, barely — the quantum half it moves by a factor of four. A method check against an external published measurement, not a QWeb result |
 
 A dash in the Article column marks a script that checks a published external
