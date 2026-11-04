@@ -1,15 +1,20 @@
 # Design note: Stage 0, an archival feasibility audit for the calibration-age programme
 
-**Status:** PROPOSED, version 4, 30 October 2026. Version 1 was written on
-21 October before any archive had been searched; version 2 incorporated
-Venkateswaran Ramamurthy's comments of 24 October; version 3 answered his
-questions of 25 October about what F3 and F4 require; this version closes the
-gap his reservation of 30 October exposed in F3. Still **not in
-force**. It
-comes into force when both authors have agreed it and it has been committed,
-which must happen before the formal audit begins. The note is being revised
-rather than amended precisely because nothing has been committed yet; once it
-is, nothing in it changes except in a dated addendum.
+**Status:** **IN FORCE**, version 5, 4 November 2026. Both authors have agreed
+it and it is committed. Version 1 was written on 21 October before any archive
+had been searched; version 2 incorporated Venkateswaran Ramamurthy's comments
+of 24 October; version 3 answered his questions of 25 October about what F3 and
+F4 require; version 4 closed the gap his reservation of 30 October exposed in
+F3; this version executes the freeze he agreed on 4 November.
+
+**This is the last version.** From this date the note is not revised again.
+Anything further — a correction, a limitation found later, a result — goes into
+a dated addendum, and the text stands as committed.
+
+**What changed in version 5.** The status, and the freeze recorded in section
+5.1. No definition, no bar, no criterion and no stopping branch has been
+touched. The only sentence altered elsewhere is the last line of section 2.5,
+which said the freeze was still ahead and now records that it is not.
 
 **What changed in version 4.** Section 2 now declares a **model class**, and
 F3's third condition is judged against that class and no other. The reason is
@@ -146,7 +151,8 @@ The reason for writing this down rather than absorbing it quietly is that a
 search which happened before the rules were fixed is exactly the kind of thing
 that later looks like the rules were fitted to what was found. The dates are
 therefore on the record: version 1 on 21 October, the reconnaissance reported on
-24 October, the freeze and the formal audit still ahead.
+24 October, the freeze on 4 November as recorded in section 5.1, and the formal
+audit still ahead of it.
 
 ## 3 The four feasibility criteria, with their bars
 
@@ -230,6 +236,45 @@ stated. It does not quietly join the list.
 Searching an archive until something fits is the archival form of raising a
 stopping rule to find a result. The freeze is what prevents it, and the freeze
 is worth nothing if it happens after the qualifying sources are known.
+
+## 5.1 The freeze, executed on 4 November 2026
+
+Agreed by Venkateswaran Ramamurthy on 4 November 2026 and recorded here on the
+same date, before any source on the list has been assessed against any bar.
+
+**The source list, closed.** The three exploratory leads recorded in section
+2.5, and nothing else:
+
+1. IBM Quantum's documented historical backend properties and downloadable
+   calibration data.
+2. The 2026 Zenodo dataset of raw repetition-code experiments on three IBM
+   processors.
+3. The published analysis of historical IBM backend properties for long-term
+   dependability.
+
+**None of the three is pre-qualified.** Each is assessed against the same four
+criteria of section 3, by the same route, as any source would be. Being on the
+list is not a verdict; it is only permission to be examined. A list of three
+whose audit returns three failures is a complete Stage 0 and is published as
+such.
+
+**The publication window, closed.** 1 January 2019 to 4 November 2026. The
+opening date was agreed as a property of the record rather than of what the
+record contains; the closing date is the date of this freeze, so that the window
+cannot be extended afterwards to admit something newer that happens to fit.
+
+**What the freeze does not do.** It does not make the archive adequate, and it
+does not commit either author to a Stage 1. The stopping decision of section 6
+stands unaltered, including the branch in which F1 or F2 fail and the archive
+cannot carry the question at all. In Venkat's words, agreeing the freeze: that
+would be a finding, not a failed research exercise. The audit may therefore end
+by reporting that the published record cannot answer the question, and that
+ending is as publishable as any other.
+
+**What happens next, in this order.** The audit of the three listed sources
+against F1 to F4, each verdict recorded with its reasoning and the failures
+included; then the deliverable of section 9. No source is added, no bar is
+moved, and no window is widened between this freeze and that deliverable.
 
 ## 6 The stopping decision, fixed before the search
 
