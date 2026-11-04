@@ -1,0 +1,131 @@
+
+How many cuts are equally good, and what it costs to change between them.
+
+Belongs to designs/design_cut_degeneracy_EN.md, version 1, registered
+4 November 2026 before this run. H1, H2 and H3 are measured as registered.
+The registered OBJECTIVE is not measured, and section 4 of this printout says
+why: it is vacuous as written, which is a defect in the registration and not a
+result. Its replacement needs its own dated registration first.
+
+The published measurement says the gate-optimal cut does not move: in 21 of 21
+problem graphs the exact minimum gate cut is the same at the first layer and at
+the last. That is a statement about the cut COST. This asks how many partitions
+reach that cost, and what a scheduler pays to change between them.
+
+Currency : one ebit per qubit moved between processors, as in staleness_cost.py.
+           Changing from P to Q moves the qubits whose side differs, so the
+           migration cost is the Hamming distance of the membership vectors,
+           minimised over which processor holds which side. Both partitions
+           being balanced, that distance is even and at least two for P != Q.
+
+Ground
+truth    : exact enumeration of every balanced bipartition, to n = 20
+           (92,378 partitions). No heuristic result is ever used as the
+           optimum, which is an invalidating condition in section 5 of the note.
+
+Needs    : numpy, scipy, partition_topology.
+Runtime  : a few minutes, dominated by the n = 20 enumerations.
+
+1 - H1: can a re-partition be expensive while buying nothing?
+------------------------------------------------------------------------------
+  Registered: among graphs with D > 1, the diameter of the optimal
+  set is at least 4 qubits - 8 ebits at zero gate benefit - for at
+  least half of them, at every size. Per family, never pooled alone
+  (section 4 of the note makes pooling an invalidating condition).
+
+  family             n=10       n=12       n=14       n=16       n=18       n=20
+                 D / diam   D / diam   D / diam   D / diam   D / diam   D / diam
+  random       1.7 /  0.7 2.0 /  3.3 4.3 /  4.0 5.0 /  4.7 4.7 /  6.7 6.0 /  5.3
+  ring         2.7 /  2.0 3.3 /  4.0 3.0 /  4.0 4.0 /  5.3 2.0 /  2.0 5.3 /  3.3
+  path         1.0 /  0.0 1.7 /  0.7 1.3 /  0.7 2.7 /  4.7 5.7 /  2.7 2.3 /  2.0
+  regular      3.7 /  2.011.7 /  2.713.3 /  6.016.3 /  6.7 9.7 /  5.3 5.0 /  4.0
+  scale-free   3.0 /  2.0 2.7 /  1.3 5.7 /  3.3 4.7 /  3.3 2.3 /  3.3 7.3 /  6.7
+  community    1.0 /  0.0 1.0 /  0.0 1.0 /  0.0 1.0 /  0.0 1.0 /  0.0 1.0 /  0.0
+  grid         2.7 /  2.0 1.0 /  0.0 1.3 /  0.7 2.0 /  8.0 1.0 /  0.0 4.3 /  8.7
+
+     n   graphs D>1    diam >= 4    share         H1
+    10            9            4     0.44      FAILS
+    12            9            6     0.67      holds
+    14           12            9     0.75      holds
+    16           15           14     0.93      holds
+    18           10            8     0.80      holds
+    20           12           10     0.83      holds
+
+  H1 FAILS at least once.
+
+
+2 - H2: is the realised cost below the diameter?
+------------------------------------------------------------------------------
+  Registered: the distance between the optimal partitions two
+  independent randomised runs return is smaller than the diameter,
+  because refinement from a random start does not sample the
+  optimal set uniformly. Twenty starts per graph, as registered.
+
+     n   graphs   mean diam   mean realised   ratio   spread over seeds
+    10        9        2.89            1.69    0.59                1.50
+    12        9        4.00            2.32    0.58                2.08
+    14       12        4.67            2.42    0.52                1.09
+    16       15        6.53            3.15    0.48                1.84
+    18       10        6.00            3.28    0.55                3.21
+    20       12        7.50            3.73    0.50                2.99
+
+  'spread over seeds' is the resolution limit declared in section 6:
+  the mean within-family range of the realised figure across the
+  three graph seeds. A difference smaller than it is reported as
+  unresolved, including where it agrees with a hypothesis.
+
+
+3 - H3: does the family ordering by diameter follow the one by D?
+------------------------------------------------------------------------------
+  Registered: the ordering of families by diameter matches their
+  ordering by D, at every size. Families with D = 1 have diameter 0
+  by definition and are excluded, since they would co-rank for free.
+
+     n   families used   Spearman rho
+    10               5           0.60
+    12               5           0.50
+    14               6           0.77
+    16               6          -0.31
+    18               5           0.50
+    20               6           0.37
+
+
+4 - The registered objective is vacuous, and that is a defect
+------------------------------------------------------------------------------
+  Section 3 of the note registered this objective: an
+  incumbent-preferring tie-break - among all exactly optimal
+  partitions, return the one nearest the current assignment -
+  reduces the realised migration cost to zero without giving up a
+  crossing gate.
+
+  It does, and it cannot do otherwise. If the incumbent is itself
+  optimal, the nearest optimal partition to it IS it, at distance
+  zero. No run can come out any other way. The same holds for a
+  refinement warm-started at the incumbent: pairwise swapping only
+  accepts strict improvements, so from an optimal partition it makes
+  no move at all.
+
+  This is an objective whose outcome was fixed before the
+  measurement, which is the failure the design notes exist to
+  prevent. It is reported as a WITHDRAWAL of the objective, not as
+  a confirmation of it, and the defect is mine and in the
+  registration rather than in the data.
+
+  The non-vacuous question sits one step away: the interesting case
+  is an incumbent that is NOT optimal, which the scoping run showed
+  happens in 1 to 13 of 21 graphs depending on the heuristic. Then
+  a warm-started refinement may or may not reach the optimum, and
+  may or may not cost less to get there than a cold restart does.
+  That has a real answer and is NOT measured here: it needs its own
+  dated registration first, and measuring it in the same run that
+  found the defect would be choosing the question after seeing the
+  data.
+
+==============================================================================
+  Bounds, as registered in section 7: two parts, balanced
+  bipartitions, one density, the interaction graph as WRITTEN, so
+  nothing here speaks about routing. Registers above n = 20 are
+  outside the enumeration ceiling and outside this note. The
+  heuristic family is spectral-free random starts with pairwise
+  refinement; METIS and KaHyPar are not tested. The oracle is
+  assumed and not counted.
