@@ -82,6 +82,7 @@ and it explains itself.
 | `findability_scoping.py` | in progress | Whether a heuristic ever misses the enumerated optimum, and how many partitions reach it: the gap is small, the degeneracy is not. Registered in [designs/](designs/) as the note that follows it |
 | `cut_degeneracy.py` | in progress | How many balanced bipartitions reach the exact minimum cut, how far apart they lie in migrated qubits, and how far two independent runs land from each other. Registered in [designs/](designs/) before the run |
 | `cut_degeneracy_warmstart.py` | in progress | Whether a partitioner told where the qubits already are reaches the optimum as often, and moves fewer of them. The registered objective is withdrawn; the printout says on which ground |
+| `resolution_limit.py` | in progress | Whether a difference is large enough to be a difference and whether the sample can tell: a declared granularity, a bootstrap over a declared unit, and verdicts that cannot come out blank. Registered in [designs/](designs/) before it was applied |
 | `basket_grid_sensitivity.py` | — | Which half of a crossover does the grid decide? The classical half, barely — the quantum half it moves by a factor of four. A method check against an external published measurement, not a QWeb result |
 
 A dash in the Article column marks a script that checks a published external
