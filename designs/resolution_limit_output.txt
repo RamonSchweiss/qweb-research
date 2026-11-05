@@ -1,0 +1,108 @@
+
+A resolution limit that works, applied to the two comparisons that broke the
+last one.
+
+Belongs to designs/design_resolution_limit_EN.md, version 2, registered
+5 November 2026 before this ran. Nothing here was chosen after seeing output:
+the granularity, the bounds, the unit of analysis, B, the level and u_min are
+all in section 2 and section 4 of that note.
+
+What broke. On 4 November a resolution limit was written into
+design_cut_degeneracy_EN.md section 6 as "the mean within-family range of the
+measured figure across the three graph seeds". On 5 November it came out
+undefined at three of six sizes, because most families held fewer than two
+usable graphs, and 0.00 at two more, because the measured quantity sat on its
+floor of one swap. A quantity with no room to vary has no spread, and a
+precision estimate built from its spread reports perfect precision for the
+wrong reason.
+
+What replaces it. Two limits instead of one, because sampling resolution and
+instrument granularity are different things with different causes:
+
+  T1  granularity : |d| >= g, where g is the smallest nonzero difference the
+                    quantity can take BY DEFINITION. For migration cost between
+                    two balanced bipartitions, g = 2: the count of qubits that
+                    change side is even, so one swap is the smallest step.
+                    Declared, never estimated from a sample.
+  T2  sampling    : a percentile bootstrap interval for d, resampling the
+                    DECLARED UNIT with replacement, excludes zero. B = 2000,
+                    95 per cent, two-sided. The unit is the graph, because the
+                    claims generalise over graphs. The failed version took
+                    families as the unit and graphs as replicates inside them,
+                    which is why it died when the usable set shrank.
+
+Both must pass for a difference to be RESOLVED. Two further verdicts the failed
+version did not have:
+
+  BOUNDED       : both arms within one step of the SAME bound, so the
+                  difference has no room to be anything but small. T2 is not
+                  quoted.
+  NOT EVALUABLE : fewer than u_min = 5 units. Kept strictly apart from
+                  UNRESOLVED: unresolved means the data spoke and said the
+                  difference is small, not evaluable means they did not speak.
+
+Applied to : the warm-start comparison of addendum 2 section A2.3, and the
+             diameter-against-realised comparison of addendum 1 section A1.2.
+             Both are existing datasets; this is a re-evaluation under a
+             declared rule and not a new measurement.
+
+Pipeline   : both datasets are recomputed here rather than parsed from the old
+             printouts, so each module's RNG is re-seeded and its loop order
+             reproduced. Figures printed on 4 and 5 November are hard-coded
+             below and checked. A mismatch aborts: a re-evaluation of numbers
+             that have not been reproduced is worth nothing.
+
+Needs      : numpy, scipy, partition_topology, cut_degeneracy,
+             cut_degeneracy_warmstart, findability_scoping.
+Runtime    : a few minutes, dominated by recomputing the two datasets.
+
+0 - Reproduction, before any re-evaluation
+------------------------------------------------------------------------------
+  A2.3 warm-start: all sizes reproduce the printed figures.
+  A1.2 diameter: all sizes reproduce the printed figures.
+
+1 - A2.3 re-evaluated: warm against cold migration cost
+------------------------------------------------------------------------------
+     n  units     warm     cold        d   T1       95% interval        verdict  why
+    10      3     2.00     2.00    +0.00   no                  -  not evaluable  3 units < 5
+    12      3     2.00     2.00    +0.00   no                  -  not evaluable  3 units < 5
+    14      7     2.00     2.81    +0.81   no                  -        bounded  both arms within one step of the shared floor
+    16     10     2.60     4.07    +1.47   no     [+0.70, +2.19]     unresolved  below one granularity step
+    18      3     2.67     3.84    +1.18   no                  -  not evaluable  3 units < 5
+    20      8     2.50     4.19    +1.69   no     [+0.36, +2.97]     unresolved  below one granularity step
+
+2 - A1.2 re-evaluated: realised against diameter
+------------------------------------------------------------------------------
+     n  units realised diameter        d   T1       95% interval        verdict  why
+    10      9     1.69     2.89    +1.19   no     [+0.95, +1.47]     unresolved  below one granularity step
+    12      9     2.32     4.00    +1.68   no     [+1.21, +2.20]     unresolved  below one granularity step
+    14     12     2.42     4.67    +2.25  yes     [+1.76, +2.76]       resolved  
+    16     15     3.15     6.53    +3.38  yes     [+2.74, +4.09]       resolved  
+    18     10     3.28     6.00    +2.72  yes     [+2.07, +3.23]       resolved  
+    20     12     3.73     7.50    +3.77  yes     [+2.91, +4.49]       resolved  
+
+
+3 - The four criteria of section 6 of the note
+------------------------------------------------------------------------------
+  (1) one of four verdicts everywhere, never a blank: yes (12 comparisons, 0 blank)
+  (2a) sizes with fewer than 5 units: [10, 12, 18] -> ['not evaluable', 'not evaluable', 'not evaluable']
+  (2b) sizes where both arms rest on the floor: [14] -> bounded
+  (3) family labels are not used by the rule at all: the unit is the
+      graph, so relabelling families cannot change any verdict.
+  (4) against A1.2 as published, which called n=14, 16 and 20
+      resolved and n=10, 12 and 18 unresolved:
+        n=10  old  unresolved   new     unresolved   same
+        n=12  old  unresolved   new     unresolved   same
+        n=14  old    resolved   new       resolved   same
+        n=16  old    resolved   new       resolved   same
+        n=18  old  unresolved   new       resolved   DIFFERS
+        n=20  old    resolved   new       resolved   same
+
+==============================================================================
+  What this does not do: it does not make a small sample
+  informative, it is not a test of any hypothesis, and a resolved
+  difference is not thereby an effect of a proposed mechanism. It
+  also does not rescue a defective instrument - the orbit null arm
+  that was allowed illegal moves was caught by a declared
+  invalidating condition, and no resolution rule would have found
+  it. This safeguard sits beside the other three and replaces none.
