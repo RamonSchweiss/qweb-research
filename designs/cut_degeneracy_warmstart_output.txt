@@ -1,0 +1,122 @@
+
+Does telling the partitioner where the qubits already are make the move cheaper?
+
+Belongs to designs/design_cut_degeneracy_EN_addendum_1.md, section A1.5,
+registered 4 November 2026 before this run. Nothing here was chosen after seeing
+data: the two routes, the withdrawal condition, the degenerate subset, the
+invalidating condition and the stopping condition are all in A1.5.
+
+Why this run exists. The objective registered in the note itself was vacuous:
+if the incumbent partition is already optimal, the nearest optimal partition to
+it is itself, and pairwise refinement started there makes no move. That was
+withdrawn in A1.4, not confirmed. The non-vacuous case is an incumbent that is
+NOT optimal, which the scoping run of 4 November showed is common: spectral
+bisection misses the exact optimum on 4 to 13 of 21 graphs.
+
+The objective, as registered : the incumbent is the partition spectral
+                               bisection returns. From there, compare a
+                               refinement WARM-STARTED at the incumbent against
+                               a COLD restart from a random start. The warm
+                               route reaches the optimum as often as the cold
+                               one does, and at strictly lower migration cost
+                               from the incumbent.
+
+Withdrawal, fixed in advance  : if the difference in migration cost between the
+                               two routes is smaller than the resolution limit
+                               of section 6 of the note, measured the same way,
+                               the objective is withdrawn as UNRESOLVED rather
+                               than reported either way. If the warm route
+                               reaches the optimum LESS often, it is withdrawn
+                               outright, because a cheaper route to a worse cut
+                               is not the claim.
+
+Degenerate subset, declared   : graphs on which spectral bisection already
+                               returns an optimal partition. There the incumbent
+                               is optimal, the question collapses into A1.4, and
+                               the case contributes nothing. Reported separately,
+                               never pooled.
+
+Invalidating condition        : using spectral bisection's own cut as the
+                               optimum instead of the enumeration. Enumeration
+                               only, to n = 20.
+
+Needs    : numpy, scipy, partition_topology, and the two scripts this one
+           builds on, so that no routine is reimplemented and allowed to drift.
+Runtime  : a few minutes.
+
+1 - The declared degenerate subset, and how large it is
+------------------------------------------------------------------------------
+  Graphs where spectral bisection already returns an optimal
+  partition. There the incumbent IS the destination and the
+  question collapses into A1.4. Named before the run; reported
+  here because a result that is mostly a subset of zeros has to
+  say so.
+
+     n   graphs   degenerate   usable   share usable
+    10       21           17        4           0.19
+    12       21           15        6           0.29
+    14       21           12        9           0.43
+    16       21            8       13           0.62
+    18       21           15        6           0.29
+    20       21           12        9           0.43
+
+
+2 - Does the warm route reach the optimum as often?
+------------------------------------------------------------------------------
+  The warm route is deterministic: on each usable graph it either
+  reaches the exact optimum or it does not. The cold rate is the
+  share of the twenty independent starts that reach it. If the warm
+  route reaches it LESS often, A1.5 withdraws the objective
+  outright.
+
+     n   usable   warm reaches   cold per start   warm >= cold
+    10        4           0.75             0.56            yes
+    12        6           0.50             0.65             NO
+    14        9           0.78             0.61            yes
+    16       13           0.77             0.57            yes
+    18        6           0.50             0.39            yes
+    20        9           0.89             0.38            yes
+
+
+3 - Migration cost from the incumbent, both routes
+------------------------------------------------------------------------------
+  Qubits that must move to get from the incumbent to the partition
+  the route returns, in ebits. Only graphs where BOTH routes reach
+  the exact optimum are counted, because comparing the cost of
+  arriving somewhere worse is not the registered comparison.
+
+     n   pairs     warm     cold     diff   resolution      verdict
+    10       3     2.00     2.00    +0.00          nan    no spread
+    12       3     2.00     2.00    +0.00          nan    no spread
+    14       7     2.00     2.81    +0.81         0.00 warm cheaper
+    16      10     2.60     4.07    +1.47         1.33 warm cheaper
+    18       3     2.67     3.84    +1.18          nan    no spread
+    20       8     2.50     4.19    +1.69         0.00 warm cheaper
+
+  'resolution' is the limit of section 6, measured the same way as
+  in A1.2: the mean within-family range of the warm figure across
+  the three graph seeds. A difference smaller than it is unresolved,
+  including where it agrees with the objective.
+
+
+4 - The verdict on the registered objective
+------------------------------------------------------------------------------
+  The warm route reaches the optimum less often than the cold
+  one at at least one size. A1.5 withdraws the objective
+  OUTRIGHT on that ground: a cheaper route to a worse cut is
+  not the claim, and no cost comparison rescues it.
+  Cost comparison: 3 of 6 sizes resolve, 0 are unresolved.
+  Of those that resolve: 3 warm cheaper, 0 warm dearer.
+
+  Usable graphs per size: n=10: 4, n=12: 6, n=14: 9, n=16: 13, n=18: 6, n=20: 9
+  The usable set is what the declared degenerate subset leaves
+  behind, and it is small. Where it is very small, the resolution
+  limit is wide and the comparison cannot settle anything - which
+  is a fact about the instrument, not a result about warm starts.
+
+==============================================================================
+  Bounds as registered: two parts, balanced bipartitions, one
+  density, the interaction graph as written, enumeration to n = 20
+  as the only ground truth, one heuristic family. The incumbent is
+  spectral bisection and nothing else; a different single-shot
+  heuristic would give a different incumbent and is not tested.
