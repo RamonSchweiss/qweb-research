@@ -83,7 +83,9 @@ and it explains itself.
 | `cut_degeneracy.py` | in progress | How many balanced bipartitions reach the exact minimum cut, how far apart they lie in migrated qubits, and how far two independent runs land from each other. Registered in [designs/](designs/) before the run |
 | `cut_degeneracy_warmstart.py` | in progress | Whether a partitioner told where the qubits already are reaches the optimum as often, and moves fewer of them. The registered objective is withdrawn; the printout says on which ground |
 | `resolution_limit.py` | in progress | Whether a difference is large enough to be a difference and whether the sample can tell: a declared granularity, a bootstrap over a declared unit, and verdicts that cannot come out blank. Registered in [designs/](designs/) before it was applied |
-| `basket_grid_sensitivity.py` | — | Which half of a crossover does the grid decide? The classical half, barely — the quantum half it moves by a factor of four. A method check against an external published measurement, not a QWeb result |
+| `basket_grid_sensitivity.py` | What Moves the Baseline | Which half of a crossover does the grid decide? The classical half, barely — the quantum half it moves by a factor of four, as the author of the measurement reports. A method check against an external published measurement, not a QWeb result |
+| `moving_baseline_figure.py` | What Moves the Baseline | The same question drawn. Five lanes, one claim each, so that whose number is whose stays visible: lane 3 is the reported move with its 90% interval, lane 4 our own measurement of the classical truncation family. Every plotted value is copied from `basket_grid_sensitivity.py` with its provenance, never recomputed |
+| `moving_baseline_teaser.py` | What Moves the Baseline | Teaser image for the article, 1200×628 in the house design, rendered to `designs/teaser_moving_baseline.svg`. Three figures across the panel — two ours, one reported — and the footer names the source, because a headline strip is where a credit line usually gets dropped |
 
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
