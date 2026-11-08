@@ -31,6 +31,20 @@ attribution:
                  was two errors cancelling. Drawn because leaving it out would
                  make the figure tidier than the history.
 
+The caption the figure is published with, kept here because the first time it
+was handed to a CMS the instruction said to preserve it and no caption existed:
+
+  Figure 1. Which side of the crossover moves? Shift in the quantum/classical
+  crossover, in per cent, for a basket option on an 8-qubit grid. Each row
+  carries one claim. The classical truncation family (blue) covers the whole
+  disclosed range, +-3 sigma to +-5 sigma, and changes sign near +-3.9 sigma;
+  the hollow marker is an equal-probability binning, which sits outside that
+  family and bounds nothing. The observed move and its 90% interval are
+  reported by Daniel Hug (qubit-lab.ch) about his own measurement, and the
+  interval contains zero. The prediction at 1/sqrt(a) and the superseded value
+  at 1/a are ours. Every plotted value comes from
+  calculations/basket_grid_sensitivity.py.
+
 Ramon Schweiss, QWeb (c) Research, 8 November 2026.
 """
 import sys
