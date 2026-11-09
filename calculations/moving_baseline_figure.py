@@ -2,77 +2,179 @@
 
 Emits calculations/moving_baseline_figure.svg. No arguments.
 
-Every number below is printed by calculations/basket_grid_sensitivity.py and is
-copied here rather than recomputed, so that the figure and the calculation
-cannot drift apart silently: if the script's output changes, this file no longer
-matches it and the mismatch is visible in a diff.
+VERSION 2, 9 November 2026. Version 1 put the grid-truncation family and a
++19% crossover move on one axis. Daniel Hug, who measured it, pointed out that
+the +19% is not a truncation effect at all: it is the shift when the
+correlation goes from 0.5 to 0 on the SAME grid (+-3.5 sigma), and the 13.35%
+smaller amplitude comes from the price falling from 16.22 to 14.06, not from a
+wider grid. Version 1 therefore compared two different experiments. This
+version separates them into two panels, each with the axis its own quantity
+needs. basket_grid_sensitivity.py had it right; version 1 misread it.
 
 Provenance of each value, stated because the figure makes a claim about
 attribution:
 
-  TRUNC_FAMILY   this script's own measurement. The contribution of the
-                 CLASSICAL side to the crossover, across the disclosed
-                 truncation family, +-3 sigma to +-5 sigma. Sign flips between
-                 +-3.75 and +-4.
-  EQUIPROB       measured, but OUTSIDE the disclosed family: equal-probability
-                 bins do not reproduce the reference prices at r = 3%, so this
-                 bounds nothing. Drawn hollow for that reason.
-  OBSERVED       reported by Daniel Hug (qubit-lab.ch) for his own measurement:
-                 the crossover moves from about 8,100 to 9,600 oracle calls at
-                 200 repetitions. Not our number.
-  INTERVAL       likewise reported: the 90% interval on that move. The script
-                 puts the repetitions needed to lift its lower bound to zero at
-                 about 600; the reading line below quotes that figure and must
-                 be changed with it.
-  PREDICTED      this script's prediction from the reported 13.35% smaller
-                 amplitude, with amplitude estimation's 1/sqrt(a) scaling.
-  SUPERSEDED     what this script said until 1 November 2026, using 1/a. It
-                 matched a reported +43% to within a point, and that agreement
-                 was two errors cancelling. Drawn because leaving it out would
-                 make the figure tidier than the history.
+LEFT PANEL - grid truncation
+  CROSSOVER      Daniel Hug's ESTIMATE, from an exchange with him and not from
+                 a run on the engine, so drawn with open markers and a dashed
+                 connector. Not monotonic. The crossover is a budget of oracle
+                 calls - the budget above which amplitude estimation is more
+                 accurate than Monte Carlo - and not a problem size.
+  CLASSICAL      ours. The band shows the whole range the CLASSICAL side alone
+                 accounts for anywhere in the disclosed family: +3.2% to -0.3%
+                 of the crossover, drawn around the +-3 sigma value, so about
+                 +-200 calls against a swing of some 18,000.
+
+RIGHT PANEL - correlation 0.5 -> 0, same grid
+  PREDICTED      ours. From the reported 13.35% smaller amplitude, with
+                 amplitude estimation's 1/sqrt(a) scaling.
+  OBSERVED       reported by Daniel Hug for his own measurement, at 400
+                 repetitions, published on his evidence page since 1 November
+                 2026: about 8,100 to 9,400 oracle calls, +16%.
+  INTERVAL       likewise reported: the 90% interval at 400 repetitions. It
+                 contains zero, so the move is not resolved.
 
 The caption the figure is published with, kept here because the first time it
 was handed to a CMS the instruction said to preserve it and no caption existed:
 
-  Figure 1. Which side of the crossover moves? Shift in the quantum/classical
-  crossover, in per cent, for a basket option on an 8-qubit grid. Each row
-  carries one claim. The classical truncation family (blue) covers the whole
-  disclosed range, +-3 sigma to +-5 sigma, and changes sign near +-3.9 sigma;
-  the hollow marker is an equal-probability binning, which sits outside that
-  family and bounds nothing. The observed move and its 90% interval are
-  reported by Daniel Hug (qubit-lab.ch) about his own measurement, and the
-  interval contains zero. The prediction at 1/sqrt(a) and the superseded value
-  at 1/a are ours. Every plotted value comes from
+  Figure 1. Which side of the crossover moves, and under which modelling
+  decision? The crossover is a budget of oracle calls, not a problem size.
+  Left: grid truncation. The open markers are an estimate, not a run, and they
+  are not monotonic - +-4.5 sigma sits below +-4 sigma. The thin band is
+  everything the classical side alone accounts for anywhere in the disclosed
+  family, +3.2% to -0.3% of the crossover; the swing above it is the quantum
+  side. Right: a different decision, on the same grid. The correlation going
+  from 0.5 to 0 drops the price from 16.22 to 14.06 and the amplitude by
+  13.35%, which at 1/sqrt(a) predicts +20%. The reported move is +16% at 400
+  repetitions, and its 90% interval contains zero. Estimates and reported
+  values are Daniel Hug's (qubit-lab.ch); the classical band and the
+  prediction are ours, from
   calculations/basket_grid_sensitivity.py.
 
-Ramon Schweiss, QWeb (c) Research, 8 November 2026.
+Ramon Schweiss, QWeb (c) Research, 9 November 2026.
 """
 import sys
 
-TRUNC_FAMILY = [(3.0, 3.2), (3.25, 1.8), (3.5, 1.0), (3.75, 0.4),
-                (4.0, -0.1), (4.5, -0.3), (5.0, -0.3)]
-EQUIPROB = 10.6
-OBSERVED = 19.0
-INTERVAL = (-12.0, 52.0)
-PREDICTED = 20.0
-SUPERSEDED = 42.0
+# left panel: Daniel Hug's estimate, (sigma level, crossover in oracle calls)
+CROSSOVER = [(3.0, 6000), (4.0, 23000), (4.5, 17000), (5.0, 24000)]
+CLASSICAL_PC = (3.2, -0.3)      # ours: classical share of the move, per cent
+ANCHOR = 6000                   # the +-3 sigma crossover the band sits on
 
-W, H = 980, 520
-L, R = 90, 900                      # plot area, x
-AX = 400                            # axis baseline, y
-LO, HI = -20.0, 58.0                # axis range in per cent
+# right panel: correlation 0.5 -> 0 at +-3.5 sigma, per cent
+PREDICTED = 20.0                # ours, at 1/sqrt(a)
+OBSERVED = 16.0                 # reported, 400 repetitions
+INTERVAL = (-6.0, 38.0)         # reported, 90%
 
-# one lane per claim, so that nothing has to share a row with anything else
-Y_SUP, Y_PRED, Y_OBS, Y_FAM, Y_EQ = 150, 212, 272, 330, 372
+W, H = 980, 560
+BLUE, GREEN, ORANGE, RED = "#2b6cb0", "#276749", "#b7791f", "#9b2c2c"
 
+# left panel geometry
+LX0, LX1 = 92, 452
+LY0, LY1 = 150, 420             # top (26,000 calls) to axis (0)
+LCAL_LO, LCAL_HI = 2.8, 5.2
+LMAX = 26000
 
-def x(v):
-    return L + (v - LO) / (HI - LO) * (R - L)
+# right panel geometry
+RX0, RX1 = 568, 928
+RY = 206                        # first lane
+RAX = 420
+RLO, RHI = -12.0, 44.0
 
 
 def pc(v, dec=0):
-    """Per cent with a typographic minus, so the figure reads consistently."""
     return f"{v:+.{dec}f}%".replace("-", "−")
+
+
+def lx(s):
+    return LX0 + (s - LCAL_LO) / (LCAL_HI - LCAL_LO) * (LX1 - LX0)
+
+
+def ly(c):
+    return LY1 - c / LMAX * (LY1 - LY0)
+
+
+def rx(v):
+    return RX0 + (v - RLO) / (RHI - RLO) * (RX1 - RX0)
+
+
+def left_panel(a):
+    a(f'<text x="{LX0}" y="118" class="ph">Grid truncation</text>')
+    a(f'<text x="{LX0}" y="138" class="dim">crossover, oracle calls '
+      f'&#183; estimate, not a run</text>')
+
+    # axes
+    a(f'<line x1="{LX0}" y1="{LY1}" x2="{LX1}" y2="{LY1}" class="ax"/>')
+    a(f'<line x1="{LX0}" y1="{LY0}" x2="{LX0}" y2="{LY1}" class="ax"/>')
+    for c in (0, 6000, 12000, 18000, 24000):
+        a(f'<line x1="{LX0-5}" y1="{ly(c):.1f}" x2="{LX0}" y2="{ly(c):.1f}" '
+          f'class="tick"/>')
+        lab = "0" if not c else f"{c//1000}k"
+        a(f'<text x="{LX0-10}" y="{ly(c)+4:.1f}" class="dim" '
+          f'text-anchor="end">{lab}</text>')
+    for s, _ in CROSSOVER:
+        a(f'<line x1="{lx(s):.1f}" y1="{LY1}" x2="{lx(s):.1f}" y2="{LY1+5}" '
+          f'class="tick"/>')
+        a(f'<text x="{lx(s):.1f}" y="{LY1+22:.1f}" class="dim" '
+          f'text-anchor="middle">±{s:g}σ</text>')
+
+    # the estimate: dashed connector, open markers
+    pts = " ".join(f"{lx(s):.1f},{ly(c):.1f}" for s, c in CROSSOVER)
+    a(f'<polyline points="{pts}" fill="none" stroke="{ORANGE}" '
+      f'stroke-width="1.8" stroke-dasharray="7,5" opacity="0.8"/>')
+    for s, c in CROSSOVER:
+        a(f'<circle cx="{lx(s):.1f}" cy="{ly(c):.1f}" r="6" fill="#fff" '
+          f'stroke="{ORANGE}" stroke-width="2"/>')
+
+    # the one point that makes it non-monotonic
+    a(f'<text x="{lx(4.5):.1f}" y="{ly(17000)+26:.1f}" class="dim" '
+      f'text-anchor="middle" fill="{ORANGE}">below ±4σ</text>')
+
+    # what the classical side alone accounts for
+    hi = ANCHOR * (1 + CLASSICAL_PC[0] / 100)
+    lo = ANCHOR * (1 + CLASSICAL_PC[1] / 100)
+    a(f'<rect x="{LX0+1:.1f}" y="{ly(hi):.1f}" width="{LX1-LX0-2:.1f}" '
+      f'height="{max(ly(lo)-ly(hi), 2.5):.1f}" fill="{BLUE}" opacity="0.5"/>')
+    a(f'<text x="{LX1}" y="{ly(hi)-24:.1f}" class="lbl" text-anchor="end">'
+      f'the classical side, whole family</text>')
+    a(f'<text x="{LX1}" y="{ly(hi)-7:.1f}" class="dim" text-anchor="end">'
+      f'{pc(CLASSICAL_PC[0], 1)} to {pc(CLASSICAL_PC[1], 1)} — about ±200 '
+      f'calls</text>')
+
+
+def right_panel(a):
+    a(f'<text x="{RX0}" y="118" class="ph">Correlation 0.5 → 0</text>')
+    a(f'<text x="{RX0}" y="138" class="dim">same grid, ±3.5σ &#183; change in '
+      f'the crossover</text>')
+
+    a(f'<line x1="{RX0}" y1="{RAX}" x2="{RX1}" y2="{RAX}" class="ax"/>')
+    for v in (-10, 0, 10, 20, 30, 40):
+        a(f'<line x1="{rx(v):.1f}" y1="{RAX}" x2="{rx(v):.1f}" y2="{RAX+5}" '
+          f'class="tick"/>')
+        a(f'<text x="{rx(v):.1f}" y="{RAX+22}" class="dim" '
+          f'text-anchor="middle">{pc(v)}</text>')
+    a(f'<line x1="{rx(0):.1f}" y1="{RY-30}" x2="{rx(0):.1f}" y2="{RAX+5}" '
+      f'stroke="#333" stroke-width="1" stroke-dasharray="2,3"/>')
+
+    # predicted, ours
+    a(f'<circle cx="{rx(PREDICTED):.1f}" cy="{RY}" r="5.5" fill="{GREEN}"/>')
+    a(f'<text x="{rx(PREDICTED):.1f}" y="{RY-16}" class="lbl" '
+      f'text-anchor="middle">predicted at 1/√a: {pc(PREDICTED)}</text>')
+
+    # observed, reported, with its 90% interval
+    yo = RY + 70
+    a(f'<line x1="{rx(INTERVAL[0]):.1f}" y1="{yo}" '
+      f'x2="{rx(INTERVAL[1]):.1f}" y2="{yo}" class="ivl"/>')
+    for v in INTERVAL:
+        a(f'<line x1="{rx(v):.1f}" y1="{yo-8}" x2="{rx(v):.1f}" y2="{yo+8}" '
+          f'stroke="{ORANGE}" stroke-width="1.6" opacity="0.75"/>')
+    a(f'<circle cx="{rx(OBSERVED):.1f}" cy="{yo}" r="6" fill="{ORANGE}"/>')
+    a(f'<text x="{rx(OBSERVED):.1f}" y="{yo-16}" class="lbl" '
+      f'text-anchor="middle">reported {pc(OBSERVED)}</text>')
+    a(f'<text x="{RX1}" y="{yo+28}" class="dim" text-anchor="end">'
+      f'90% interval at 400 repetitions, {pc(INTERVAL[0])} to '
+      f'{pc(INTERVAL[1])}</text>')
+    a(f'<text x="{RX1}" y="{yo+46}" class="dim" text-anchor="end">'
+      f'— it contains zero</text>')
 
 
 def main():
@@ -84,83 +186,32 @@ def main():
       '.ax{stroke:#333;stroke-width:1.2}'
       '.tick{stroke:#999;stroke-width:1}'
       '.lbl{fill:#333}.dim{fill:#777;font-size:12.5}'
+      '.ph{font-size:15.5px;fill:#111;font-weight:bold}'
       '.ttl{font-size:19px;fill:#111}.sub{font-size:13px;fill:#666}'
-      '.band{fill:#2b6cb0;opacity:.14}'
-      '.ivl{stroke:#b7791f;stroke-width:7;opacity:.30;stroke-linecap:butt}'
+      f'.ivl{{stroke:{ORANGE};stroke-width:7;opacity:.30;stroke-linecap:butt}}'
       '</style>')
     a(f'<rect width="{W}" height="{H}" fill="#fff"/>')
 
-    a(f'<text x="{L}" y="46" class="ttl">Which side of the crossover moves?</text>')
-    a(f'<text x="{L}" y="68" class="sub">Shift in the quantum/classical '
-      f'crossover, in per cent. Basket option, 8-qubit grid.</text>')
+    a(f'<text x="{LX0}" y="46" class="ttl">Which side of the crossover moves, '
+      f'and under which decision?</text>')
+    a(f'<text x="{LX0}" y="68" class="sub">Basket option, two correlated '
+      f'shares, 8-qubit grid. The crossover is a budget of oracle calls, not a '
+      f'problem size.</text>')
 
-    # zero line and axis
-    a(f'<line x1="{L}" y1="{AX}" x2="{R}" y2="{AX}" class="ax"/>')
-    for v in (-20, -10, 0, 10, 20, 30, 40, 50):
-        a(f'<line x1="{x(v):.1f}" y1="{AX}" x2="{x(v):.1f}" y2="{AX+6}" '
-          f'class="tick"/>')
-        a(f'<text x="{x(v):.1f}" y="{AX+24}" class="dim" '
-          f'text-anchor="middle">{pc(v)}</text>')
-    a(f'<line x1="{x(0):.1f}" y1="{Y_SUP-30}" x2="{x(0):.1f}" y2="{AX+6}" '
-      f'stroke="#333" stroke-width="1" stroke-dasharray="2,3"/>')
+    left_panel(a)
+    right_panel(a)
+    a(f'<line x1="510" y1="100" x2="510" y2="450" stroke="#ddd" '
+      f'stroke-width="1"/>')
 
-    # lane 1 - superseded, ours, wrong until 1 November
-    a(f'<circle cx="{x(SUPERSEDED):.1f}" cy="{Y_SUP}" r="5" fill="none" '
-      f'stroke="#9b2c2c" stroke-width="1.4"/>')
-    a(f'<text x="{x(SUPERSEDED):.1f}" y="{Y_SUP-16}" class="dim" '
-      f'text-anchor="middle" fill="#9b2c2c">ours until 1 Nov, at 1/a: '
-      f'{pc(SUPERSEDED)}</text>')
-
-    # lane 2 - predicted, ours
-    a(f'<circle cx="{x(PREDICTED):.1f}" cy="{Y_PRED}" r="5.5" '
-      f'fill="#276749"/>')
-    a(f'<text x="{x(PREDICTED):.1f}" y="{Y_PRED-16}" class="lbl" '
-      f'text-anchor="middle">predicted from the amplitude, at 1/√a: '
-      f'{pc(PREDICTED)}</text>')
-
-    # lane 3 - observed, reported by D. Hug, with its 90% interval
-    a(f'<line x1="{x(INTERVAL[0]):.1f}" y1="{Y_OBS}" '
-      f'x2="{x(INTERVAL[1]):.1f}" y2="{Y_OBS}" class="ivl"/>')
-    for v in INTERVAL:
-        a(f'<line x1="{x(v):.1f}" y1="{Y_OBS-8}" x2="{x(v):.1f}" '
-          f'y2="{Y_OBS+8}" stroke="#b7791f" stroke-width="1.4" '
-          f'opacity=".65"/>')
-    a(f'<circle cx="{x(OBSERVED):.1f}" cy="{Y_OBS}" r="6" fill="#b7791f"/>')
-    a(f'<text x="{x(OBSERVED):.1f}" y="{Y_OBS-16}" class="lbl" '
-      f'text-anchor="middle">observed {pc(OBSERVED)}, reported</text>')
-    # anchored at the bar's right end and running left, to keep clear of the
-    # dashed zero line
-    a(f'<text x="{x(INTERVAL[1]):.1f}" y="{Y_OBS+26}" class="dim" '
-      f'text-anchor="end">90% interval at 200 repetitions, '
-      f'{pc(INTERVAL[0])} to {pc(INTERVAL[1])} — it contains zero</text>')
-
-    # lane 4 - the whole classical truncation family, ours
-    a(f'<rect x="{x(-0.3)-7:.1f}" y="{Y_FAM-20}" '
-      f'width="{x(3.2)-x(-0.3)+14:.1f}" height="40" class="band"/>')
-    for s, v in TRUNC_FAMILY:
-        a(f'<circle cx="{x(v):.1f}" cy="{Y_FAM}" r="4.2" fill="#2b6cb0"/>')
-    a(f'<text x="{x(3.2)+18:.1f}" y="{Y_FAM-5}" class="lbl">'
-      f'the whole classical truncation family, ±3σ to ±5σ</text>')
-    a(f'<text x="{x(3.2)+18:.1f}" y="{Y_FAM+14}" class="dim">'
-      f'+3.2% down to −0.3%, sign flipping near ±3.9σ — our measurement</text>')
-
-    # lane 5 - equiprobable bins, measured but outside the family
-    a(f'<circle cx="{x(EQUIPROB):.1f}" cy="{Y_EQ}" r="5" fill="none" '
-      f'stroke="#2b6cb0" stroke-width="1.6" stroke-dasharray="3,2"/>')
-    a(f'<text x="{x(EQUIPROB)+14:.1f}" y="{Y_EQ+4}" class="dim">'
-      f'equiprobable bins — outside the disclosed family, bounds '
-      f'nothing</text>')
-
-    # the reading
-    y0 = AX + 58
-    a(f'<text x="{L}" y="{y0}" class="lbl">The classical side accounts for at '
-      f'most a sixth of the observed move. The cause sits on the quantum side: '
-      f'a 13.35% smaller</text>')
-    a(f'<text x="{L}" y="{y0+21}" class="lbl">amplitude, at 1/√a, predicts the '
-      f'move almost exactly. And the move itself is not resolved at 200 '
-      f'repetitions —</text>')
-    a(f'<text x="{L}" y="{y0+42}" class="lbl">its interval contains zero. '
-      f'About 600 repetitions would put the lower bound above it.</text>')
+    y0 = 492
+    a(f'<text x="{LX0}" y="{y0}" class="lbl">Two modelling decisions, two '
+      f'different effects, and neither of them appears in a result summary. '
+      f'Truncation moves the</text>')
+    a(f'<text x="{LX0}" y="{y0+21}" class="lbl">crossover by far more than the '
+      f'classical side can account for, and not monotonically. Correlation '
+      f'moves it by the amount the</text>')
+    a(f'<text x="{LX0}" y="{y0+42}" class="lbl">amplitude predicts — but at '
+      f'400 repetitions that move is still not resolved.</text>')
     a('</svg>')
 
     out = "moving_baseline_figure.svg"
@@ -168,17 +219,16 @@ def main():
         f.write("\n".join(p) + "\n")
     print(f"wrote {out}")
     print("\nValues drawn, with provenance:")
-    print(f"  classical truncation family  {TRUNC_FAMILY[0][1]:+.1f}% .. "
-          f"{TRUNC_FAMILY[-1][1]:+.1f}%   ours")
-    print(f"  equiprobable, outside family {EQUIPROB:+.1f}%          ours, "
-          f"bounds nothing")
-    print(f"  observed move                {OBSERVED:+.1f}%          "
-          f"reported by D. Hug")
-    print(f"  90% interval                 {INTERVAL[0]:+.0f}% to "
-          f"{INTERVAL[1]:+.0f}%   reported by D. Hug")
-    print(f"  predicted at 1/sqrt(a)       {PREDICTED:+.1f}%          ours")
-    print(f"  superseded, at 1/a           {SUPERSEDED:+.1f}%          "
-          f"ours, wrong until 1 Nov")
+    print("  LEFT - grid truncation")
+    for s, c in CROSSOVER:
+        print(f"    ±{s:g}σ  {c:>6,} calls      D. Hug, estimate, no engine run")
+    print(f"    classical share  {CLASSICAL_PC[0]:+.1f}% to "
+          f"{CLASSICAL_PC[1]:+.1f}%   ours")
+    print("  RIGHT - correlation 0.5 -> 0 at ±3.5σ")
+    print(f"    predicted at 1/sqrt(a)  {PREDICTED:+.0f}%         ours")
+    print(f"    reported, 400 reps      {OBSERVED:+.0f}%         D. Hug")
+    print(f"    90% interval            {INTERVAL[0]:+.0f}% to "
+          f"{INTERVAL[1]:+.0f}%  D. Hug")
     return 0
 
 
