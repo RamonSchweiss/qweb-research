@@ -1,0 +1,114 @@
+
+Does a real partitioner find the minimum balanced gate cut?
+
+Belongs to designs/design_findability_EN_v2.md, registered 10 November 2026
+before this run. Version 1 of that note made the layer question primary; reading
+gate_vs_state_partition.py showed that question to be vacuous for QAOA, because
+every layer applies the same gates and nothing can move. Version 2 therefore
+asks the question that does vary: whether a heuristic reaches the exact minimum
+balanced cut at all, and by how much it misses.
+
+The objective is the GATE cut, which for QAOA is the minimum balanced cut of the
+problem graph itself. It is the right objective and not a convenient one:
+gate_vs_state_partition.py finding (3) shows that following the
+information-optimal cut costs 22 per cent more remote two-qubit gates, because
+the gate cut minimises exactly that quantity.
+
+Ground
+truth  : exact enumeration of every balanced bipartition, via
+         partition_topology.partitions. No heuristic result is ever used as the
+         optimum, which is an invalidating condition in section 9 of the note.
+
+Ties   : where the optimum is a set rather than a point, a heuristic that
+         returns a different member of that set has NOT missed. Hits and
+         different-member hits are counted separately, as section 7 requires.
+
+METIS  : does not guarantee exact balance. Unbalanced answers are reported
+         OUTSIDE the comparison class, never as a negative gap.
+
+Needs  : numpy, scipy, partition_topology, pymetis (optional).
+Runtime: a few minutes; dominated by enumeration at n = 22 and n = 24.
+
+Restart budget: 20 for KL and stochastic greedy; spectral and greedy are deterministic (1).
+METIS available: True
+
+1 - The published configuration: n = 10, m = 15, the same 21 graphs
+------------------------------------------------------------------------------
+   21 graphs
+
+   arm            hits  other member   misses   worst gap   mean gap
+   kl              21/21          5          0         0.0       0.00
+   spectral        17/21          4          4         2.0       0.24
+   greedy          10/21          1         11         4.0       0.95
+   stoch_greedy    21/21          6          0         0.0       0.00
+   metis           21/21          0          0         0.0       0.00
+   random           1/21          1         20         8.0       4.33
+
+   'other member' counts zero-gap answers that are a DIFFERENT member
+   of the optimal set than the first enumerated one. Those are hits.
+   optimal set size (ties): min 1, median 1, max 8
+
+   H1 - gap zero in the large majority at n = 10:
+     kl           exact zero in every graph
+     spectral     resolved (mean 0.24, CI 0.05..0.48)
+     greedy       resolved (mean 0.95, CI 0.52..1.48)
+     stoch_greedy exact zero in every graph
+     metis        exact zero in every graph
+     random       resolved (mean 4.33, CI 3.48..5.19)
+
+
+2 - Size sweep, density 1.5, same families and seeds
+------------------------------------------------------------------------------
+   mean gap in remote gates; (b) = some METIS answer was unbalanced
+
+   n                kl      spectral        greedy  stoch_greedy         metis        random
+   10            0.00          0.24          0.95          0.00          0.00          4.57 
+   12            0.00          0.33          1.52          0.00          0.05          6.19 
+   14            0.00          0.62          1.57          0.29          0.00          7.05 
+   16            0.00          1.29          1.76          0.19          0.00          7.76 
+   18            0.00          0.48          2.19          0.52          0.00          9.57 
+   20            0.00          0.71          2.38          0.38          0.06b        10.33 
+   22            0.00          1.24          3.10          0.67          0.00b        12.29 
+   24            0.00          1.10          2.48          0.86          0.00b        14.24 
+
+   H2 - does the mean gap grow with n?
+     kl           n=10   0.00  ->  n=24   0.00   exact zero in every graph
+     spectral     n=10   0.24  ->  n=24   1.10   resolved (mean 1.10, CI 0.48..1.86)
+     greedy       n=10   0.95  ->  n=24   2.48   resolved (mean 2.48, CI 1.48..3.57)
+     stoch_greedy n=10   0.00  ->  n=24   0.86   resolved (mean 0.86, CI 0.24..1.62)
+     metis        n=10   0.00  ->  n=24   0.00   exact zero in every graph
+     random       n=10   4.57  ->  n=24  14.24   resolved (mean 14.24, CI 12.76..16.14)
+
+
+3 - METIS and the comparison class
+------------------------------------------------------------------------------
+   n = 10  unbalanced in  0 of 21 graphs
+   n = 12  unbalanced in  0 of 21 graphs
+   n = 14  unbalanced in  0 of 21 graphs
+   n = 16  unbalanced in  0 of 21 graphs
+   n = 18  unbalanced in  0 of 21 graphs
+   n = 20  unbalanced in  5 of 21 graphs; smaller side [9]
+   n = 22  unbalanced in  8 of 21 graphs; smaller side [10]
+   n = 24  unbalanced in  4 of 21 graphs; smaller side [11]
+
+   An unbalanced cut minimises over a larger set than the balanced
+   optimum, so it can be smaller. Those answers are excluded above
+   rather than reported as a negative gap.
+
+
+4 - How flattering is a random balanced baseline?
+------------------------------------------------------------------------------
+   arXiv 2605.01974 normalises seven partitioners against exactly this.
+
+   n      optimum   random    random excess over optimum
+   10        3.86     8.43        119 %
+   12        4.00    10.19        155 %
+   14        4.33    11.38        163 %
+   16        4.81    12.57        161 %
+   18        4.62    14.19        207 %
+   20        5.10    15.43        203 %
+   22        5.00    17.29        246 %
+   24        5.33    19.57        267 %
+
+   Measured against the optimum instead, the room a partitioner has to
+   look good against the random baseline is this large.

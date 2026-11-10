@@ -1,0 +1,28 @@
+QAOA, n=10, m=15, 24 layers, two QPUs; 21 graphs in 7 families
+
+1. Does the gate cut ever change?
+   changes of the exact minimum gate cut over 24 layers, all graphs: 0
+   H_v of the same graphs (state view), min / median / max: 0 / 2 / 20
+
+2. How far is the fixed gate cut from the information optimum?
+   family       agree at 0   gate-cut ties   excess over best at layer    0     5    10    20     H_v
+   random       3 of 3            1            0.0%  4.8%  6.4%  6.6%       2
+   ring         2 of 3            2            0.0% 17.2% 16.4% 11.9%       2
+   path         2 of 3            1            0.0%  2.8%  3.4%  3.0%       0
+   regular      2 of 3            2            0.0%  0.0%  4.8%  0.0%       3
+   scale-free   1 of 3            2           17.5% 29.6% 52.1% 34.7%       1
+   community    3 of 3            1            0.0%  0.0% 15.8%  0.0%       6
+   grid         2 of 3            2            0.0%  4.8%  0.0%  0.0%      11
+   (medians over seeds; ties = balanced cuts sharing the minimum gate count)
+
+3. What does following the information optimum cost in EPR pairs?
+   remote ZZ gates per layer, fixed gate cut:             3.86
+   remote ZZ gates per layer, following the information:  4.71   (+22 %, before any cost of moving qubits)
+
+4. Cross-check with an existing distributed compiler (memQ DQC)
+  QAOA, one window per layer: one partition for all windows in 21 of 21 graphs
+  control, QFT n=10, windows of 5 gates: 3 distinct partitions, 2 changes over 11 windows
+
+  For a circuit known in advance, the gate cut is the right cost and
+  the information cut is not. The planning limit needs a setting in
+  which the information structure is what execution pays for.

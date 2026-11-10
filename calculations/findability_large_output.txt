@@ -1,0 +1,94 @@
+
+The same question at n = 26 and n = 28, with a vectorised ground truth.
+
+Belongs to designs/design_findability_EN_v2_addendum_1.md, written
+10 November 2026 before this run. The addendum states plainly that this arm
+breaks the registered stopping condition of version 2 - it extends an arm
+because a result looked promising - and it fixes the terms: the registered grid
+n = 10..24 is reported unchanged, and these two sizes are reported separately
+as a post-hoc extension.
+
+Why: METIS stops returning balanced partitions from n = 20, in 5, 8 and 4 of 21
+graphs at n = 20, 22, 24, and exact ground truth stops at n = 24. Three sizes of
+overlap cannot carry a trend. Two more make it five.
+
+Ground
+truth : exact enumeration, stored as packed booleans and accumulated one edge
+        at a time, which needs 135 MB at n = 26 instead of 1.08 GB as float64.
+        Section 3 of the addendum makes this implementation conditional on
+        agreeing EXACTLY with partition_topology on every size where both run.
+        A faster ground truth that disagrees with the slow one is not one.
+
+Needs : numpy, partition_topology, findability, pymetis.
+
+Gate - vectorised ground truth against partition_topology
+------------------------------------------------------------------------------
+   n = 10  partitions        126 (expected        126)   mismatches 0   ok
+   n = 12  partitions        462 (expected        462)   mismatches 0   ok
+   n = 14  partitions      1,716 (expected      1,716)   mismatches 0   ok
+   n = 16  partitions      6,435 (expected      6,435)   mismatches 0   ok
+   n = 18  partitions     24,310 (expected     24,310)   mismatches 0   ok
+   n = 20  partitions     92,378 (expected     92,378)   mismatches 0   ok
+   n = 22  partitions    352,716 (expected    352,716)   mismatches 0   ok
+   n = 24  partitions  1,352,078 (expected  1,352,078)   mismatches 0   ok
+
+   Gate passed on all eight sizes and all 21 graphs each.
+
+Post-hoc extension - NOT part of the registered sweep
+------------------------------------------------------------------------------
+   mean gap in remote gates; (b) = some METIS answer was unbalanced
+
+   n                kl      spectral        greedy  stoch_greedy         metis        random
+   26            0.00          1.50          2.80          0.70          0.00b        14.90    [16s]
+   28            0.00          0.90          3.40          0.80          0.00b        16.10    [57s]
+
+
+METIS and the balanced class, all five sizes from n = 20
+------------------------------------------------------------------------------
+   n = 20, 22, 24 are the registered sweep, copied from
+   findability_output.txt; n = 26, 28 are this extension.
+
+   n     unbalanced   of   share   smaller side   deficit
+   20            5    21    0.24            [9]   [1]
+   22            8    21    0.38           [10]   [1]
+   24            4    21    0.19           [11]   [1]
+   26            9    20    0.45           [12]   [1]
+   28            2    20    0.10           [13]   [1]
+
+   monotonic in n: False. Worst observed 0.45 at n = 26.
+   Every unbalanced answer is off by exactly one vertex at every
+   size - the deficit column. That is a tolerance artefact, not a
+   partitioner failing to partition, and it is a weaker finding than
+   an unbalanced share alone would suggest.
+
+
+Hits and the optimal set
+------------------------------------------------------------------------------
+   arm            n=26 hits   n=28 hits   other member (26/28)
+   kl                 20/20       20/20   12/8
+   spectral            6/20        7/20   2/3
+   greedy              5/20        4/20   0/1
+   stoch_greedy       13/20       13/20   3/4
+   metis              11/11       18/18   0/0
+   random              0/20        0/20   0/0
+
+
+The optimum and the random baseline at the new sizes
+------------------------------------------------------------------------------
+   n      optimum   random    random excess over optimum
+   26        5.75    20.65        259 %
+   28        5.60    21.70        288 %
+
+
+One graph is missing at both sizes
+------------------------------------------------------------------------------
+   20 of 21, not 21. partition_topology.make_graph returns None for
+   scale-free seed 2 at n = 26 and n = 28: in 25 attempts it produced
+   no connected graph with exactly m edges. All 21 exist at n <= 24.
+   The absence is not neutral - scale-free is the family where the
+   published script found the largest information excess, 52 per cent -
+   so every n = 26 and n = 28 figure above is over a set missing its
+   most awkward member.
+
+   The registered grid n = 10..24 is unchanged by this run and keeps
+   the verdicts it already has. Section 1 of the addendum.
