@@ -84,14 +84,19 @@ and it explains itself.
 | `cut_degeneracy_warmstart.py` | in progress | Whether a partitioner told where the qubits already are reaches the optimum as often, and moves fewer of them. The registered objective is withdrawn; the printout says on which ground |
 | `resolution_limit.py` | in progress | Whether a difference is large enough to be a difference and whether the sample can tell: a declared granularity, a bootstrap over a declared unit, and verdicts that cannot come out blank. Registered in [designs/](designs/) before it was applied |
 | `basket_grid_sensitivity.py` | What Moves the Baseline | Which half of a crossover does a modelling decision move? The crossover is a budget of oracle calls, not a problem size. Under grid truncation barely the classical half — about ±200 calls against a swing of some 18,000, and the swing itself is the measurement author's estimate, not a run, and not monotonic. Under correlation, the amount the amplitude predicts at 1/√a. A method check against an external measurement, not a QWeb result |
-| `moving_baseline_figure.py` | What Moves the Baseline | Version 2: two panels, one per modelling decision. Version 1 put them on one axis and the article's central claim rested on that merger. Left the truncation estimate with the thin band the classical side accounts for, right the reported correlation move with an interval that contains zero. Every value copied from `basket_grid_sensitivity.py` with its provenance, and the published caption in the docstring |
-| `partitioner_figure.py` | What the Partitioner Stops Solving | Figure 1: mean gap to the exact minimum balanced gate cut, against register size. Logarithmic, with a separate rail below it for the values that are exactly zero — plotting a true zero at a small positive value would be the quiet substitution the article is about. METIS hollow from n = 20, where some of its answers are no longer balanced and are excluded. Every value copied from `findability.py` and `findability_large.py` with its provenance, and the published caption in the docstring |
 | `moving_baseline_teaser.py` | What Moves the Baseline | Version 2 of the teaser image, 1200×628 in the house design, rendered to `designs/teaser_moving_baseline.svg`. The motif shows the two decisions apart, as the figure does. Three numbers across the panel — one estimate, one ours, one reported — and the footer names the source |
 | `findability.py` | What the Partitioner Stops Solving | Does a real partitioner find the minimum balanced gate cut? Kernighan–Lin reaches the exact optimum in all 21 published graphs and up to n = 24 — at twenty restarts; at one restart it misses two. METIS matches it and then leaves the balanced class from n = 20. The random balanced baseline the literature normalises against sits 119 % above the optimum at n = 10 and keeps rising |
 | `findability_large.py` | What the Partitioner Stops Solving | The same question at n = 26 and n = 28, with a vectorised ground truth that is gated on agreeing exactly with `partition_topology` wherever both run — it did not, on first use, and the partition counts were exact while the contents were wrong. Kernighan–Lin holds the exact zero to n = 28; METIS is off by exactly one vertex at every size, in a share that does not grow with n |
 
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
+
+Three scripts have their printout committed beside them as
+`<name>_output.txt`: the two findability measurements, because the figure's
+values come from them and the exhaustive ground truth takes long enough that
+few will rerun it, and `gate_vs_state_partition.py`, because its cross-check
+needs an optional dependency most readers will not have installed. Where a
+printout and a later text disagree, the text is wrong.
 
 ## A note on what these do and do not show
 
@@ -185,9 +190,12 @@ Calculations check claims; figures draw them.
 | Script | Article | Output |
 |---|---|---|
 | `qubit_bloch.py` | What a Qubit Actually Is | Bloch spheres emptying under a ZZ interaction — animated GIF plus five stills ([preview](figures/qubit_bloch_4_entangled.svg)) |
-| `diffusion_cut_figures.py` | What the Operator Hides From the Partitioner | The constant cut, the compiler's factor, and where the diffusion sits beside two ordinary workloads — three SVGs ([preview](figures/diffusion_cut_figure_1.svg)) |
+| `diffusion_cut_figures.py` | What the Operator Hides From the Partitioner | The constant cut, the compiler's factor, and where the diffusion sits beside two ordinary workloads — three SVGs |
+| `moving_baseline_figure.py` | What Moves the Baseline | Two panels, one per modelling decision: the truncation estimate with the band the classical side accounts for, and the reported correlation move with an interval that contains zero. Values copied from `calculations/basket_grid_sensitivity.py` with their provenance, caption in the docstring — one SVG |
+| `partitioner_figure.py` | What the Partitioner Stops Solving | Mean gap to the exact minimum balanced gate cut against register size, logarithmic, with a separate rail for the values that are exactly zero — plotting a true zero at a small positive value would be the quiet substitution the article is about. METIS hollow from n = 20, where some of its answers leave the balanced class. Values copied from `calculations/findability.py` and `findability_large.py`, caption in the docstring — one SVG |
 
-Generated output goes to `figures/out/` and is not tracked.
+Generated output goes to `figures/out/` and is not tracked. The one exception is
+`qubit_bloch_4_entangled.svg`, which the table above links as a preview.
 
 ---
 
