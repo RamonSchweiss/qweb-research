@@ -5,7 +5,9 @@ Every number here is transcribed from the two measurement scripts and nothing
 is recomputed: diffusion_cut_arithmetic.py for figure 1, routed_diffusion_cut.py
 for figures 2 and 3. The arrays below are therefore data and not results, and
 the comment on each says where it came from. Run with no arguments; writes
-three SVGs beside this file.
+three SVGs into figures/out/, which .gitignore excludes - generated output does
+not belong in the repository. Pass a directory as the first argument to write
+somewhere else.
 
 Needs    : matplotlib.
 Runtime  : a second.
@@ -181,8 +183,10 @@ def figure_3(path):
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(
-        os.path.abspath(__file__))
+    # "out" beside this file, as qubit_bloch.py already does, so that the
+    # generated SVGs land in the directory .gitignore excludes
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "out")
     os.makedirs(out, exist_ok=True)
     for i, fn in enumerate((figure_1, figure_2, figure_3), start=1):
         p = fn(os.path.join(out, f"diffusion_cut_figure_{i}.svg"))
