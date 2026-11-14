@@ -1,0 +1,115 @@
+Does the registered positive control of the QCNN bodyness study work?
+
+Article: "What a Trainable Circuit Gives Away" (in progress)
+Design:  designs/design_qcnn_bodyness_EN.md, registered 14 November 2026
+         and its addendum 1, which this script is the evidence for.
+========================================================================
+
+GROUND-TRUTH GATE (n = 6, h = 0.7)
+  sparse vs dense, largest elementwise deviation : 3.852e-14
+  overlap                                        : 1.000000000000
+  gate: PASSED
+
+THE REGISTERED DATASETS
+------------------------------------------------------------------------
+D1  TFIM, the benchmark under test  , n = 6, 84 states, majority class 0.500
+    weight <= 1:    18 features   linear 0.950   nonlinear 1.000
+    weight <= 2:   153 features   linear 0.988   nonlinear 1.000
+    mean <X_i> alone, ONE feature            linear 0.925
+
+D2  cluster, the registered control , n = 6, 84 states, majority class 0.500
+    weight <= 1:    18 features   linear 0.950   nonlinear 1.000
+    weight <= 2:   153 features   linear 0.988   nonlinear 1.000
+    mean <X_i> alone, ONE feature            linear 0.925
+
+D1  TFIM, the benchmark under test  , n = 8, 84 states, majority class 0.500
+    weight <= 1:    24 features   linear 0.963   nonlinear 1.000
+    weight <= 2:   276 features   linear 1.000   nonlinear 1.000
+    mean <X_i> alone, ONE feature            linear 0.950
+
+D2  cluster, the registered control , n = 8, 84 states, majority class 0.500
+    weight <= 1:    24 features   linear 0.975   nonlinear 1.000
+    weight <= 2:   276 features   linear 1.000   nonlinear 1.000
+    mean <X_i> alone, ONE feature            linear 0.950
+
+THE CONTROL PROPOSED IN ADDENDUM 1, AND WHY IT ALSO FAILS
+------------------------------------------------------------------------
+R1  cat-state sign (proposed), n = 6, 120 states, majority class 0.508
+    witness: de-rotated <X^(x6)> = +1.000 for +, -1.000 for -
+    weight <= 1:    18 features   linear 0.508   nonlinear 0.508
+    weight <= 2:   153 features   linear 0.508   nonlinear 0.492
+
+R1  cat-state sign (proposed), n = 8, 120 states, majority class 0.508
+    witness: de-rotated <X^(x8)> = +1.000 for +, -1.000 for -
+    weight <= 1:    24 features   linear 0.508   nonlinear 0.508
+    weight <= 2:   276 features   linear 0.508   nonlinear 0.400
+
+R1 v1 (addendum 1), n = 6, 2000 states
+    <X^(x6)> WITHOUT de-rotation, which is all an arm can see:
+      class +: mean +0.0449  sd 0.7127  range -1.000 .. +1.000
+      class -: mean -0.0066  sd 0.7211  range -1.000 .. +1.000
+      class +: relative phase over 8 bins [119 106 127 126 103 107 130 155]
+      class -: relative phase over 8 bins [151 108 126 133 141 125 125 118]
+    Both flat: identical as distributions. Impossible, not hard.
+
+THE CONTROL OF ADDENDUM 2
+------------------------------------------------------------------------
+R1 v2, n = 6, alpha ~ U(-0.0, 0.0), majority class 0.508
+    witness <X^(x6)>: +1.000 (sd 0.000) for +,  -1.000 (sd 0.000) for -
+    weight <= 2: largest feature sd 0.0000   linear 0.508   nonlinear 0.508
+R1 v2, n = 6, alpha ~ U(-0.2, 0.2), majority class 0.533
+    witness <X^(x6)>: +0.957 (sd 0.014) for +,  -0.960 (sd 0.012) for -
+    weight <= 2: largest feature sd 0.1269   linear 0.542   nonlinear 0.517
+R1 v2, n = 6, alpha ~ U(-0.4, 0.4), majority class 0.533
+    witness <X^(x6)>: +0.845 (sd 0.048) for +,  -0.851 (sd 0.056) for -
+    weight <= 2: largest feature sd 0.2300   linear 0.475   nonlinear 0.525
+R1 v2, n = 6, alpha ~ U(-0.8, 0.8), majority class 0.558
+    witness <X^(x6)>: +0.543 (sd 0.104) for +,  -0.531 (sd 0.127) for -
+    weight <= 2: largest feature sd 0.4049   linear 0.483   nonlinear 0.558
+
+R1 v2, n = 8, alpha ~ U(-0.0, 0.0), majority class 0.508
+    witness <X^(x8)>: +1.000 (sd 0.000) for +,  -1.000 (sd 0.000) for -
+    weight <= 2: largest feature sd 0.0000   linear 0.508   nonlinear 0.508
+R1 v2, n = 8, alpha ~ U(-0.2, 0.2), majority class 0.525
+    witness <X^(x8)>: +0.944 (sd 0.017) for +,  -0.945 (sd 0.014) for -
+    weight <= 2: largest feature sd 0.1248   linear 0.483   nonlinear 0.533
+R1 v2, n = 8, alpha ~ U(-0.4, 0.4), majority class 0.508
+    witness <X^(x8)>: +0.806 (sd 0.046) for +,  -0.822 (sd 0.056) for -
+    weight <= 2: largest feature sd 0.2256   linear 0.558   nonlinear 0.550
+R1 v2, n = 8, alpha ~ U(-0.8, 0.8), majority class 0.525
+    witness <X^(x8)>: +0.412 (sd 0.111) for +,  -0.444 (sd 0.123) for -
+    weight <= 2: largest feature sd 0.4092   linear 0.467   nonlinear 0.408
+
+========================================================================
+READING
+
+D2 is not harder than D1 for any arm in this study. At n = 8 both reach the
+same score on both datasets, and one local feature - the mean transverse
+magnetisation - is already enough on both. The two phases sit at different
+transverse field strengths, so their ground states differ locally. The string
+order parameter characterises the cluster phase; it is not what is needed to
+classify these particular states. The design conflated the two.
+
+Consequence: the positive control of the registered design cannot fire, so
+the main run does not start. See addendum 1.
+
+R1 v1 holds its arms at the majority-class share - but it holds everything
+there. Without the rotation angles the two classes are the same distribution,
+so the control is impossible rather than hard, and no arm could pass it. That
+is addendum 2, and the rule it adds: a positive control must come with a
+demonstration that something passes it.
+
+R1 v2 separates the two questions. The weight-n witness separates the classes
+by tens of standard deviations up to alpha = 0.4 and degrades at 0.8, while
+the low-weight features vary more and more with alpha and never carry the
+label: across both sizes and all four amplitudes the arms stay within a few
+points of the majority-class share, in both directions.
+
+Those few points are not a finding either way. At 120 states a five-fold
+score wobbles by that much, which is exactly why the study declares the
+dataset draw as its unit of analysis and bootstraps over twenty of them
+rather than reading a single number. One earlier unseeded probe of this same
+sweep produced 0.658 at alpha = 0.2, n = 8; under the seed above the same
+cell reads 0.483. It was noise, and it is recorded here because an
+unreproduced number that happens to support the design is the easiest kind
+to keep.
