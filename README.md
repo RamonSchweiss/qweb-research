@@ -91,12 +91,14 @@ and it explains itself.
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
 
-Three scripts have their printout committed beside them as
+Four scripts have their printout committed beside them as
 `<name>_output.txt`: the two findability measurements, because the figure's
 values come from them and the exhaustive ground truth takes long enough that
-few will rerun it, and `gate_vs_state_partition.py`, because its cross-check
-needs an optional dependency most readers will not have installed. Where a
-printout and a later text disagree, the text is wrong.
+few will rerun it; `gate_vs_state_partition.py`, because its cross-check
+needs an optional dependency most readers will not have installed; and
+`qcnn_control_probe.py`, because two design addenda quote its numbers and the
+run takes about six minutes. Where a printout and a later text disagree, the
+text is wrong.
 
 ## A note on what these do and do not show
 
@@ -170,6 +172,9 @@ as a limit on a network.
 Design notes for measurements, committed before the first computation, so
 that the date on a hypothesis is a fact rather than a claim. Changes made
 after the fact are dated addenda; the original text is never edited.
+
+The table below is one worked example rather than an index: the folder holds a
+design note for every registered measurement, each with its dated addenda.
 
 | Document | What it is |
 |---|---|
