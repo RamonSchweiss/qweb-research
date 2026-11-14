@@ -43,7 +43,11 @@ Reproduction  : arm A must reproduce the per-seed shares printed on
                 means this script is not measuring the same thing as the
                 published run, and nothing below it is valid.
 
-Needs    : numpy, qiskit, partition_topology, routed_partition_orbit.
+Needs    : numpy, qiskit, partition_topology, routed_partition_orbit. Without
+           qiskit this says so and exits, the same way routed_partition_orbit
+           does. It used to raise NameError instead: that module guards its own
+           entry point but not its topology(), and nothing here checked before
+           calling it.
 Runtime  : several minutes, dominated by re-routing the real orbits.
 """
 import sys
@@ -115,6 +119,15 @@ def verdict(mean, scatter):
 
 def main():
     print(__doc__)
+
+    # routed_partition_orbit binds CouplingMap only inside its guarded import
+    # and uses it unguarded in topology(). Run as a script it checks this flag
+    # and reports; imported, nobody did, so the first call raised NameError.
+    if rpo.qiskit is None:
+        print("  qiskit is not installed - this measurement is skipped.")
+        print("  To run it:  pip install qiskit")
+        return 0
+
     N, M = rpo.N, rpo.M
     S = pt.partitions(N)
     graphs = [(f, s, pt.make_graph(f, N, M, s))
