@@ -36,7 +36,7 @@ against the articles.
 ## Running everything
 
 ```
-python run_all.py          # the quick checks, about forty seconds
+python run_all.py          # the quick checks, about thirty seconds
 python run_all.py --all    # including the slow experiments, half an hour or more
 ```
 
