@@ -48,9 +48,14 @@ Applied to : the warm-start comparison of addendum 2 section A2.3, and the
 
 Pipeline   : both datasets are recomputed here rather than parsed from the old
              printouts, so each module's RNG is re-seeded and its loop order
-             reproduced. Figures printed on 4 and 5 November are hard-coded
+             reproduced. The figures of the two source runs are hard-coded
              below and checked. A mismatch aborts: a re-evaluation of numbers
-             that have not been reproduced is worth nothing.
+             that have not been reproduced is worth nothing. On 15 November
+             that gate fired on all six A2.3 sizes and was right to: the
+             figures it held were from a version of the warm-start script
+             that never reached the repository. They have been replaced by
+             the committed version's, with the old ones kept beside them.
+             Addendum 4 to design_cut_degeneracy_EN has the account.
 
 Needs      : numpy, scipy, partition_topology, cut_degeneracy,
              cut_degeneracy_warmstart, findability_scoping.
@@ -75,9 +80,23 @@ LEVEL = 0.95               # two-sided percentile interval
 BOOT_RNG = np.random.default_rng(20261105)
 
 # --- what the two runs printed, checked before anything is re-evaluated ------
-PUBLISHED_A23 = {14: (7, 2.00, 2.81), 16: (10, 2.60, 4.07),
-                 18: (3, 2.67, 3.84), 20: (8, 2.50, 4.19),
-                 10: (3, 2.00, 2.00), 12: (3, 2.00, 2.00)}
+# Replaced 15 November 2026. See design_cut_degeneracy_EN_addendum_4.md.
+# These are the figures the COMMITTED cut_degeneracy_warmstart.py produces,
+# verified against its own printout in calculations/.
+PUBLISHED_A23 = {10: (4, 2.50, 2.50), 12: (2, 2.00, 2.00),
+                 14: (7, 2.00, 2.87), 16: (7, 2.86, 3.88),
+                 18: (3, 2.67, 3.62), 20: (7, 2.57, 4.47)}
+# Superseded, kept because deleting it would hide what happened. The gate
+# below failed on all six sizes against these, and the reason was neither
+# drift nor this pipeline: they are the output of a version of
+# cut_degeneracy_warmstart.py that was never committed. The run of
+# 4-5 November was made with code that changed before its first commit, so
+# no history can show it. The withdrawal of the registered objective is
+# unaffected - it rests on the warm route reaching the optimum less often
+# at n = 12, which holds on the committed code too.
+#   {14: (7, 2.00, 2.81), 16: (10, 2.60, 4.07),
+#    18: (3, 2.67, 3.84), 20: (8, 2.50, 4.19),
+#    10: (3, 2.00, 2.00), 12: (3, 2.00, 2.00)}
 # Order is (units, arm a, arm b) as the dataset functions return them, which for
 # A1.2 is (realised, diameter) and NOT the printed column order of A1.2's table.
 # The first version of this line held the printed order, the reproduction check
