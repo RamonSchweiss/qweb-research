@@ -20,9 +20,10 @@ and which figure it belongs to. Nothing is hidden in a library.
 pip install numpy scipy scikit-learn pennylane
 ```
 
-Two scripts use an optional extra and say so when it is missing rather
-than failing: `routed_partition_orbit.py` needs `qiskit`, and the
-cross-check at the end of `gate_vs_state_partition.py` needs `memq_dqc`.
+Three scripts use an optional extra and say so when it is missing rather
+than failing: `routed_partition_orbit.py` and `orbit_edge_null.py` need
+`qiskit`, and the cross-check at the end of `gate_vs_state_partition.py`
+needs `memq_dqc`.
 
 ```
 pip install qiskit
@@ -35,9 +36,12 @@ against the articles.
 ## Running everything
 
 ```
-python run_all.py          # the quick checks, about five seconds
-python run_all.py --all    # including the slow experiments, about twenty-five minutes
+python run_all.py          # the quick checks, about forty seconds
+python run_all.py --all    # including the slow experiments, half an hour or more
 ```
+
+Both figures were measured on one machine and will differ on yours. The
+script prints its own total at the end, which is the number to trust.
 
 Two files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
 scripts import. `qdnn_sweep.py` needs a width argument — run it without one
@@ -91,14 +95,13 @@ and it explains itself.
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
 
-Four scripts have their printout committed beside them as
-`<name>_output.txt`: the two findability measurements, because the figure's
-values come from them and the exhaustive ground truth takes long enough that
-few will rerun it; `gate_vs_state_partition.py`, because its cross-check
-needs an optional dependency most readers will not have installed; and
-`qcnn_control_probe.py`, because two design addenda quote its numbers and the
-run takes about six minutes. Where a printout and a later text disagree, the
-text is wrong.
+A script's printout is committed beside it as `<name>_output.txt` whenever
+its figures are quoted in an article or a design note, its run is slow, or it
+needs an optional dependency most readers will not have installed. That is
+not tidiness. A figure which exists only as a literal inside the script that
+checks it cannot be checked, only agreed with, and
+`designs/design_cut_degeneracy_EN_addendum_4.md` records the day that
+mattered. Where a printout and a later text disagree, the text is wrong.
 
 ## A note on what these do and do not show
 
