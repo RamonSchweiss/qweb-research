@@ -1,8 +1,11 @@
 """
 Run the verification scripts and report whether each completed.
 
-    python run_all.py           the quick checks, about five seconds
-    python run_all.py --all     including the slow experiments, about twenty-five minutes
+    python run_all.py           the quick checks, about forty seconds
+    python run_all.py --all     including the slow experiments, half an hour or more
+
+Both figures are measured on one machine and will differ on yours; the script
+prints its own total at the end, which is the number to trust.
 
 qdnn_variants.py is a module the QDNN scripts import, not a script to run.
 qdnn_sweep.py needs a width argument; see its own docstring.
@@ -11,6 +14,10 @@ import subprocess, sys, pathlib, time
 
 HERE = pathlib.Path(__file__).parent / "calculations"
 MODULES = {"qdnn_variants.py"}          # importiert, nicht ausgefuehrt
+# Laeuft laenger als ein paar Sekunden. Die Grenze liegt bei sieben Sekunden
+# und ist am 15.11.2026 einmal gemessen worden, nicht geschaetzt: der schnelle
+# Lauf hatte 29 Skripte und 247 Sekunden gebraucht, wovon sechs Dateien 211
+# Sekunden ausmachten. Die sechs stehen jetzt hier.
 SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
            "partition_topology.py",
            "horizon_early_signal.py",
@@ -20,7 +27,13 @@ SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
            "staleness_cost.py",
            "drift_cost.py",
            "drift_robustness.py",
-           "qcnn_control_probe.py"}         # laeuft laenger als ein paar Sekunden
+           "qcnn_control_probe.py",
+           "findability.py",
+           "findability_large.py",
+           "cut_degeneracy.py",
+           "findability_scoping.py",
+           "resolution_limit.py",
+           "qdnn_replicate.py"}
 NEEDS_ARG = {"qdnn_sweep.py", "qdnn_replicate.py"}           # erklaert sich selbst, wenn ohne Argument aufgerufen
 
 run_slow = "--all" in sys.argv
@@ -33,6 +46,7 @@ if not run_slow:
     print(f"(skipping {', '.join(sorted(SLOW))}; use --all to include)")
 print()
 
+t_all = time.time()
 fail = 0
 for s in scripts:
     t0 = time.time()
@@ -44,7 +58,8 @@ for s in scripts:
     if not ok and r.stderr.strip():
         print("          " + r.stderr.strip().splitlines()[-1])
 
-print(f"\n{len(scripts)-fail} of {len(scripts)} completed.")
+print(f"\n{len(scripts)-fail} of {len(scripts)} completed "
+      f"in {time.time()-t_all:.0f}s.")
 print(f"Not run: {', '.join(sorted(MODULES))} (a module)"
       + ("" if run_slow else f", {', '.join(sorted(SLOW))} (slow, use --all)"))
 print("Run any script on its own to see its output in full.")
