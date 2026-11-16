@@ -43,9 +43,16 @@ python run_all.py --all    # including the slow experiments, half an hour or mor
 Both figures were measured on one machine and will differ on yours. The
 script prints its own total at the end, which is the number to trust.
 
-Two files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
-scripts import. `qdnn_sweep.py` needs a width argument — run it without one
-and it explains itself.
+Three files are not ordinary scripts. `qdnn_variants.py` is a module the QDNN
+scripts import, and `qcnn_bodyness_core.py` is the same thing for
+`qcnn_bodyness.py` — states, circuit, arms and verdicts, with the slow
+reference the fast path is checked against. `qdnn_sweep.py` needs a width
+argument — run it without one and it explains itself.
+
+`qcnn_bodyness.py` without arguments runs its six gates and nothing else,
+about twenty seconds. The study itself is `--run <dataset> <n>` one chunk at
+a time and takes hours; `--report` reads the committed scores and prints the
+verdicts.
 
 ## What is here
 
@@ -91,6 +98,7 @@ and it explains itself.
 | `findability.py` | What the Partitioner Stops Solving | Does a real partitioner find the minimum balanced gate cut? Kernighan–Lin reaches the exact optimum in all 21 published graphs and up to n = 24 — at twenty restarts; at one restart it misses two. METIS matches it and then leaves the balanced class from n = 20. The random balanced baseline the literature normalises against sits 119 % above the optimum at n = 10 and keeps rising |
 | `findability_large.py` | What the Partitioner Stops Solving | The same question at n = 26 and n = 28, with a vectorised ground truth that is gated on agreeing exactly with `partition_topology` wherever both run — it did not, on first use, and the partition counts were exact while the contents were wrong. Kernighan–Lin holds the exact zero to n = 28; METIS is off by exactly one vertex at every size, in a share that does not grow with n |
 | `qcnn_control_probe.py` | in progress | Does the registered positive control of the QCNN bodyness study actually work? It does not. The cluster family meant to defeat a weight-2 classifier is classified at 1.000 by it, and one local feature — the mean transverse magnetisation — is enough on both datasets. The replacement proposed in addendum 1 fails worse: random local Z rotations make the two classes identical as ensembles, so no arm can separate them, and the witness that seemed to work had been handed the rotation angles. The control that stands uses local Y rotations at amplitude 0.4, chosen on a criterion declared before the study's own measurement. Registered in [designs/](designs/) with both addenda |
+| `qcnn_bodyness.py` | in progress | What the standard QCNN benchmark can distinguish: a trained QCNN against classical classifiers that see only local Pauli expectations, on transverse-field Ising ground states and on a registered control. The first run voids itself, and not on the question it was built to answer — on the control, where the QCNN either solves the task exactly or not at all, which puts the arm's noise floor past the registered limit. The hypothesis the design named as the convenient one is refuted in the opposite direction: the weight-2 classical arm is separated from the QCNN and sits above it in every one of forty draws. Registered in [designs/](designs/) with its addenda. The run is committed ahead of the addendum that reacts to it, so the numbers can be read against what was decided afterwards |
 
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
