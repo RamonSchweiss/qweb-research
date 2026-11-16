@@ -61,6 +61,25 @@ def main():
     print(__doc__.strip().splitlines()[0])
     print()
 
+    # The hazard this directory layout exists to prevent, checked rather than
+    # described. run_all.py executes every *.py directly in calculations/,
+    # and assemble.py writes two files whose names are the names of committed
+    # ones. A copy of it one level too high turns an ordinary collection run
+    # into a silent overwrite of the module this check is about. It happened
+    # on 16 November, and only announced itself because the pieces were not
+    # beside it to be found.
+    stray = HERE / "assemble.py"
+    if stray.exists():
+        print("  assemble.py is in calculations/ as well as in qcnn_pieces/")
+        print()
+        print("  run_all.py runs everything in calculations/, and assemble.py")
+        print("  writes qcnn_bodyness_core.py and the script. A collection")
+        print("  run would overwrite two committed files without saying so.")
+        print("  Remove calculations/assemble.py; the copy in qcnn_pieces/")
+        print("  is the one that belongs in the repository.")
+        print(f"\n  STRAY COPY  [{time.time()-t0:.1f}s]")
+        return 1
+
     missing = [f for f in PIECES + ["assemble.py"]
                if not (PIECES_DIR / f).exists()]
     missing += [c for _, c in OUTPUTS if not (HERE / c).exists()]
