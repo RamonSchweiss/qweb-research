@@ -33,10 +33,19 @@ the pieces have drifted, and that one of the two is no longer the thing the
 design notes describe. Which one is for a human to decide; the check only
 reports that the question has arisen.
 
+LINE ENDINGS ARE NOT DRIFT.  git checks text files out with the line endings
+of the platform, and Python writes them the same way, so on Windows the
+assembly produces CRLF while a repository stored with LF has LF -- a
+difference of exactly one byte per line and of nothing else. Comparing raw
+bytes called that drift and reported a mismatch on a tree where nothing had
+drifted, on 16 November, the first time this ran on Windows. The comparison
+is therefore made on content with line endings normalised, and a difference
+in line endings alone is reported as what it is.
+
 Needs pyflakes, which assemble.py uses to reject undefined names. If it is
 missing this says so and reports nothing, rather than passing.
 """
-import filecmp, pathlib, shutil, subprocess, sys, tempfile, time
+import pathlib, shutil, subprocess, sys, tempfile, time
 
 HERE = pathlib.Path(__file__).parent
 PIECES_DIR = HERE / "qcnn_pieces"
@@ -95,16 +104,28 @@ def main():
                 print(f"  {built_name} was not produced at all")
                 bad = 1
                 continue
-            if filecmp.cmp(built, committed, shallow=False):
+            raw_b, raw_c = built.read_bytes(), committed.read_bytes()
+            norm = lambda s: s.replace(b"\r\n", b"\n")
+            if raw_b == raw_c:
                 print(f"  {committed_name:<24} re-assembles byte for byte "
-                      f"({committed.stat().st_size} bytes)")
+                      f"({len(raw_c)} bytes)")
+                continue
+            if norm(raw_b) == norm(raw_c):
+                which = "CRLF" if b"\r\n" in raw_c else "LF"
+                print(f"  {committed_name:<24} re-assembles identically "
+                      f"({len(norm(raw_c))} bytes, line endings normalised)")
+                print(f"    the checked-out file has {which} and the assembly "
+                      f"produced the other;")
+                print(f"    that is how git checked it out, not a change to "
+                      f"the content")
                 continue
             bad = 1
             print(f"  {committed_name:<24} DIFFERS from its sources")
-            print(f"    committed  {committed.stat().st_size} bytes")
-            print(f"    assembled  {built.stat().st_size} bytes")
-            a = committed.read_text().splitlines()
-            b = built.read_text().splitlines()
+            print(f"    committed  {len(norm(raw_c))} bytes")
+            print(f"    assembled  {len(norm(raw_b))} bytes   "
+                  f"(both counted without line endings)")
+            a = norm(raw_c).decode().splitlines()
+            b = norm(raw_b).decode().splitlines()
             for i, (x, y) in enumerate(zip(a, b), 1):
                 if x != y:
                     print(f"    first difference at line {i}:")
