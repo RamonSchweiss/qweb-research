@@ -20,13 +20,16 @@ and which figure it belongs to. Nothing is hidden in a library.
 pip install numpy scipy scikit-learn pennylane
 ```
 
-Three scripts use an optional extra and say so when it is missing rather
+Four scripts use an optional extra and say so when it is missing rather
 than failing: `routed_partition_orbit.py` and `orbit_edge_null.py` need
-`qiskit`, and the cross-check at the end of `gate_vs_state_partition.py`
-needs `memq_dqc`.
+`qiskit`, the cross-check at the end of `gate_vs_state_partition.py` needs
+`memq_dqc`, and `qcnn_assembly_check.py` needs `pyflakes`. That last one is
+the extra that matters most: pyflakes is what makes the assembly reject an
+undefined name, so without it the check reports nothing rather than a pass
+it has not earned.
 
 ```
-pip install qiskit
+pip install qiskit pyflakes
 ```
 
 Otherwise nothing else. The scripts are deliberately plain: no notebooks,
