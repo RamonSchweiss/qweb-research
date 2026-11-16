@@ -1,0 +1,50 @@
+The optimiser grid on the PRIMARY D1 (no field window), as decided 15 Nov.
+
+The rule is settled: section 3 is read narrowly, so plain gradient descent.
+Adam is kept in the grid anyway, because the addendum owes a figure for what
+the narrow reading costs in training score rather than an assurance that it
+costs little.
+
+The step size is still open and is fixed here, by the criterion of A3.4 as
+amended.
+
+  The pair is the one that reaches the higher TRAINING score at the measured
+  run length of 300 steps, because under-training the QCNN arm makes H1 --
+  the convenient hypothesis -- easier. No test score enters this choice.
+
+Both rules get the same step-size grid, so a tuned rule is not compared
+against an untuned one. Run at n = 8 over three draws first, because it is
+cheap there and the comparison between rules is what this decides; the step
+count itself is then fixed at n = 12, as A3.4 requires.
+
+n = 8, draws [0, 1, 2], 300 steps, 5 starts, step-size grid [0.01, 0.03, 0.1, 0.3]
+
+ rule    lr  draw 0  draw 1  draw 2   mean training score at 300
+   gd  0.01   0.835   0.673   0.666   0.7247
+   gd  0.03   0.842   0.870   0.824   0.8453
+   gd  0.10   0.833   0.866   0.841   0.8467
+   gd  0.30   0.916   0.875   0.855   0.8820
+ adam  0.01   0.886   0.875   0.856   0.8723
+ adam  0.03   0.884   0.877   0.858   0.8730
+ adam  0.10   0.878   0.873   0.858   0.8697
+ adam  0.30   0.895   0.868   0.856   0.8730
+
+WINNER: gd, step size 0.3, mean training score 0.8820
+
+Step count by the amended criterion -- the smallest multiple of ten
+after which the score improves by less than 0.005 for the REMAINDER of
+the measured run, averaged over the draws:
+
+  step   1: 0.5227
+  step  10: 0.7150
+  step  20: 0.8340
+  step  30: 0.8137
+  step  40: 0.8427
+  step  50: 0.8533
+  step 100: 0.8460
+  step 150: 0.8530
+  step 200: 0.8533
+  step 250: 0.8580
+  step 300: 0.8820
+
+STEP COUNT = 290   (plateau-robust: the old window rule gave 50 on a plateau the run then left)
