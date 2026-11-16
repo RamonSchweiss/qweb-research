@@ -126,7 +126,11 @@ out.insert(1, "\n".join(uniq) + "\n")
 
 text = "\n".join(out)
 target = HERE / "qcnn_bodyness_core.py"
-target.write_text(text)
+# newline="\n" on purpose: the default translates to the platform's line
+# ending, so re-assembling on Windows would rewrite every line of a file
+# the repository stores with LF. The assembly must not depend on who runs it.
+with target.open("w", newline="\n") as fh:
+    fh.write(text)
 ast.parse(text)                                       # it must at least parse
 print(f"{target.name}: {len(text.splitlines())} lines, parses, "
       f"{len(uniq)} imports carried over from the sources")
@@ -160,7 +164,9 @@ script = script.replace("""import qcnn as ref
 import data, trainer, classical, verdict""", "import qcnn_bodyness_core as core")
 for pref in ("data.prim.", "classical.", "verdict.", "trainer.", "data.", "ref."):
     script = script.replace(pref, "core.")
-pathlib.Path(HERE / "qcnn_bodyness_single.py").write_text(script)
+with pathlib.Path(HERE / "qcnn_bodyness_single.py").open(
+        "w", newline="\n") as fh:
+    fh.write(script)
 import ast as _ast
 _ast.parse(script)
 left = sorted(set(re.findall(r"\b(?:prim|data|real|ref|fast|verdict|classical|trainer)\.[a-zA-Z_]+", script)))
