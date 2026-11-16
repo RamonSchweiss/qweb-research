@@ -1,0 +1,131 @@
+=== STUECK: D1 8  start 23:10 ===
+  D1 n=8 draw  0: qcnn 0.908  b1 0.995  b2 0.995   majority 0.520   [162s]
+  D1 n=8 draw  1: qcnn 0.909  b1 1.000  b2 1.000   majority 0.520   [164s]
+  D1 n=8 draw  2: qcnn 0.850  b1 0.995  b2 1.000   majority 0.505   [169s]
+  D1 n=8 draw  3: qcnn 0.914  b1 1.000  b2 1.000   majority 0.530   [163s]
+  D1 n=8 draw  4: qcnn 0.839  b1 1.000  b2 1.000   majority 0.535   [160s]
+  D1 n=8 draw  5: qcnn 0.871  b1 1.000  b2 0.990   majority 0.535   [161s]
+  D1 n=8 draw  6: qcnn 0.920  b1 0.995  b2 0.995   majority 0.530   [157s]
+  D1 n=8 draw  7: qcnn 0.878  b1 1.000  b2 1.000   majority 0.530   [160s]
+  D1 n=8 draw  8: qcnn 0.937  b1 1.000  b2 1.000   majority 0.560   [158s]
+  D1 n=8 draw  9: qcnn 0.795  b1 1.000  b2 1.000   majority 0.500   [160s]
+  D1 n=8 draw 10: qcnn 0.894  b1 0.995  b2 1.000   majority 0.560   [167s]
+  D1 n=8 draw 11: qcnn 0.865  b1 1.000  b2 1.000   majority 0.520   [168s]
+  D1 n=8 draw 12: qcnn 0.922  b1 1.000  b2 1.000   majority 0.555   [167s]
+  D1 n=8 draw 13: qcnn 0.904  b1 1.000  b2 1.000   majority 0.525   [159s]
+  D1 n=8 draw 14: qcnn 0.774  b1 0.995  b2 0.995   majority 0.540   [158s]
+  D1 n=8 draw 15: qcnn 0.893  b1 0.995  b2 1.000   majority 0.505   [160s]
+  D1 n=8 draw 16: qcnn 0.860  b1 0.990  b2 0.990   majority 0.535   [163s]
+  D1 n=8 draw 17: qcnn 0.894  b1 1.000  b2 1.000   majority 0.510   [160s]
+  D1 n=8 draw 18: qcnn 0.905  b1 1.000  b2 1.000   majority 0.505   [160s]
+  D1 n=8 draw 19: qcnn 0.870  b1 1.000  b2 1.000   majority 0.510   [157s]
+
+  D1 n=8: draws 0..19 in 3235s
+
+[3235s]
+=== STUECK FERTIG: D1 8  ende 00:04  exit 0 ===
+=== STUECK: D2 8  start 00:04 ===
+  D2 n=8 draw  0: qcnn 0.810  b1 0.525  b2 0.525  b4 0.540   majority 0.525   [156s]
+  D2 n=8 draw  1: qcnn 0.694  b1 0.490  b2 0.510  b4 0.500   majority 0.510   [132s]
+  D2 n=8 draw  2: qcnn 1.000  b1 0.530  b2 0.545  b4 0.535   majority 0.505   [136s]
+  D2 n=8 draw  3: qcnn 0.814  b1 0.535  b2 0.565  b4 0.545   majority 0.535   [139s]
+  D2 n=8 draw  4: qcnn 0.788  b1 0.575  b2 0.515  b4 0.505   majority 0.530   [139s]
+  D2 n=8 draw  5: qcnn 1.000  b1 0.550  b2 0.555  b4 0.550   majority 0.550   [134s]
+  D2 n=8 draw  6: qcnn 0.908  b1 0.540  b2 0.545  b4 0.545   majority 0.540   [131s]
+  D2 n=8 draw  7: qcnn 0.901  b1 0.505  b2 0.510  b4 0.475   majority 0.505   [130s]
+  D2 n=8 draw  8: qcnn 0.903  b1 0.520  b2 0.545  b4 0.550   majority 0.515   [132s]
+  D2 n=8 draw  9: qcnn 1.000  b1 0.545  b2 0.580  b4 0.525   majority 0.510   [133s]
+  D2 n=8 draw 10: qcnn 0.616  b1 0.565  b2 0.520  b4 0.530   majority 0.520   [131s]
+  D2 n=8 draw 11: qcnn 0.794  b1 0.485  b2 0.520  b4 0.530   majority 0.515   [132s]
+  D2 n=8 draw 12: qcnn 0.898  b1 0.520  b2 0.510  b4 0.515   majority 0.510   [133s]
+  D2 n=8 draw 13: qcnn 0.900  b1 0.515  b2 0.520  b4 0.500   majority 0.515   [130s]
+  D2 n=8 draw 14: qcnn 0.903  b1 0.515  b2 0.500  b4 0.505   majority 0.515   [131s]
+  D2 n=8 draw 15: qcnn 1.000  b1 0.490  b2 0.490  b4 0.475   majority 0.535   [131s]
+  D2 n=8 draw 16: qcnn 0.895  b1 0.545  b2 0.545  b4 0.470   majority 0.525   [132s]
+  D2 n=8 draw 17: qcnn 1.000  b1 0.515  b2 0.545  b4 0.515   majority 0.515   [133s]
+  D2 n=8 draw 18: qcnn 0.806  b1 0.515  b2 0.515  b4 0.520   majority 0.515   [135s]
+  D2 n=8 draw 19: qcnn 0.830  b1 0.575  b2 0.575  b4 0.580   majority 0.575   [136s]
+
+  D2 n=8: draws 0..19 in 2688s
+
+[2688s]
+=== STUECK FERTIG: D2 8  ende 00:49  exit 0 ===
+=== STUECK: D1w 8  start 00:49 ===
+  D1w n=8 draw  0: qcnn 0.982  b1 1.000  b2 1.000   majority 0.525   [159s]
+  D1w n=8 draw  1: qcnn 0.983  b1 1.000  b2 1.000   majority 0.545   [155s]
+  D1w n=8 draw  2: qcnn 0.985  b1 1.000  b2 1.000   majority 0.515   [156s]
+  D1w n=8 draw  3: qcnn 0.992  b1 1.000  b2 1.000   majority 0.585   [156s]
+  D1w n=8 draw  4: qcnn 1.000  b1 1.000  b2 1.000   majority 0.530   [157s]
+  D1w n=8 draw  5: qcnn 0.993  b1 1.000  b2 1.000   majority 0.520   [157s]
+  D1w n=8 draw  6: qcnn 0.990  b1 1.000  b2 1.000   majority 0.500   [156s]
+  D1w n=8 draw  7: qcnn 0.969  b1 1.000  b2 1.000   majority 0.505   [157s]
+  D1w n=8 draw  8: qcnn 0.977  b1 1.000  b2 1.000   majority 0.515   [158s]
+  D1w n=8 draw  9: qcnn 0.954  b1 1.000  b2 1.000   majority 0.530   [157s]
+  D1w n=8 draw 10: qcnn 0.970  b1 1.000  b2 1.000   majority 0.515   [159s]
+  D1w n=8 draw 11: qcnn 0.971  b1 1.000  b2 1.000   majority 0.505   [165s]
+  D1w n=8 draw 12: qcnn 1.000  b1 1.000  b2 1.000   majority 0.515   [165s]
+  D1w n=8 draw 13: qcnn 0.999  b1 1.000  b2 1.000   majority 0.510   [163s]
+  D1w n=8 draw 14: qcnn 0.867  b1 1.000  b2 1.000   majority 0.540   [168s]
+  D1w n=8 draw 15: qcnn 0.965  b1 1.000  b2 1.000   majority 0.505   [169s]
+  D1w n=8 draw 16: qcnn 0.909  b1 1.000  b2 1.000   majority 0.530   [165s]
+  D1w n=8 draw 17: qcnn 0.971  b1 1.000  b2 1.000   majority 0.505   [161s]
+  D1w n=8 draw 18: qcnn 1.000  b1 1.000  b2 1.000   majority 0.510   [171s]
+  D1w n=8 draw 19: qcnn 1.000  b1 1.000  b2 1.000   majority 0.520   [173s]
+
+  D1w n=8: draws 0..19 in 3226s
+
+[3226s]
+=== STUECK FERTIG: D1w 8  ende 01:43  exit 0 ===
+=== STUECK: D1 10  start 01:43 ===
+  D1 n=10 draw  0: qcnn 0.905  b1 1.000  b2 1.000   majority 0.520   [763s]
+  D1 n=10 draw  1: qcnn 0.900  b1 1.000  b2 1.000   majority 0.500   [606s]
+  D1 n=10 draw  2: qcnn 0.917  b1 0.990  b2 0.990   majority 0.505   [591s]
+  D1 n=10 draw  3: qcnn 0.909  b1 1.000  b2 1.000   majority 0.525   [596s]
+  D1 n=10 draw  4: qcnn 0.908  b1 1.000  b2 1.000   majority 0.565   [588s]
+  D1 n=10 draw  5: qcnn 0.892  b1 1.000  b2 1.000   majority 0.515   [581s]
+  D1 n=10 draw  6: qcnn 0.891  b1 0.995  b2 0.995   majority 0.505   [601s]
+  D1 n=10 draw  7: qcnn 0.924  b1 1.000  b2 1.000   majority 0.505   [602s]
+  D1 n=10 draw  8: qcnn 0.920  b1 1.000  b2 1.000   majority 0.565   [592s]
+  D1 n=10 draw  9: qcnn 0.899  b1 1.000  b2 1.000   majority 0.570   [623s]
+  D1 n=10 draw 10: qcnn 0.908  b1 0.995  b2 0.995   majority 0.520   [641s]
+  D1 n=10 draw 11: qcnn 0.870  b1 1.000  b2 1.000   majority 0.555   [592s]
+  D1 n=10 draw 12: qcnn 0.914  b1 1.000  b2 1.000   majority 0.560   [625s]
+  D1 n=10 draw 13: qcnn 0.858  b1 1.000  b2 1.000   majority 0.550   [611s]
+  D1 n=10 draw 14: qcnn 0.920  b1 1.000  b2 1.000   majority 0.560   [621s]
+  D1 n=10 draw 15: qcnn 0.912  b1 1.000  b2 1.000   majority 0.500   [598s]
+  D1 n=10 draw 16: qcnn 0.927  b1 0.990  b2 0.990   majority 0.520   [594s]
+  D1 n=10 draw 17: qcnn 0.902  b1 1.000  b2 1.000   majority 0.505   [598s]
+  D1 n=10 draw 18: qcnn 0.900  b1 1.000  b2 1.000   majority 0.505   [590s]
+  D1 n=10 draw 19: qcnn 0.953  b1 1.000  b2 1.000   majority 0.520   [583s]
+
+  D1 n=10: draws 0..19 in 12193s
+
+[12193s]
+=== STUECK FERTIG: D1 10  ende 05:06  exit 0 ===
+=== STUECK: D2 10  start 05:06 ===
+  D2 n=10 draw  0: qcnn 0.552  b1 0.510  b2 0.515  b4 0.465   majority 0.560   [564s]
+  D2 n=10 draw  1: qcnn 0.709  b1 0.545  b2 0.530  b4 0.515   majority 0.515   [566s]
+  D2 n=10 draw  2: qcnn 0.721  b1 0.535  b2 0.460  b4 0.485   majority 0.535   [578s]
+  D2 n=10 draw  3: qcnn 1.000  b1 0.565  b2 0.540  b4 0.510   majority 0.505   [573s]
+  D2 n=10 draw  4: qcnn 1.000  b1 0.495  b2 0.510  b4 0.505   majority 0.565   [571s]
+  D2 n=10 draw  5: qcnn 0.694  b1 0.500  b2 0.520  b4 0.480   majority 0.510   [579s]
+  D2 n=10 draw  6: qcnn 1.000  b1 0.455  b2 0.535  b4 0.515   majority 0.600   [581s]
+  D2 n=10 draw  7: qcnn 1.000  b1 0.530  b2 0.560  b4 0.515   majority 0.520   [576s]
+  D2 n=10 draw  8: qcnn 0.905  b1 0.545  b2 0.525  b4 0.525   majority 0.525   [582s]
+  D2 n=10 draw  9: qcnn 1.000  b1 0.545  b2 0.525  b4 0.525   majority 0.525   [567s]
+  D2 n=10 draw 10: qcnn 0.890  b1 0.500  b2 0.465  b4 0.500   majority 0.550   [577s]
+  D2 n=10 draw 11: qcnn 0.902  b1 0.510  b2 0.525  b4 0.515   majority 0.510   [580s]
+  D2 n=10 draw 12: qcnn 0.893  b1 0.530  b2 0.465  b4 0.525   majority 0.535   [586s]
+  D2 n=10 draw 13: qcnn 1.000  b1 0.505  b2 0.510  b4 0.505   majority 0.505   [599s]
+  D2 n=10 draw 14: qcnn 0.893  b1 0.495  b2 0.505  b4 0.515   majority 0.535   [618s]
+  D2 n=10 draw 15: qcnn 0.902  b1 0.510  b2 0.500  b4 0.500   majority 0.510   [575s]
+  D2 n=10 draw 16: qcnn 0.904  b1 0.540  b2 0.510  b4 0.485   majority 0.520   [562s]
+  D2 n=10 draw 17: qcnn 0.901  b1 0.595  b2 0.510  b4 0.455   majority 0.505   [574s]
+  D2 n=10 draw 18: qcnn 0.902  b1 0.510  b2 0.520  b4 0.510   majority 0.510   [580s]
+  D2 n=10 draw 19: qcnn 0.664  b1 0.440  b2 0.500  b4 0.455   majority 0.560   [589s]
+
+  D2 n=10: draws 0..19 in 11575s
+
+[11575s]
+=== STUECK FERTIG: D2 10  ende 08:19  exit 0 ===
+NACHTLAUF FERTIG

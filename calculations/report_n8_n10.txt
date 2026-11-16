@@ -1,0 +1,73 @@
+What the standard QCNN benchmark can distinguish.
+
+Stored: 100 draws. Granularity 0.005, floor limit 0.05, minimum 5 usable draws, 10000 bootstrap resamples of the draw.
+
+=== D1 ==============================================================
+
+  n = 8, 20 draws, majority share 0.527
+    qcnn   0.8801   floor 0.0291   within-draw sd over starts 0.0291
+    b1     0.9980   floor 0.0013
+    b2     0.9982   floor 0.0014
+    b1 minus qcnn: d +0.1179  [+0.101, +0.136]  floor 0.0291  ->  SEPARATED
+        difference +0.118 is at least one granularity step and the interval excludes zero
+    b2 minus qcnn: d +0.1181  [+0.102, +0.137]  floor 0.0291  ->  SEPARATED
+        difference +0.118 is at least one granularity step and the interval excludes zero
+
+  n = 10, 20 draws, majority share 0.528
+    qcnn   0.9064   floor 0.0221   within-draw sd over starts 0.0221
+    b1     0.9985   floor 0.0014
+    b2     0.9985   floor 0.0014
+    b1 minus qcnn: d +0.0920  [+0.083, +0.101]  floor 0.0221  ->  SEPARATED
+        difference +0.092 is at least one granularity step and the interval excludes zero
+    b2 minus qcnn: d +0.0920  [+0.083, +0.101]  floor 0.0221  ->  SEPARATED
+        difference +0.092 is at least one granularity step and the interval excludes zero
+
+=== D2 ==============================================================
+
+  n = 8, 20 draws, majority share 0.523
+    qcnn   0.8730   floor 0.1814   within-draw sd over starts 0.1814
+    b1     0.5278   floor 0.0110
+    b2     0.5317   floor 0.0105
+    b4     0.5205   floor 0.0120
+    b1 minus qcnn: d -0.3453  [-0.391, -0.297]  floor 0.1814  ->  NOT EVALUABLE
+        noise floor 0.181 exceeds 0.05; section 6 overrides the point estimates
+    b2 minus qcnn: d -0.3412  [-0.384, -0.297]  floor 0.1814  ->  NOT EVALUABLE
+        noise floor 0.181 exceeds 0.05; section 6 overrides the point estimates
+    b4 minus qcnn: d -0.3525  [-0.398, -0.304]  floor 0.1814  ->  NOT EVALUABLE
+        noise floor 0.181 exceeds 0.05; section 6 overrides the point estimates
+
+  n = 10, 20 draws, majority share 0.530
+    qcnn   0.8716   floor 0.1694   within-draw sd over starts 0.1694
+    b1     0.5180   floor 0.0151
+    b2     0.5115   floor 0.0107
+    b4     0.5003   floor 0.0093
+    b1 minus qcnn: d -0.3536  [-0.408, -0.295]  floor 0.1694  ->  NOT EVALUABLE
+        noise floor 0.169 exceeds 0.05; section 6 overrides the point estimates
+    b2 minus qcnn: d -0.3601  [-0.411, -0.303]  floor 0.1694  ->  NOT EVALUABLE
+        noise floor 0.169 exceeds 0.05; section 6 overrides the point estimates
+    b4 minus qcnn: d -0.3713  [-0.420, -0.318]  floor 0.1694  ->  NOT EVALUABLE
+        noise floor 0.169 exceeds 0.05; section 6 overrides the point estimates
+
+=== Registered hypotheses ===============================================
+  H1  b2 against the QCNN on D1, expecting bounded    n=8: separated   n=10: separated   —
+  H2  b2 against the QCNN on D2, expecting separated  n=8: not evaluable   n=10: not evaluable   —
+  H5  b1 against the QCNN on D1, expecting separated  n=8: separated   n=10: separated   —
+
+  H4  b4 closes part of the gap on D2, expecting      REFUTED BY CONSTRUCTION
+        Local RY commutes with the partial trace over the complement, so
+        every proper subset has the same reduced state in both classes and
+        every Pauli of weight below n carries zero label information.
+        Measured: same angles, sign flipped, largest difference over all
+        weight<=2 features 6.7e-16; the weight-n witness separates by 1.6455.
+        Weight 4 is below n at every size, so the arm cannot close a gap.
+        What it does instead is condition 4 below.
+
+  H3  the QCNN's own spread over starts against the b2 gap, on D1
+        n=8: spread 0.0291 against gap 0.1181  ->  gap exceeds the spread
+        n=10: spread 0.0221 against gap 0.0921  ->  gap exceeds the spread
+
+=== Invalidating conditions, section 8 and addendum 3 ===================
+  VOID  1. The positive control fails. H2 requires the bodyness-2 arm to be separated from the QCNN on D2 and to fall below it; got not evaluable with direction -0.341. No statement about D1 may be made from this run.
+  VOID  4. A low-bodyness arm beats chance on the control: b2 at n=8 scores 0.5317 against a majority share of 0.5233. The construction guarantees weight<n carries no label information, so this is a leak in the instrument.
+
+[0s]
