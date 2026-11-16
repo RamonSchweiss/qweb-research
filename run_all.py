@@ -7,18 +7,23 @@ Run the verification scripts and report whether each completed.
 Both figures are measured on one machine and will differ on yours; the script
 prints its own total at the end, which is the number to trust.
 
-qdnn_variants.py is a module the QDNN scripts import, not a script to run.
+qdnn_variants.py is a module the QDNN scripts import, not a script to run,
+and qcnn_bodyness_core.py is the same for qcnn_bodyness.py.
 qdnn_sweep.py needs a width argument; see its own docstring.
 """
 import subprocess, sys, pathlib, time
 
 HERE = pathlib.Path(__file__).parent / "calculations"
-MODULES = {"qdnn_variants.py"}          # importiert, nicht ausgefuehrt
+MODULES = {"qdnn_variants.py",          # importiert, nicht ausgefuehrt
+           "qcnn_bodyness_core.py"}
 # Nicht im schnellen Lauf. Zwei Gruende, beide vorher festgelegt.
 #
 # Zu langsam: ueber sieben Sekunden, am 15.11.2026 einmal gemessen und nicht
 # geschaetzt. Der schnelle Lauf hatte 29 Skripte und 247 Sekunden gebraucht,
 # wovon sechs Dateien 211 Sekunden ausmachten.
+#
+# qcnn_bodyness.py ist am 16.11.2026 nachgemessen: ohne Argument fuehrt
+# es nur seine sechs Gates aus, 18 und 16 Sekunden in zwei Messungen.
 #
 # Pruefen nichts: qdnn_sweep.py und qdnn_replicate.py drucken ohne Argument
 # nur ihre Hilfe. Ihre sechs bis acht Sekunden sind reine Importzeit fuer
@@ -34,6 +39,7 @@ SLOW    = {"qdnn_ablation.py", "partition_robustness.py",
            "drift_cost.py",
            "drift_robustness.py",
            "qcnn_control_probe.py",
+           "qcnn_bodyness.py",
            "findability.py",
            "findability_large.py",
            "cut_degeneracy.py",
