@@ -54,6 +54,14 @@ about twenty seconds. The study itself is `--run <dataset> <n>` one chunk at
 a time and takes hours; `--report` reads the committed scores and prints the
 verdicts.
 
+`calculations/qcnn_pieces/` holds the seven checked pieces that
+`qcnn_bodyness_core.py` is assembled from, the script in its pre-assembly
+form, and `assemble.py` itself. It is a subdirectory for a reason:
+`run_all.py` globs `calculations/` without recursing, and `assemble.py`
+writes files whose names are the names of committed ones, so the collection
+run must not reach it. `qcnn_assembly_check.py` is the one that may be run,
+and it assembles into a temporary directory instead.
+
 ## What is here
 
 | Script | Article | What it verifies |
@@ -99,6 +107,7 @@ verdicts.
 | `findability_large.py` | What the Partitioner Stops Solving | The same question at n = 26 and n = 28, with a vectorised ground truth that is gated on agreeing exactly with `partition_topology` wherever both run — it did not, on first use, and the partition counts were exact while the contents were wrong. Kernighan–Lin holds the exact zero to n = 28; METIS is off by exactly one vertex at every size, in a share that does not grow with n |
 | `qcnn_control_probe.py` | in progress | Does the registered positive control of the QCNN bodyness study actually work? It does not. The cluster family meant to defeat a weight-2 classifier is classified at 1.000 by it, and one local feature — the mean transverse magnetisation — is enough on both datasets. The replacement proposed in addendum 1 fails worse: random local Z rotations make the two classes identical as ensembles, so no arm can separate them, and the witness that seemed to work had been handed the rotation angles. The control that stands uses local Y rotations at amplitude 0.4, chosen on a criterion declared before the study's own measurement. Registered in [designs/](designs/) with both addenda |
 | `qcnn_bodyness.py` | in progress | What the standard QCNN benchmark can distinguish: a trained QCNN against classical classifiers that see only local Pauli expectations, on transverse-field Ising ground states and on a registered control. The first run voids itself, and not on the question it was built to answer — on the control, where the QCNN either solves the task exactly or not at all, which puts the arm's noise floor past the registered limit. The hypothesis the design named as the convenient one is refuted in the opposite direction: the weight-2 classical arm is separated from the QCNN and sits above it in every one of forty draws. Registered in [designs/](designs/) with its addenda. The run is committed ahead of the addendum that reacts to it, so the numbers can be read against what was decided afterwards |
+| `qcnn_assembly_check.py` | in progress | Does `qcnn_bodyness_core.py` still come out of its seven source pieces? The module is assembled, not written, and on 15 November the assembly dropped two imports — the file parsed, five gates passed, and all five overnight chunks died at draw 0 hours later. This re-runs the assembly in a temporary directory and compares both of its outputs byte for byte against the committed files. A third of a second, and it never writes into `calculations/` |
 
 A dash in the Article column marks a script that checks a published external
 measurement rather than a QWeb article.
