@@ -65,6 +65,14 @@ writes files whose names are the names of committed ones, so the collection
 run must not reach it. `qcnn_assembly_check.py` is the one that may be run,
 and it assembles into a temporary directory instead.
 
+The same subdirectory holds `perm_null_cond4.py` and its two stores, for that
+reason read the other way round: it measures a permutation null by refitting
+the classical arms on permuted labels, which took seven hours, and a
+collection run has no business starting it. `perm_null_cond4.py report` prints
+the stored result in under a second, and re-computes its observed column from
+`qcnn_bodyness_scores_n8_n10.json` rather than quoting it. The printout is
+`designs/perm_null_cond4_output.txt`.
+
 ## What is here
 
 | Script | Article | What it verifies |
