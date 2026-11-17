@@ -1,0 +1,94 @@
+The optimiser grid of A3.4, run on the CONTROL D2 instead of on D1.
+
+WHY THIS IS NOT A DESIGN CHANGE.  opt_probe.py, 15 November, fixed the step
+rule and the step size for the whole study, and its own first line says what
+it ran on: "the optimiser grid on the PRIMARY D1". Two different things were
+settled there, and only one of them was settled by measurement.
+
+  THE RULE was settled by reading section 3 narrowly -- plain gradient
+  descent -- and that is a textual commitment about what the design says. No
+  measurement on any dataset can overturn it, and none is asked to here.
+  Adam was carried in the grid for one declared reason: "the addendum owes a
+  figure for what the narrow reading costs in training score rather than an
+  assurance that it costs little." That figure exists for D1 only. The
+  addendum owes it for the control too, and this is it.
+
+  THE STEP SIZE, 0.30, was selected by the criterion of A3.4 as amended --
+  the pair reaching the higher TRAINING score at the measured run length --
+  over the grid 0.01, 0.03, 0.1, 0.3, at n = 8, over three draws, on D1. It
+  was then used on D2 without ever being selected there. Whether 0.30 is also
+  what the registered criterion picks for gradient descent on the control has
+  never been measured. That is a gap in the execution of the design, not a
+  change to it, and it is the gap this closes.
+
+SELECTION AND DIAGNOSIS ARE KEPT APART.  The criterion is blind to the test
+score and stays blind here: the winner is chosen on the training score and on
+nothing else. The test-score distribution is printed underneath, for every
+cell, because the question that sent me here -- whether the control's
+bimodality is R1 version 2 itself or the optimiser -- is a question about test
+scores. It is reported. It does not select.
+
+So the two readings this can produce, both declared before the run:
+
+  The bimodality survives every cell. Then it is a property of R1 version 2
+  under this circuit and this cost, the step rule is exonerated, and the
+  control is simply not solvable reliably -- decision E1 or E3.
+
+  Some cell removes it. Then the step size selected on D1 was the wrong one
+  for the control, by the design's own criterion, and that is a fourth
+  instrument defect of the same family as the other three. It would be
+  repaired by re-selecting the step size per dataset under A3.4, which is the
+  criterion already registered. A switch to ADAM would still not follow: the
+  rule is the narrow reading of section 3, and a training score cannot amend
+  a reading. Adam's column stays a figure for what the narrow reading costs.
+
+Run length is 300 steps, not the study's 500, because 300 is what A3.4's
+rule-and-step-size selection was executed at on D1 and this has to be the
+same procedure to be comparable. STEPS = 500 was fixed separately, measured
+at n = 12, and is untouched by this.
+
+  usage:  opt_probe_d2.py <n> <draws, comma separated> [rules] [grid]
+
+D2, n = 8, draws [0, 1, 2], 300 steps, 5 starts, step-size grid [0.01, 0.03, 0.1, 0.3]
+
+SELECTION  (training score at 300 steps; no test score enters this)
+ rule    lr  draw 0  draw 1  draw 2   mean training   [cost]
+   gd  0.01   0.596   0.736   0.912   0.7480      [305s]
+   gd  0.03   0.608   0.736   1.000   0.7813      [298s]
+   gd  0.10   0.616   0.736   1.000   0.7840      [286s]
+   gd  0.30   0.712   0.736   1.000   0.8160      [282s]
+ adam  0.01   0.904   0.736   1.000   0.8800      [286s]
+ adam  0.03   0.904   0.824   1.000   0.9093      [310s]
+ adam  0.10   1.000   0.824   1.000   0.9413      [296s]
+ adam  0.30   1.000   0.912   0.910   0.9407      [283s]
+
+A3.4 on D2, narrow reading of section 3 (gd): step size 0.3, training score 0.8160
+A3.4 on D1, 15 November, same criterion:        step size 0.30
+  -> the same step size; the study used what the criterion picks on the control too
+
+What the narrow reading costs on the control, the figure the addendum owes:
+  gd at its best   0.8160      adam at its best (0.1)  0.9413      difference +0.1253
+  Reported, not acted on. The rule is the reading of section 3.
+
+==========================================================================
+DIAGNOSIS  (test scores -- reported, selects nothing)
+==========================================================================
+The control's bimodality in the main run: 149 of 200 starts at >=0.99,
+51 below 0.60, none in between. Does any cell here remove it?
+
+ rule    lr     mean     min     max   >=0.99  <0.60  between   dip test
+   gd  0.01   0.7357  0.4200  1.0000        7      7        1   p = 0.0000  bimodal
+   gd  0.03   0.7680  0.4750  1.0000        8      7        0   p = 0.0000  bimodal
+   gd  0.10   0.7713  0.4900  1.0000        8      7        0   p = 0.0000  bimodal
+   gd  0.30   0.8030  0.4900  1.0000        9      6        0   p = 0.0000  bimodal
+ adam  0.01   0.8663  0.4900  1.0000       11      4        0   p = 0.0339  bimodal
+ adam  0.03   0.9003  0.4900  1.0000       12      3        0   p = 0.2998  not bimodal
+ adam  0.10   0.9320  0.4900  1.0000       13      2        0   p = 0.8516  not bimodal
+ adam  0.30   0.9343  0.4900  1.0000       13      2        0   p = 0.9334  not bimodal
+
+3 draws x 5 starts = 15 starts per cell, so the dip test here is weaker than the main run's 100.
+A cell that keeps the two-point shape is evidence the shape is the
+control's. A cell that breaks it at 15 starts needs the full 20 draws
+before anything is concluded from it.
+
+[exited with code 0]

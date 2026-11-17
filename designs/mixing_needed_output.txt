@@ -1,0 +1,73 @@
+Could ANY optimiser rescue the control's evaluability?
+
+The E2 probe showed that Adam does not change the SHAPE of the control's
+start distribution -- every cell still has starts either at the solution or
+far below it, with the 'between' column zero in seven of eight cells -- but
+it does change the MIXING FRACTION, the share of starts that reach the
+solution. Adam at its best put 13 of 15 starts in the upper mode where
+gradient descent put 9 of 15.
+
+So the question the probe cannot answer by itself: how high would the mixing
+fraction have to go before the registered noise floor falls under the 0.05
+limit of section 6? If that number is unreachable, then no step rule and no
+step size rescues the control, the choice between E1 and E3 does not wait on
+any further optimiser work, and a hypothetical amendment of section 3 would
+buy nothing even if one were willing to make it.
+
+This is a MODEL, not a measurement, and the distinction matters. The two mode
+locations are taken from the main run's stored scores at D2, n = 8. The
+mixing fraction is then swept, and for each value the REGISTERED machinery --
+verdict.arm_spread, unchanged -- is applied to simulated draws of the same
+shape as the real ones: 20 draws, 5 starts each. What is simulated is only
+which mode each start falls into.
+
+==========================================================================
+THE TWO MODES, from the stored run
+==========================================================================
+  100 starts in 20 draws
+  upper mode   74 starts   mean 1.0000   sd 0.0000
+  lower mode   26 starts   mean 0.5115   sd 0.0275
+  between       0 starts
+  observed mixing fraction p = 0.7400
+  gap between the modes       0.4885
+
+==========================================================================
+THE SWEEP  (registered verdict.arm_spread, 20 draws x 5 starts)
+==========================================================================
+  Each start lands in the upper mode with probability p, and its score
+  is resampled from that mode's observed scores. 400 repetitions per p,
+  the median floor reported. Section 6's limit is 0.05.
+
+        p     floor   within-draw sd   draw half-width   verdict
+  ----------------------------------------------------------------------
+    0.745    0.1893           0.1893            0.0398   OVER 0.05  <- observed
+    0.800    0.1598           0.1598            0.0367   OVER 0.05
+    0.867    0.1204           0.1204            0.0306   OVER 0.05  <- Adam's best in the probe
+    0.900    0.0939           0.0939            0.0270   OVER 0.05
+    0.950    0.0461           0.0461            0.0188   under 0.05
+    0.970    0.0321           0.0321            0.0150   under 0.05
+    0.980    0.0216           0.0216            0.0123   under 0.05
+    0.990    0.0107           0.0107            0.0072   under 0.05
+    0.995    0.0000           0.0000            0.0000   under 0.05
+    0.999    0.0000           0.0000            0.0000   under 0.05
+    1.000    0.0000           0.0000            0.0000   under 0.05
+
+  The floor first falls under 0.05 at p = 0.95.
+
+  First, the model checks out: at the observed p it reproduces the
+  measured floor of 0.1814 to within three thousandths, so the
+  two-point picture is not an idealisation that flatters the answer.
+
+  Read the crossing against what the probe measured. Gradient descent
+  at the registered step size put 9 of 15 starts in the upper mode;
+  Adam at its best put 13 of 15, which is p = 0.867 and a floor of
+  about 0.12 -- still more than twice the limit. The floor is driven by
+  the within-draw spread, which falls as sqrt(p(1-p)) and is nearly
+  flat across the whole range the optimisers actually reach.
+
+  So a better optimiser does not rescue the control. It would have to
+  carry the mixing fraction from 0.87 past 0.95, and the probe's own
+  spread of the per-draw scores -- 1.000, 0.912, 0.910 at Adam's best
+  step size -- shows draws where it does not even reach the solution
+  in every start. The choice between E1 and E3 therefore does not wait
+  on any further optimiser work.

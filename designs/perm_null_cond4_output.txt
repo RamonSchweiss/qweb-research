@@ -1,0 +1,66 @@
+=== permutation null for invalidating condition 4, D2 at n=8 ===
+  budget as paid: 20 draws x 3 permutations x 3 arms, one size
+  statistic: arm_best(w) - majority_share(permuted test labels)
+  threshold: 95th percentile of the mean of 20 values resampled from the pool, 20000 resamples
+
+  b1
+    pool          60 values   mean -0.008667   sd 0.0264   range -0.1100 to +0.0250
+    per-draw means sd 0.0184   pooled null predicts 0.0153   ratio 1.21
+    null of the mean of 20   mean -0.008707   sd 0.005878   95th pct +0.000250
+    OBSERVED      +0.004500   ABOVE the threshold   (pool fraction at or above: 0.250)
+
+  b2
+    pool          60 values   mean -0.006583   sd 0.0341   range -0.1100 to +0.0650
+    per-draw means sd 0.0234   pooled null predicts 0.0197   ratio 1.19
+    null of the mean of 20   mean -0.006588   sd 0.007515   95th pct +0.005500
+    OBSERVED      +0.008500   ABOVE the threshold   (pool fraction at or above: 0.250)
+
+  b4
+    pool          60 values   mean -0.017167   sd 0.0411   range -0.1350 to +0.0800
+    per-draw means sd 0.0273   pooled null predicts 0.0238   ratio 1.15
+    null of the mean of 20   mean -0.017148   sd 0.009128   95th pct -0.002500
+    OBSERVED      -0.002750   below the threshold   (pool fraction at or above: 0.467)
+
+  --- check against the first attempt's 10-permutation pool ---
+  Nested, verified: the first three columns of each draw are
+  the registered values above. The registered pool decides;
+  this one says how well sixty values resolve a 95th
+  percentile. Where the two disagree, the disagreement is the
+  reading, and the registered threshold still governs.
+    b1   observed +0.004500   condition 4 did not fire   -> VERDICTS DIFFER
+       3 perms,  60 values:  null mean -0.008707   95th pct +0.000250   p 0.0038   above
+      10 perms, 200 values:  null mean -0.003127   95th pct +0.007000   p 0.1151   below
+    b2   observed +0.008500   condition 4 FIRED   -> same verdict
+       3 perms,  60 values:  null mean -0.006588   95th pct +0.005500   p 0.0189   above
+      10 perms, 200 values:  null mean -0.004582   95th pct +0.007500   p 0.0374   above
+    b4   observed -0.002750   condition 4 did not fire   -> same verdict
+       3 perms,  60 values:  null mean -0.017148   95th pct -0.002500   p 0.0529   below
+      10 perms, 200 values:  null mean -0.012339   95th pct +0.001750   p 0.1373   below
+
+  --- the condition's own false-positive rate ------------------
+  Not a registered test. The reading below was chosen after the
+  threshold above was in view, from the same pool, which is not
+  extended for it. Condition 4 fires when the mean excess over
+  twenty draws exceeds one granularity step, 0.005;
+  that is the event resampled, jointly across the three arms
+  because one permutation was refitted by all three.
+    b1   fires on 0.2% of resampled runs
+    b2   fires on 5.6% of resampled runs
+    b4   fires on 0.5% of resampled runs
+    any of the three arms at n=8:  5.8%
+    on the 10-permutation pool the same reading gives 17.5%,
+    so sixty values understate it: a rate this coarse pool
+    cannot resolve is not a rate to quote on its own.
+    the registered run applies it to 3 arms at each of
+    two sizes, so the rate over all six cells is higher than this
+    and is not measured: the budget bought one size.
+
+  Condition 4 as registered fires on any arm whose mean score
+  exceeds the majority share by one granularity step. What it
+  has no allowance for is the upward bias of a maximum over
+  three selections on features that carry no label at all.
+  The threshold above is that allowance, measured -- and the
+  measurement refutes the premise: the pooled null sits BELOW
+  zero in every arm, so the procedure does not gain from the
+  maximum on label-free features, it loses. There was no
+  upward bias to allow for.
