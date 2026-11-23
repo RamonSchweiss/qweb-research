@@ -1,0 +1,57 @@
+Which gates actually move amplitudes between hypercube nodes.
+
+Evidence for addendum 1 to designs/design_hypercube_global_qubits_EN.md,
+written before the first run of the study and before the measurement script
+exists. Nothing here is a result of the study; it checks the cost model the
+study is built on, which section 3 of the note asserted and did not verify.
+
+Model. The amplitude vector of n qubits is distributed over 2^g nodes, and the
+node address is the top g bits of the global index. A gate moves amplitudes
+between nodes exactly when it has a non-zero matrix element between two indices
+whose global bits differ.
+
+Method. For each gate the full 2^n x 2^n operator is built and its non-zero
+off-diagonal structure is inspected directly. No simulation, no sampling, no
+approximation: the crossing count is read off the operator.
+
+Ramon Schweiss, QWeb (c) Research, 23 November 2026.
+
+n = 6 qubits, g = 2 global, 64 amplitudes, 4 nodes of 16
+  for reference: 2^(n-1) = 32, 2^(n-2) = 16
+
+gate and placement                               indices   one way  node pairs
+------------------------------------------------------------------------------
+ZZ(gamma)      both qubits global                      0         0           0
+ZZ(gamma)      one qubit global                        0         0           0
+ZZ(gamma)      no qubit global                         0         0           0
+RX(beta)       on a global qubit                      64        32           2
+RX(beta)       on a local qubit                        0         0           0
+CNOT           control global, target local            0         0           0
+CNOT           control local, target global           32        16           2
+CNOT           both global                            32        16           1
+XX+YY(delta)   both global                            32        16           1
+XX+YY(delta)   one global                             32        16           2
+XX+YY(delta)   none global                             0         0           0
+
+  'indices' counts amplitude slots with a crossing matrix element;
+  'one way' is the traffic in one direction, which is half of it and
+  the figure the design note calls the cost of a gate.
+
+What this says, and it is not what the note assumed.
+
+  1. A diagonal gate never moves an amplitude, however many of its qubits are
+     global. Each node multiplies its own slice in place, because it knows its
+     own global bits. The whole QAOA cost layer is of this kind.
+
+  2. A gate costs exactly when it acts NON-DIAGONALLY on a global qubit.
+     Being global is not by itself expensive; being acted on is.
+
+  3. CNOT is therefore asymmetric. With the control global and the target
+     local nothing crosses a node boundary. With the target global it does.
+     The object that decides the cost is not the interaction graph, which is
+     undirected, but which qubits are written to.
+
+  4. The amount is not one figure. A full single-qubit rotation on a global
+     qubit moves 2^(n-1) amplitudes; CNOT with both qubits global moves
+     2^(n-2), because only the half with control = 1 is touched.
+
