@@ -340,17 +340,21 @@ def hypotheses(table, floors):
 
     print("\n=== Invalidating conditions, section 8 and addendum 3 " + "=" * 19)
     bad = []
-    r2 = v("D2", 8, 2)
-    d2dir = None
-    if r2 and r2["d"] is not None:
-        d2dir = r2["d"]
-    t1 = table.get(("D1", 8))
-    bad += core.invalidating(
-        r2["verdict"] if r2 else "not evaluable",
-        d2dir if d2dir is not None else 0.0,
-        t1["qcnn"] if t1 is not None else np.array([]),
-        float(t1["majority"].mean()) if t1 is not None else 0.5,
-        gate_ground_truth() if "--gates" in sys.argv else 0.0)
+    # A4.6 registers conditions 1 and 2 per size, not once over the run. Until
+    # the registered budget was complete they were evaluated on n=8 alone; the
+    # loop below is that correction and nothing else. Condition 3 is a property
+    # of the construction, so it is checked once, at the smallest size.
+    gt = gate_ground_truth() if "--gates" in sys.argv else 0.0
+    for n in SIZES:
+        r2 = v("D2", n, 2)
+        t1 = table.get(("D1", n))
+        for b in core.invalidating(
+                r2["verdict"] if r2 else "not evaluable",
+                r2["d"] if (r2 and r2["d"] is not None) else 0.0,
+                t1["qcnn"] if t1 is not None else np.array([]),
+                float(t1["majority"].mean()) if t1 is not None else 0.5,
+                gt if n == SIZES[0] else 0.0):
+            bad.append(b if b.startswith("3.") else f"{b} Evaluated at n={n}.")
 
     for n in SIZES:
         t = table.get(("D2", n))
