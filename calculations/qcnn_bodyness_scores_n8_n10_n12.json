@@ -1,0 +1,5442 @@
+[
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 0,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.9,
+   0.905,
+   0.905,
+   0.905,
+   0.925
+  ],
+  "qcnn": 0.908,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.98,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.99,
+   "C": 1.0,
+   "kernel": 0.98,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 1,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.92,
+   0.915,
+   0.895,
+   0.905,
+   0.91
+  ],
+  "qcnn": 0.909,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 2,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.88,
+   0.835,
+   0.845,
+   0.84,
+   0.85
+  ],
+  "qcnn": 0.8499999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 3,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.915,
+   0.925,
+   0.885,
+   0.91,
+   0.935
+  ],
+  "qcnn": 0.914,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.985,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 4,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.835,
+   0.84,
+   0.845,
+   0.84,
+   0.835
+  ],
+  "qcnn": 0.8389999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.98,
+   "C": 10.0,
+   "kernel": 0.98,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.99,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 5,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.865,
+   0.865,
+   0.875,
+   0.885,
+   0.865
+  ],
+  "qcnn": 0.8710000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.99,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.99,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 0.99,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 6,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.915,
+   0.92,
+   0.93,
+   0.915,
+   0.92
+  ],
+  "qcnn": 0.9200000000000002,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 7,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.89,
+   0.855,
+   0.91,
+   0.89,
+   0.845
+  ],
+  "qcnn": 0.8780000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 8,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.93,
+   0.94,
+   0.945,
+   0.94,
+   0.93
+  ],
+  "qcnn": 0.9369999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 9,
+  "majority": 0.5,
+  "qcnn_starts": [
+   0.86,
+   0.855,
+   0.9,
+   0.86,
+   0.5
+  ],
+  "qcnn": 0.7949999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 10,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.9,
+   0.89,
+   0.915,
+   0.88,
+   0.885
+  ],
+  "qcnn": 0.8939999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 11,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.86,
+   0.895,
+   0.855,
+   0.855,
+   0.86
+  ],
+  "qcnn": 0.865,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 12,
+  "majority": 0.555,
+  "qcnn_starts": [
+   0.905,
+   0.93,
+   0.945,
+   0.915,
+   0.915
+  ],
+  "qcnn": 0.9219999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.985,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.985,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 13,
+  "majority": 0.525,
+  "qcnn_starts": [
+   0.9,
+   0.92,
+   0.9,
+   0.9,
+   0.9
+  ],
+  "qcnn": 0.9040000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 14,
+  "majority": 0.54,
+  "qcnn_starts": [
+   0.835,
+   0.83,
+   0.895,
+   0.85,
+   0.46
+  ],
+  "qcnn": 0.774,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.98,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 0.985,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 15,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.89,
+   0.845,
+   0.91,
+   0.905,
+   0.915
+  ],
+  "qcnn": 0.893,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.985,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 0.995,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.985,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 16,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.855,
+   0.85,
+   0.895,
+   0.855,
+   0.845
+  ],
+  "qcnn": 0.86,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.985,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.985,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 0.99,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.985,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 17,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.89,
+   0.895,
+   0.91,
+   0.89,
+   0.885
+  ],
+  "qcnn": 0.8940000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 0.995,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 18,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.925,
+   0.89,
+   0.89,
+   0.915,
+   0.905
+  ],
+  "qcnn": 0.905,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 8,
+  "draw": 19,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.87,
+   0.87,
+   0.87,
+   0.87,
+   0.87
+  ],
+  "qcnn": 0.8699999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.96,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 0,
+  "majority": 0.525,
+  "qcnn_starts": [
+   1.0,
+   0.525,
+   0.525,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.8099999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.48,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.46,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.46,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.54,
+   "C": 100.0,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 1,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.49,
+   1.0,
+   1.0,
+   0.49,
+   0.49
+  ],
+  "qcnn": 0.6940000000000002,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.48,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.445,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.495,
+   "C": 10.0,
+   "kernel": 0.51,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.495,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 1.0,
+   "kernel": 0.485,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 2,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.505,
+   "C": 0.01,
+   "kernel": 0.53,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.545,
+   "C": 0.1,
+   "kernel": 0.495,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 0.435,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.535,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 3,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   0.535,
+   1.0,
+   0.535,
+   1.0
+  ],
+  "qcnn": 0.8140000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.535,
+   "C": 0.01,
+   "kernel": 0.475,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.485,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.51,
+   "C": 100.0,
+   "kernel": 0.565,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0,
+   "trees": 0.495,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.505,
+   "C": 10.0,
+   "kernel": 0.545,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 4,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.47,
+   1.0,
+   0.47,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.788,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.47,
+   "C": 0.01,
+   "kernel": 0.575,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.53,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.49,
+   "C": 0.1,
+   "kernel": 0.485,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.515,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.1,
+   "kernel": 0.505,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 5,
+  "majority": 0.55,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.55,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 0.53,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.555,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.535,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.465,
+   "C": 1.0,
+   "kernel": 0.55,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 6,
+  "majority": 0.54,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   0.54,
+   1.0
+  ],
+  "qcnn": 0.908,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.54,
+   "C": 0.01,
+   "kernel": 0.54,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.51,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.54,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.48,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.54,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 7,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.505,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.901,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.505,
+   "C": 0.01,
+   "kernel": 0.47,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.455,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.5,
+   "C": 0.1,
+   "kernel": 0.51,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.475,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.475,
+   "C": 0.1,
+   "kernel": 0.445,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 8,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.515,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9030000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.545,
+   "C": 100.0,
+   "kernel": 0.525,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.55,
+   "C": 10.0,
+   "kernel": 0.52,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 9,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.545,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.58,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.525,
+   "C": 100.0,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 10,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.52,
+   0.52,
+   0.52,
+   0.52,
+   1.0
+  ],
+  "qcnn": 0.616,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.52,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.565,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.53,
+   "C": 100.0,
+   "kernel": 0.52,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 11,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.485,
+   0.485,
+   1.0
+  ],
+  "qcnn": 0.7939999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.46,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.47,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.47,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0,
+   "trees": 0.43,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.53,
+   "C": 0.1,
+   "kernel": 0.51,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 12,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.49,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.898,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.47,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.495,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.475,
+   "C": 1.0,
+   "kernel": 0.515,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 13,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   0.5,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.44,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.5,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.49,
+   "C": 100.0,
+   "kernel": 0.5,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 14,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.515,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9030000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.505,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.495,
+   "C": 100.0,
+   "kernel": 0.5,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.495,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 10.0,
+   "kernel": 0.505,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 15,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.465,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.485,
+   "C": 10.0,
+   "kernel": 0.465,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.47,
+   "C": 0.01,
+   "kernel": 0.475,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 16,
+  "majority": 0.525,
+  "qcnn_starts": [
+   0.475,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.8949999999999999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.475,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 0.51,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.475,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.545,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.445,
+   "C": 0.01,
+   "kernel": 0.47,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 17,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.48,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.51,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.52,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.525,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.48,
+   "C": 10.0,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 18,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.515,
+   1.0,
+   1.0,
+   0.515,
+   1.0
+  ],
+  "qcnn": 0.806,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.485,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.475,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.475,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.52,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 8,
+  "draw": 19,
+  "majority": 0.575,
+  "qcnn_starts": [
+   1.0,
+   0.575,
+   1.0,
+   1.0,
+   0.575
+  ],
+  "qcnn": 0.8300000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 0.575,
+   "C": 0.01,
+   "kernel": 0.465,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.425,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 112,
+   "linear": 0.575,
+   "C": 1.0,
+   "kernel": 0.575,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.535,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 7458,
+   "gram_columns": 200,
+   "linear": 0.58,
+   "C": 0.1,
+   "kernel": 0.575,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 0,
+  "majority": 0.525,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.91
+  ],
+  "qcnn": 0.982,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 1,
+  "majority": 0.545,
+  "qcnn_starts": [
+   0.915,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.983,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 2,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   0.99,
+   0.935,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.985,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 3,
+  "majority": 0.585,
+  "qcnn_starts": [
+   1.0,
+   0.98,
+   0.98,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.992,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 4,
+  "majority": 0.53,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 5,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.99,
+   0.99,
+   1.0,
+   1.0,
+   0.985
+  ],
+  "qcnn": 0.993,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 6,
+  "majority": 0.5,
+  "qcnn_starts": [
+   0.99,
+   0.985,
+   0.985,
+   0.99,
+   1.0
+  ],
+  "qcnn": 0.99,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 7,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   0.99,
+   0.925,
+   1.0,
+   0.93
+  ],
+  "qcnn": 0.969,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 8,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.935,
+   1.0,
+   0.95,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.977,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 9,
+  "majority": 0.53,
+  "qcnn_starts": [
+   1.0,
+   0.93,
+   0.855,
+   1.0,
+   0.985
+  ],
+  "qcnn": 0.9540000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 10,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.935,
+   1.0,
+   0.915
+  ],
+  "qcnn": 0.97,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 11,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.94,
+   0.925,
+   1.0,
+   1.0,
+   0.99
+  ],
+  "qcnn": 0.9710000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 12,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 10,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 13,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.995
+  ],
+  "qcnn": 0.999,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 14,
+  "majority": 0.54,
+  "qcnn_starts": [
+   1.0,
+   0.995,
+   0.88,
+   1.0,
+   0.46
+  ],
+  "qcnn": 0.867,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 15,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.995,
+   0.92,
+   1.0,
+   1.0,
+   0.91
+  ],
+  "qcnn": 0.9650000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 16,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.905,
+   0.975,
+   0.885,
+   0.885,
+   0.895
+  ],
+  "qcnn": 0.909,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 17,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   0.955,
+   1.0,
+   0.9,
+   1.0
+  ],
+  "qcnn": 0.9710000000000001,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 18,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1w",
+  "n": 8,
+  "draw": 19,
+  "majority": 0.52,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 24,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 276,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 0.01,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 0,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.905,
+   0.935,
+   0.865,
+   0.91,
+   0.91
+  ],
+  "qcnn": 0.905,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 11,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 1,
+  "majority": 0.5,
+  "qcnn_starts": [
+   0.88,
+   0.865,
+   0.935,
+   0.955,
+   0.865
+  ],
+  "qcnn": 0.9,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 2,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.91,
+   0.895,
+   0.91,
+   0.895,
+   0.975
+  ],
+  "qcnn": 0.917,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.99,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.99,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 3,
+  "majority": 0.525,
+  "qcnn_starts": [
+   0.91,
+   0.92,
+   0.9,
+   0.895,
+   0.92
+  ],
+  "qcnn": 0.909,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 4,
+  "majority": 0.565,
+  "qcnn_starts": [
+   0.915,
+   0.91,
+   0.91,
+   0.915,
+   0.89
+  ],
+  "qcnn": 0.908,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 5,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.88,
+   0.855,
+   0.94,
+   0.93,
+   0.855
+  ],
+  "qcnn": 0.892,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 6,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.895,
+   0.89,
+   0.895,
+   0.905,
+   0.87
+  ],
+  "qcnn": 0.891,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.975,
+   "C": 10.0,
+   "kernel": 0.975,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.98,
+   "C": 1.0,
+   "kernel": 0.985,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 7,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.92,
+   0.9,
+   0.93,
+   0.94,
+   0.93
+  ],
+  "qcnn": 0.924,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 8,
+  "majority": 0.565,
+  "qcnn_starts": [
+   0.915,
+   0.92,
+   0.92,
+   0.925,
+   0.92
+  ],
+  "qcnn": 0.9199999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 9,
+  "majority": 0.57,
+  "qcnn_starts": [
+   0.895,
+   0.89,
+   0.895,
+   0.915,
+   0.9
+  ],
+  "qcnn": 0.899,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 10,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.955,
+   0.91,
+   0.865,
+   0.91,
+   0.9
+  ],
+  "qcnn": 0.908,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.98,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 11,
+  "majority": 0.555,
+  "qcnn_starts": [
+   0.89,
+   0.86,
+   0.85,
+   0.88,
+   0.87
+  ],
+  "qcnn": 0.8699999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 0.1,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 12,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.955,
+   0.865,
+   0.96,
+   0.87,
+   0.92
+  ],
+  "qcnn": 0.914,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 13,
+  "majority": 0.55,
+  "qcnn_starts": [
+   0.835,
+   0.845,
+   0.835,
+   0.9,
+   0.875
+  ],
+  "qcnn": 0.8579999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.965,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 14,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.91,
+   0.92,
+   0.925,
+   0.925,
+   0.92
+  ],
+  "qcnn": 0.9199999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 15,
+  "majority": 0.5,
+  "qcnn_starts": [
+   0.895,
+   0.84,
+   0.96,
+   0.92,
+   0.945
+  ],
+  "qcnn": 0.9119999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 16,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.915,
+   0.93,
+   0.915,
+   0.915,
+   0.96
+  ],
+  "qcnn": 0.9269999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.99,
+   "C": 100.0,
+   "kernel": 0.985,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.99,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.99,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 17,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.88,
+   0.915,
+   0.91,
+   0.915,
+   0.89
+  ],
+  "qcnn": 0.9019999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 0.97,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 11,
+   "linear": 0.995,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 18,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.905,
+   0.9,
+   0.905,
+   0.895,
+   0.895
+  ],
+  "qcnn": 0.9,
+  "bodyness1": {
+   "features": 30,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 10,
+  "draw": 19,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.99,
+   0.935,
+   0.94,
+   0.95,
+   0.95
+  ],
+  "qcnn": 0.9530000000000001,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.985,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 0,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.44,
+   0.44,
+   1.0,
+   0.44,
+   0.44
+  ],
+  "qcnn": 0.5519999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.44,
+   "C": 0.01,
+   "kernel": 0.43,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 180,
+   "linear": 0.43,
+   "C": 0.01,
+   "kernel": 0.44,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.515,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.465,
+   "C": 10.0,
+   "kernel": 0.44,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 1,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.515,
+   1.0,
+   0.515,
+   1.0,
+   0.515
+  ],
+  "qcnn": 0.7090000000000001,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.51,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.505,
+   "C": 100.0,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.53,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.505,
+   "C": 10.0,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 2,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   0.535,
+   0.535,
+   0.535,
+   1.0
+  ],
+  "qcnn": 0.7210000000000001,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.535,
+   "C": 0.01,
+   "kernel": 0.535,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.425,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.46,
+   "C": 100.0,
+   "kernel": 0.46,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.435,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 100.0,
+   "kernel": 0.475,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 3,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.495,
+   "C": 0.01,
+   "kernel": 0.565,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.565,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.54,
+   "C": 100.0,
+   "kernel": 0.45,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.54,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.51,
+   "C": 10.0,
+   "kernel": 0.495,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 4,
+  "majority": 0.565,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.435,
+   "C": 0.01,
+   "kernel": 0.495,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.48,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.51,
+   "C": 0.1,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.435,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.505,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 5,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   0.49,
+   0.49,
+   0.49,
+   1.0
+  ],
+  "qcnn": 0.694,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.43,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 180,
+   "linear": 0.52,
+   "C": 100.0,
+   "kernel": 0.48,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.52,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.48,
+   "C": 1.0,
+   "kernel": 0.46,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 6,
+  "majority": 0.6,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.4,
+   "C": 0.01,
+   "kernel": 0.4,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.455,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.515,
+   "C": 0.1,
+   "kernel": 0.535,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.515,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.4,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 7,
+  "majority": 0.52,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.52,
+   "C": 0.01,
+   "kernel": 0.53,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.5,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.475,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.56,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.475,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 8,
+  "majority": 0.525,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.525
+  ],
+  "qcnn": 0.905,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.545,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.46,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.525,
+   "C": 1.0,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 9,
+  "majority": 0.525,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.545,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 179,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.485,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.525,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 10,
+  "majority": 0.55,
+  "qcnn_starts": [
+   0.45,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.89,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.45,
+   "C": 0.01,
+   "kernel": 0.44,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.5,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.46,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 0.45,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 0.1,
+   "kernel": 0.48,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 11,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   0.51,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9019999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.51,
+   "C": 0.1,
+   "kernel": 0.525,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 12,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.465,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.893,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.465,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.53,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.465,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.465,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.525,
+   "C": 1.0,
+   "kernel": 0.52,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 13,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 1.0,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.505,
+   "C": 0.01,
+   "kernel": 0.47,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.505,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 177,
+   "linear": 0.42,
+   "C": 100.0,
+   "kernel": 0.51,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.405,
+   "C": 10.0,
+   "kernel": 0.505,
+   "C_kernel": 1.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 14,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   0.465,
+   1.0
+  ],
+  "qcnn": 0.893,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.465,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.495,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 177,
+   "linear": 0.505,
+   "C": 1.0,
+   "kernel": 0.475,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.47,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 1.0,
+   "kernel": 0.515,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 15,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.51
+  ],
+  "qcnn": 0.9019999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.495,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.49,
+   "C": 0.1,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.425,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.495,
+   "C": 100.0,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 16,
+  "majority": 0.52,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   0.52,
+   1.0
+  ],
+  "qcnn": 0.9039999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.52,
+   "C": 0.01,
+   "kernel": 0.525,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 0.54,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 179,
+   "linear": 0.5,
+   "C": 10.0,
+   "kernel": 0.465,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.1,
+   "kernel": 0.46,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 17,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.505,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.901,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.505,
+   "C": 0.01,
+   "kernel": 0.505,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.595,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 179,
+   "linear": 0.5,
+   "C": 0.01,
+   "kernel": 0.445,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.435,
+   "C": 0.1,
+   "kernel": 0.455,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 18,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.51,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9019999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.48,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 179,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 10,
+  "draw": 19,
+  "majority": 0.56,
+  "qcnn_starts": [
+   0.44,
+   0.44,
+   1.0,
+   0.44,
+   1.0
+  ],
+  "qcnn": 0.6639999999999999,
+  "bodyness1": {
+   "features": 30,
+   "linear": 0.44,
+   "C": 0.01,
+   "kernel": 0.44,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.415,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 435,
+   "gram_columns": 178,
+   "linear": 0.44,
+   "C": 1.0,
+   "kernel": 0.485,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 20685,
+   "gram_columns": 200,
+   "linear": 0.44,
+   "C": 0.01,
+   "kernel": 0.455,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 0,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.945,
+   0.925,
+   0.945,
+   0.925,
+   0.925
+  ],
+  "qcnn": 0.933,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 1,
+  "majority": 0.585,
+  "qcnn_starts": [
+   0.84,
+   0.895,
+   1.0,
+   0.91,
+   0.7
+  ],
+  "qcnn": 0.869,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 2,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.93,
+   0.91,
+   0.93,
+   0.94,
+   0.91
+  ],
+  "qcnn": 0.924,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 3,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.935,
+   0.935,
+   0.93,
+   0.93,
+   0.94
+  ],
+  "qcnn": 0.9339999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 0.99,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 4,
+  "majority": 0.55,
+  "qcnn_starts": [
+   0.92,
+   0.93,
+   0.89,
+   0.905,
+   0.92
+  ],
+  "qcnn": 0.913,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 5,
+  "majority": 0.55,
+  "qcnn_starts": [
+   0.55,
+   0.865,
+   0.98,
+   0.875,
+   0.975
+  ],
+  "qcnn": 0.849,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 6,
+  "majority": 0.54,
+  "qcnn_starts": [
+   0.9,
+   0.93,
+   0.685,
+   0.875,
+   0.94
+  ],
+  "qcnn": 0.866,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 0.995,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 7,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.955,
+   0.955,
+   0.975,
+   0.975,
+   0.975
+  ],
+  "qcnn": 0.967,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 8,
+  "majority": 0.555,
+  "qcnn_starts": [
+   0.82,
+   0.85,
+   0.835,
+   0.9,
+   0.895
+  ],
+  "qcnn": 0.86,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 9,
+  "majority": 0.535,
+  "qcnn_starts": [
+   0.905,
+   0.93,
+   0.995,
+   0.91,
+   0.965
+  ],
+  "qcnn": 0.9410000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 0.1,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 10,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.98,
+   0.935,
+   0.95,
+   0.93,
+   0.935
+  ],
+  "qcnn": 0.9460000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 11,
+  "majority": 0.505,
+  "qcnn_starts": [
+   0.965,
+   0.91,
+   0.975,
+   0.935,
+   0.89
+  ],
+  "qcnn": 0.9349999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 12,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.915,
+   0.915,
+   0.88,
+   0.89,
+   0.895
+  ],
+  "qcnn": 0.899,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.99,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 13,
+  "majority": 0.53,
+  "qcnn_starts": [
+   0.925,
+   0.945,
+   0.925,
+   0.925,
+   0.945
+  ],
+  "qcnn": 0.933,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 14,
+  "majority": 0.52,
+  "qcnn_starts": [
+   0.905,
+   0.915,
+   0.915,
+   0.915,
+   0.915
+  ],
+  "qcnn": 0.913,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.97,
+   "C": 1.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 0.995,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 0.99,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.995,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 15,
+  "majority": 0.545,
+  "qcnn_starts": [
+   0.83,
+   0.995,
+   0.925,
+   0.95,
+   0.92
+  ],
+  "qcnn": 0.924,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.995,
+   "C": 100.0,
+   "kernel": 0.995,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 0.995,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 16,
+  "majority": 0.625,
+  "qcnn_starts": [
+   0.875,
+   0.95,
+   0.915,
+   0.915,
+   0.89
+  ],
+  "qcnn": 0.909,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 1.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 100.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 17,
+  "majority": 0.57,
+  "qcnn_starts": [
+   0.935,
+   0.915,
+   0.895,
+   0.915,
+   0.91
+  ],
+  "qcnn": 0.914,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 18,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.92,
+   0.86,
+   0.865,
+   0.91,
+   0.91
+  ],
+  "qcnn": 0.893,
+  "bodyness1": {
+   "features": 36,
+   "linear": 1.0,
+   "C": 100.0,
+   "kernel": 1.0,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1,
+   "trees": 1.0,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 1.0,
+   "C": 10.0,
+   "kernel": 1.0,
+   "C_kernel": 0.1,
+   "gamma_mult": 10.0,
+   "trees": 1.0,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D1",
+  "n": 12,
+  "draw": 19,
+  "majority": 0.55,
+  "qcnn_starts": [
+   0.905,
+   0.905,
+   0.905,
+   0.915,
+   0.915
+  ],
+  "qcnn": 0.909,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.975,
+   "C": 10.0,
+   "kernel": 0.985,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.985,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 12,
+   "linear": 0.985,
+   "C": 100.0,
+   "kernel": 0.985,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.985,
+   "l2": 0.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 0,
+  "majority": 0.555,
+  "qcnn_starts": [
+   1.0,
+   0.445,
+   1.0,
+   0.445,
+   1.0
+  ],
+  "qcnn": 0.778,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.445,
+   "C": 0.01,
+   "kernel": 0.445,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.525,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.445,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.45,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.545,
+   "C": 100.0,
+   "kernel": 0.445,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 1,
+  "majority": 0.54,
+  "qcnn_starts": [
+   0.46,
+   1.0,
+   0.46,
+   1.0,
+   0.46
+  ],
+  "qcnn": 0.6759999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.46,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.445,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.455,
+   "C": 0.01,
+   "kernel": 0.46,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0,
+   "trees": 0.485,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.455,
+   "C": 10.0,
+   "kernel": 0.51,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 2,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   0.485,
+   0.485,
+   0.485,
+   1.0
+  ],
+  "qcnn": 0.691,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.505,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.1,
+   "kernel": 0.49,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.495,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 3,
+  "majority": 0.52,
+  "qcnn_starts": [
+   1.0,
+   0.48,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.8960000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.48,
+   "C": 0.01,
+   "kernel": 0.475,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.515,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 10.0,
+   "kernel": 0.53,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.47,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.51,
+   "C": 1.0,
+   "kernel": 0.48,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 4,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.5
+  ],
+  "qcnn": 0.9,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.475,
+   "C": 100.0,
+   "kernel": 0.485,
+   "C_kernel": 0.01,
+   "gamma_mult": 10.0,
+   "trees": 0.47,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 100.0,
+   "kernel": 0.49,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 5,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   0.515,
+   0.515,
+   0.515,
+   0.515
+  ],
+  "qcnn": 0.6120000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.51,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.445,
+   "C": 10.0,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.47,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.455,
+   "C": 0.1,
+   "kernel": 0.515,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 6,
+  "majority": 0.5,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.5
+  ],
+  "qcnn": 0.9,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.5,
+   "C": 0.01,
+   "kernel": 0.54,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.48,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.5,
+   "C": 100.0,
+   "kernel": 0.5,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 7,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.465
+  ],
+  "qcnn": 0.893,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.465,
+   "C": 0.01,
+   "kernel": 0.535,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1,
+   "trees": 0.57,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.46,
+   "C": 0.01,
+   "kernel": 0.445,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0,
+   "trees": 0.465,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.48,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 8,
+  "majority": 0.545,
+  "qcnn_starts": [
+   1.0,
+   0.455,
+   1.0,
+   0.455,
+   0.455
+  ],
+  "qcnn": 0.673,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.455,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.44,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.495,
+   "C": 10.0,
+   "kernel": 0.545,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.51,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 1.0,
+   "kernel": 0.565,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 9,
+  "majority": 0.565,
+  "qcnn_starts": [
+   1.0,
+   0.565,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9129999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.565,
+   "C": 0.01,
+   "kernel": 0.565,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.46,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.57,
+   "C": 1.0,
+   "kernel": 0.545,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0,
+   "trees": 0.525,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.545,
+   "C": 0.01,
+   "kernel": 0.55,
+   "C_kernel": 100.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 10,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.485,
+   1.0,
+   1.0,
+   0.485,
+   1.0
+  ],
+  "qcnn": 0.7939999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.495,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.525,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 11,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   0.535,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.907,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.535,
+   "C": 0.01,
+   "kernel": 0.535,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.565,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.51,
+   "C": 0.1,
+   "kernel": 0.53,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.465,
+   "C": 0.1,
+   "kernel": 0.51,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 12,
+  "majority": 0.505,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.495,
+   0.495,
+   1.0
+  ],
+  "qcnn": 0.798,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.495,
+   "C": 0.01,
+   "kernel": 0.495,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.535,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.495,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.52,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.515,
+   "C": 100.0,
+   "kernel": 0.495,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 13,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.485,
+   1.0,
+   0.485,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.7939999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.485,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.495,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.475,
+   "C": 100.0,
+   "kernel": 0.485,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.515,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.47,
+   "C": 10.0,
+   "kernel": 0.485,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 14,
+  "majority": 0.515,
+  "qcnn_starts": [
+   1.0,
+   0.485,
+   0.485,
+   0.485,
+   1.0
+  ],
+  "qcnn": 0.691,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.485,
+   "C": 0.01,
+   "kernel": 0.52,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.54,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.51,
+   "C": 100.0,
+   "kernel": 0.47,
+   "C_kernel": 100.0,
+   "gamma_mult": 1.0,
+   "trees": 0.445,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 1.0,
+   "kernel": 0.475,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 15,
+  "majority": 0.51,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.49,
+   1.0,
+   0.49
+  ],
+  "qcnn": 0.796,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.505,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.49,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.545,
+   "C": 0.01,
+   "kernel": 0.49,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.46,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.565,
+   "C": 0.1,
+   "kernel": 0.49,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 16,
+  "majority": 0.51,
+  "qcnn_starts": [
+   0.51,
+   1.0,
+   1.0,
+   0.51,
+   1.0
+  ],
+  "qcnn": 0.8039999999999999,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.51,
+   "C": 0.01,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.475,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.455,
+   "C": 10.0,
+   "kernel": 0.53,
+   "C_kernel": 1.0,
+   "gamma_mult": 1.0,
+   "trees": 0.405,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.465,
+   "C": 1.0,
+   "kernel": 0.51,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 17,
+  "majority": 0.55,
+  "qcnn_starts": [
+   1.0,
+   1.0,
+   0.45,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.89,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.45,
+   "C": 0.01,
+   "kernel": 0.42,
+   "C_kernel": 10.0,
+   "gamma_mult": 10.0,
+   "trees": 0.445,
+   "l2": 1.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.405,
+   "C": 0.01,
+   "kernel": 0.45,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.5,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.485,
+   "C": 100.0,
+   "kernel": 0.45,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 18,
+  "majority": 0.515,
+  "qcnn_starts": [
+   0.515,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "qcnn": 0.9030000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.515,
+   "C": 0.01,
+   "kernel": 0.505,
+   "C_kernel": 1.0,
+   "gamma_mult": 0.1,
+   "trees": 0.495,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.48,
+   "C": 0.01,
+   "kernel": 0.53,
+   "C_kernel": 10.0,
+   "gamma_mult": 100.0,
+   "trees": 0.56,
+   "l2": 0.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.49,
+   "C": 0.01,
+   "kernel": 0.5,
+   "C_kernel": 10.0,
+   "gamma_mult": 0.1
+  }
+ },
+ {
+  "dataset": "D2",
+  "n": 12,
+  "draw": 19,
+  "majority": 0.535,
+  "qcnn_starts": [
+   1.0,
+   0.535,
+   0.49,
+   0.535,
+   1.0
+  ],
+  "qcnn": 0.7120000000000001,
+  "bodyness1": {
+   "features": 36,
+   "linear": 0.535,
+   "C": 0.01,
+   "kernel": 0.535,
+   "C_kernel": 0.01,
+   "gamma_mult": 0.1,
+   "trees": 0.515,
+   "l2": 0.0
+  },
+  "bodyness2": {
+   "features": 630,
+   "gram_columns": 200,
+   "linear": 0.47,
+   "C": 1.0,
+   "kernel": 0.39,
+   "C_kernel": 1.0,
+   "gamma_mult": 10.0,
+   "trees": 0.47,
+   "l2": 1.0
+  },
+  "bodyness4": {
+   "features": 46665,
+   "gram_columns": 200,
+   "linear": 0.415,
+   "C": 0.1,
+   "kernel": 0.405,
+   "C_kernel": 10.0,
+   "gamma_mult": 1.0
+  }
+ }
+]
