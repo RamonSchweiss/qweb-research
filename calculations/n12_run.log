@@ -1,0 +1,47 @@
+  D2 n=12 draw  5: qcnn 0.612  b1 0.515  b2 0.515  b4 0.515   majority 0.515   [2990s]
+  D2 n=12 draw  6: qcnn 0.900  b1 0.540  b2 0.500  b4 0.500   majority 0.500   [2876s]
+
+  D2 n=12: draws 5..6 in 5866s
+
+[5866s]
+  D2 n=12 draw  7: qcnn 0.893  b1 0.570  b2 0.465  b4 0.485   majority 0.535   [2878s]
+  D2 n=12 draw  8: qcnn 0.673  b1 0.485  b2 0.545  b4 0.565   majority 0.545   [2869s]
+
+  D2 n=12: draws 7..8 in 5748s
+
+[5748s]
+  D2 n=12 draw  9: qcnn 0.913  b1 0.565  b2 0.570  b4 0.550   majority 0.565   [2948s]
+  D2 n=12 draw 10: qcnn 0.794  b1 0.495  b2 0.525  b4 0.510   majority 0.515   [2876s]
+
+  D2 n=12: draws 9..10 in 5825s
+
+[5825s]
+  D2 n=12 draw 11: qcnn 0.907  b1 0.565  b2 0.530  b4 0.510   majority 0.535   [2883s]
+  D2 n=12 draw 12: qcnn 0.798  b1 0.535  b2 0.520  b4 0.515   majority 0.505   [2869s]
+
+  D2 n=12: draws 11..12 in 5752s
+
+[5752s]
+  D2 n=12 draw 13: qcnn 0.794  b1 0.495  b2 0.515  b4 0.485   majority 0.515   [2906s]
+  D2 n=12 draw 14: qcnn 0.691  b1 0.540  b2 0.510  b4 0.485   majority 0.515   [2815s]
+
+  D2 n=12: draws 13..14 in 5720s
+
+[5720s]
+  D2 n=12 draw 15: qcnn 0.796  b1 0.505  b2 0.545  b4 0.565   majority 0.510   [2890s]
+  D2 n=12 draw 16: qcnn 0.804  b1 0.510  b2 0.530  b4 0.510   majority 0.510   [2784s]
+
+  D2 n=12: draws 15..16 in 5675s
+
+[5675s]
+  D2 n=12 draw 17: qcnn 0.890  b1 0.450  b2 0.500  b4 0.485   majority 0.550   [2826s]
+  D2 n=12 draw 18: qcnn 0.903  b1 0.515  b2 0.560  b4 0.500   majority 0.515   [2836s]
+
+  D2 n=12: draws 17..18 in 5662s
+
+[5662s]
+  D2 n=12 draw 19: qcnn 0.712  b1 0.535  b2 0.470  b4 0.415   majority 0.535   [2834s]
+
+  D2 n=12: draws 19..19 in 2834s
+
+[2834s]
