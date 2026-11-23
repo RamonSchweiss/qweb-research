@@ -1,0 +1,48 @@
+Does the global-qubit selection problem have a closed form? Brute force says yes.
+
+Evidence for addendum 2 to designs/design_hypercube_global_qubits_EN.md,
+written before the study's first measurement run. It uses the instance set of
+the findability study -- seven families, three seeds, density 1.5 -- through
+partition_topology.make_graph, so the graphs are the published ones and not
+new ones.
+
+Cost model, from addendum 1 and the hop measurement in hypercube_cost_probe.py,
+in units of 2^(n-2) amplitude-hops:
+
+    diagonal gate, any placement            0
+    RX on a global qubit                    2
+    CNOT, target global                     1   (control global or not)
+    CNOT, target local                      0
+    XX+YY, exactly one qubit global         1
+    XX+YY, both qubits global               2   (two hops: a real detour)
+
+What is checked here, on every registered cell:
+
+  1. Separability. For the XX+YY family the cost of a global set S is claimed
+     to equal sum of deg(v) over v in S, plus the constant 2|S| from the mixer.
+     For the oriented CNOT family, sum of in-degree. If that identity holds,
+     the objective is linear and separable in the chosen qubits, and the
+     problem has no combinatorial content.
+
+  2. The consequence. Exhaustive enumeration of all C(n, g) subsets must then
+     be beaten by nothing, and in particular must be attained exactly by the
+     rule "take the g qubits of lowest degree".
+
+Run from the calculations/ directory of the repository.
+
+Ramon Schweiss, QWeb (c) Research, 23 November 2026.
+
+
+  cells (family x graph x size x g)        378
+  subsets with cost = sum of degrees       397152
+  subsets where that identity failed       0
+  cells where the degree rule missed       0
+  worst miss, in units                     0
+
+  The identity is why. For XX+YY the two cases combine as
+  1*[one endpoint global] + 2*[both global] = |{a,b} and S|, so summing over
+  edges gives sum of deg(v) over v in S. The detour that a second global qubit
+  costs is exactly the overlap that an edge-counting model would have saved,
+  and the two cancel. The objective is therefore linear and separable, the
+  greedy rule by degree is exactly optimal, and there is nothing left to
+  search. The same holds for the oriented family with in-degree.

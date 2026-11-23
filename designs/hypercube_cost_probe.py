@@ -46,7 +46,12 @@ def op_on(mat, qs, n):
 
 
 def crossings(full, n, g):
-    """Amplitudes that change node, and the distinct node pairs involved."""
+    """Amplitudes that change node, the node pairs, and their distances.
+
+    The distance of a node pair is the Hamming distance of its two addresses,
+    which is the number of hypercube edges the traffic has to cross. A pair at
+    distance 2 is a detour in the only sense this architecture has one.
+    """
     mask = ((1 << g) - 1) << (n - g)
     moved, pairs = set(), set()
     for j in range(2 ** n):
@@ -54,7 +59,8 @@ def crossings(full, n, g):
             if abs(full[j, i]) > 1e-12 and (i & mask) != (j & mask):
                 moved.add(i)
                 pairs.add((min(i & mask, j & mask), max(i & mask, j & mask)))
-    return len(moved), len(pairs)
+    dists = sorted(bin(a ^ b).count("1") for a, b in pairs)
+    return len(moved), len(pairs), dists
 
 
 gamma, beta, delta = 0.37, 0.61, 0.23
@@ -87,15 +93,24 @@ print(f"n = {N} qubits, g = {G} global, {2 ** N} amplitudes, "
       f"{2 ** G} nodes of {2 ** (N - G)}")
 print(f"  for reference: 2^(n-1) = {2 ** (N - 1)}, "
       f"2^(n-2) = {2 ** (N - 2)}\n")
-print(f"{'gate and placement':46s} {'indices':>9s} {'one way':>9s} "
-      f"{'node pairs':>11s}")
-print("-" * 78)
+UNIT = 2 ** (N - 2)
+print(f"{'gate and placement':46s} {'one way':>8s} {'pairs':>6s} "
+      f"{'hops':>6s} {'units':>6s}")
+print("-" * 76)
 for name, m, qs in CASES:
-    moved, pairs = crossings(op_on(m, qs, N), N, G)
-    print(f"{name:46s} {moved:9d} {moved // 2:9d} {pairs:11d}")
-print("\n  'indices' counts amplitude slots with a crossing matrix element;")
-print("  'one way' is the traffic in one direction, which is half of it and")
-print("  the figure the design note calls the cost of a gate.")
+    moved, pairs, dists = crossings(op_on(m, qs, N), N, G)
+    one_way = moved // 2
+    hops = max(dists) if dists else 0
+    print(f"{name:46s} {one_way:8d} {pairs:6d} {hops:6d} "
+          f"{one_way * hops // UNIT:6d}")
+print(f"""
+  'one way' is the traffic in one direction, in amplitudes.
+  'pairs' is the number of distinct node pairs exchanging.
+  'hops'  is the Hamming distance of those pairs: how many hypercube edges
+          the traffic crosses. Anything above 1 is a detour, in the only
+          sense this architecture has one.
+  'units' is one way x hops, in units of 2^(n-2) = {UNIT}, which is the
+          granularity the study measures in.""")
 
 print("""
 What this says, and it is not what the note assumed.
