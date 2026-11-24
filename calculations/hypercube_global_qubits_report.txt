@@ -1,0 +1,31 @@
+
+378 instances, limit 2 units, granularity 1 unit
+
+  the gate-structure arm against the enumerated optimum
+    instances where it missed: 0 of 378
+
+  the mutual-information arm against the enumerated optimum
+    circuit    n  g  inst  same set  at opt  mean loss  spread  verdict
+    -------------------------------------------------------------------
+    xy        12  2    21         8      21      0.000    0.00  bounded by 0.00
+    xy        12  3    21         6      21      0.000    0.00  bounded by 0.00
+    xy        12  4    21        10      21      0.000    0.00  bounded by 0.00
+    xy        16  2    21         8      21      0.000    0.00  bounded by 0.00
+    xy        16  3    21         3      21      0.000    0.00  bounded by 0.00
+    xy        16  4    21         8      21      0.000    0.00  bounded by 0.00
+    xy        20  2    21         4      21      0.000    0.00  bounded by 0.00
+    xy        20  3    21         3      21      0.000    0.00  bounded by 0.00
+    xy        20  4    21         3      21      0.000    0.00  bounded by 0.00
+    cnot      12  2    21        16      16      0.238    0.19  separated
+    cnot      12  3    21        11      11      0.476    0.19  separated
+    cnot      12  4    21         8       8      0.952    0.40  separated
+    cnot      16  2    21        18      18      0.143    0.14  bounded by 0.14
+    cnot      16  3    21        10      10      0.619    0.29  separated
+    cnot      16  4    21         6       6      1.048    0.33  separated
+    cnot      20  2    21        19      19      0.095    0.12  bounded by 0.12
+    cnot      20  3    21        15      15      0.286    0.19  separated
+    cnot      20  4    21        11      11      0.810    0.38  separated
+
+  the random arm against the optimum, as the positive control
+    xy    mean excess   3.543  interval [3.262, 3.838]  separated
+    cnot  mean excess   3.281  interval [3.103, 3.472]  separated

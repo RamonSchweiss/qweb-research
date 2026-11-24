@@ -1,0 +1,23 @@
+
+Gate 1 - cost model per gate type (condition 3, A1.6)
+    zz both global         model 0   measured 0
+    zz one global          model 0   measured 0
+    rot global             model 2   measured 2
+    rot local              model 0   measured 0
+    cnot target local      model 0   measured 0
+    cnot target global     model 1   measured 1
+    cnot both global       model 1   measured 1
+    xy one global          model 1   measured 1
+    xy both global         model 2   measured 2
+    xy none global         model 0   measured 0
+
+Gate 2 - independent enumeration, subset by subset (condition 2)
+    disagreeing subsets: 0
+
+Gate 3 - the declared degenerate g = 1 (condition 5)
+    cells not reproducing minimum weight: 0
+
+Gate 4 - family A is degenerate, cost = p * g (A1.4)
+    cells where the cost was not constant: 0
+
+  all gates pass
