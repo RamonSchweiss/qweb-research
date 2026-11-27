@@ -83,20 +83,30 @@ BOOT_RNG = np.random.default_rng(20261105)
 # Replaced 15 November 2026. See design_cut_degeneracy_EN_addendum_4.md.
 # These are the figures the COMMITTED cut_degeneracy_warmstart.py produces,
 # verified against its own printout in calculations/.
-PUBLISHED_A23 = {10: (4, 2.50, 2.50), 12: (2, 2.00, 2.00),
-                 14: (7, 2.00, 2.87), 16: (7, 2.86, 3.88),
-                 18: (3, 2.67, 3.62), 20: (7, 2.57, 4.47)}
-# Superseded, kept because deleting it would hide what happened. The gate
-# below failed on all six sizes against these, and the reason was neither
-# drift nor this pipeline: they are the output of a version of
-# cut_degeneracy_warmstart.py that was never committed. The run of
-# 4-5 November was made with code that changed before its first commit, so
-# no history can show it. The withdrawal of the registered objective is
-# unaffected - it rests on the warm route reaching the optimum less often
-# at n = 12, which holds on the committed code too.
-#   {14: (7, 2.00, 2.81), 16: (10, 2.60, 4.07),
-#    18: (3, 2.67, 3.84), 20: (8, 2.50, 4.19),
-#    10: (3, 2.00, 2.00), 12: (3, 2.00, 2.00)}
+PUBLISHED_A23 = None            # suspended on 27 November; see addendum 5
+# Two sets of figures exist for A2.3 and neither is "the" figure. Both were
+# produced by the committed cut_degeneracy_warmstart.py, on different machines:
+#
+#   4-5 Nov and again 27 Nov : {10: (3, 2.00, 2.00), 12: (3, 2.00, 2.00),
+#                               14: (7, 2.00, 2.81), 16: (10, 2.60, 4.07),
+#                               18: (3, 2.67, 3.84), 20: (8, 2.50, 4.19)}
+#   15 Nov                   : {10: (4, 2.50, 2.50), 12: (2, 2.00, 2.00),
+#                               14: (7, 2.00, 2.87), 16: (7, 2.86, 3.88),
+#                               18: (3, 2.67, 3.62), 20: (7, 2.57, 4.47)}
+#
+# Addendum 4 read the mismatch as a lost pre-commit version of the script. It
+# is not: the committed script reproduces the 4-5 November figures exactly,
+# twice over, on a machine that never saw them. The dependency is on the
+# eigensolver. The incumbent is the Fiedler vector from numpy.linalg.eigh,
+# and on 11 of the 126 graphs of the registered grid merely RELABELLING the
+# vertices changes the incumbent partition - 6 of 18 in the regular family,
+# 4 of 18 in grid, 1 of 18 in scale-free. Evidence: incumbent_wellposed.py
+# and its committed output.
+#
+# So no literal belongs here. Holding either set would assert that one of
+# them is the reproducible one. The gate for A2.3 is suspended, and the
+# re-evaluation with it, until a registration pins the incumbent. A1.2 does
+# not use the eigensolver, reproduces exactly on both machines, and stands.
 # Order is (units, arm a, arm b) as the dataset functions return them, which for
 # A1.2 is (realised, diameter) and NOT the printed column order of A1.2's table.
 # The first version of this line held the printed order, the reproduction check
@@ -250,7 +260,15 @@ def main():
     print("-" * 78)
     a23 = dataset_a23()
     a12 = dataset_a12()
-    ok = check("A2.3 warm-start", a23, PUBLISHED_A23)
+    if PUBLISHED_A23 is None:
+        print("  A2.3 warm-start: gate SUSPENDED. The dataset depends on an "
+              "unpinned")
+        print("     tie-break inside the eigensolver, so there is no figure to "
+              "reproduce")
+        print("     against. See addendum 5 and incumbent_wellposed.py.")
+        ok = True
+    else:
+        ok = check("A2.3 warm-start", a23, PUBLISHED_A23)
     ok &= check("A1.2 diameter", a12, PUBLISHED_A12)
     if not ok:
         print("\n  Stopping. Re-evaluating figures that have not been "
@@ -266,8 +284,22 @@ def main():
     # all reach the same one. Different quantities, different floors.
     bounds_a12 = lambda n: ((0.0, n / 2.0), (2.0, n / 2.0))
 
-    v23 = report("1 - A2.3 re-evaluated: warm against cold migration cost",
-                 a23, "warm", "cold", bounds_a23)
+    if PUBLISHED_A23 is None:
+        print("\n\n1 - A2.3 re-evaluated: warm against cold migration cost")
+        print("-" * 78)
+        print("  NOT EVALUABLE at every size, and not because of the sample.")
+        print("  The incumbent this dataset is measured from is not well "
+              "defined:")
+        print("  relabelling the vertices changes it on 11 of the 126 graphs "
+              "of the")
+        print("  registered grid. A verdict computed from it would describe "
+              "the")
+        print("  eigensolver. Suspended until a registration pins the "
+              "incumbent.")
+        v23 = ["not evaluable"] * len(SIZES)
+    else:
+        v23 = report("1 - A2.3 re-evaluated: warm against cold migration cost",
+                     a23, "warm", "cold", bounds_a23)
     v12 = report("2 - A1.2 re-evaluated: realised against diameter",
                  a12, "realised", "diameter", bounds_a12)
 

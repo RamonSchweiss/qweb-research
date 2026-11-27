@@ -1,0 +1,77 @@
+Is the incumbent of the cut-degeneracy study well defined at all?
+
+Belongs to designs/design_cut_degeneracy_EN_addendum_5.md, 27 November 2026.
+This is a diagnostic, not a test of a registered hypothesis. It exists because
+two runs of the SAME committed code produced different figures on different
+machines, and addendum 4 read that as a lost pre-commit version of the script.
+It was not. The committed script reproduces the 4-5 November figures exactly,
+twice over, on a machine that never held any other version.
+
+What the incumbent is. cut_degeneracy_warmstart.measure() takes it from
+findability_scoping.spectral(W): the Laplacian's Fiedler vector from
+numpy.linalg.eigh, split at the median. Where the second-smallest Laplacian
+eigenvalue is degenerate - which is what symmetry does, and the registered grid
+contains ring, regular, path and grid families - V[:, 1] is an arbitrary member
+of a subspace. Which member comes back is a LAPACK detail. Nothing in the note,
+in A1.5 or in the script pins it.
+
+Two checks, neither needing a second machine:
+
+  1  the spectral gap lambda_2 - lambda_1 of the Laplacian, and separately
+     the thing that actually decides the split: whether the Fiedler vector
+     has TIED ENTRIES at the median. spectral() sorts with
+     np.argsort(f, kind="stable"), so tied entries are ordered by vertex
+     index - the split is then decided by the numbering, not by the graph;
+
+  2  RELABELLING INVARIANCE. Permute the vertices, run spectral() on the
+     permuted graph, map the answer back, compare as a partition under
+     cut_degeneracy.canonical. A partition that depends on the order the
+     vertices were written down in is not a property of the graph. Eight
+     permutations per graph, drawn from a fixed seed, so this file reproduces.
+
+Grid: the registered one - seven families, n = 10 to 20, seeds 0, 1, 2,
+density 1.5 n, 126 graphs.
+
+Needs   : numpy, partition_topology, findability_scoping, cut_degeneracy.
+Runtime : seconds.
+
+1 - Spectral gap and relabelling invariance, per size
+------------------------------------------------------------------------------
+     n  graphs  gap < 1e-8  tie at split  incumbent moves   median gap
+    10      21           1             3                3       0.4872
+    12      21           0             3                3       0.4446
+    14      21           0             0                0       0.4263
+    16      21           3             0                3       0.2387
+    18      21           0             1                1       0.3301
+    20      21           0             1                1       0.2226
+   all     126           4             8               11
+
+  No Laplacian gap is exactly zero; 4 are below 1e-8.
+  Ties in the Fiedler vector at the split point: 8.
+
+2 - Where the incumbent moves, by family
+------------------------------------------------------------------------------
+       regular: 6 of 18 graphs
+    scale-free: 1 of 18 graphs
+          grid: 4 of 18 graphs
+
+  Regular and grid are the symmetric families of the grid, and
+  they supply ten of the eleven. The community and random
+  families, whose structure breaks the symmetry, never move.
+  Scale-free contributes one graph, which is a near-degeneracy
+  rather than a symmetry: no gap on this grid is exactly zero.
+
+3 - What follows
+------------------------------------------------------------------------------
+  On 11 of 126 graphs the incumbent is a property of the
+  eigensolver and the vertex numbering rather than of the graph.
+  The declared degenerate subset of A1.5 is defined by whether the
+  incumbent is already optimal, so it moves with it, and so does
+  the usable set and every figure computed on it. That is the
+  mechanism behind the mismatch addendum 4 recorded, and it is an
+  instrument defect rather than a lost version of a file.
+
+  It does not touch the withdrawal of A2.2, which rests on the warm
+  route reaching the optimum less often at n = 12 - true in both
+  environments - nor the A1.2 dataset, which uses random starts and
+  no eigensolver, nor the exact enumeration of section 1.
